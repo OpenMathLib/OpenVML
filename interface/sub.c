@@ -1,12 +1,10 @@
 #include <openvml.h>
 #include <openvml_kernel.h>
-#include <stdio.h>
 
-#ifndef DOUBLE
-void vsSub(VML_INT n, const float * a, const float * b, float * y) {
-#else
-void vdSub(VML_INT n, const double * a, const double * b, double * y) {
-#endif
+void CNAME(VML_INT n, const VML_FLOAT * a, const VML_FLOAT * b, VML_FLOAT * y) {
 
-  printf("%s", __func__);
+  if(n<=0) return;
+  
+  SUB_K(n, (VML_FLOAT*)a, (VML_FLOAT *)b, y);
+
 }

@@ -11,6 +11,9 @@ set (OpenVML_VERSION_PATCH 1)
 set (OpenVML_ARCH "generic")
 set (OpenVML_CPU_CORENAME "generic")
 
+set (OpenVML_FUNC_PREFIX "")
+set (OpenVML_FUNC_SUFFIX "")
+
 include_directories("${PROJECT_BINARY_DIR}") 
 include_directories("${PROJECT_BINARY_DIR}/include") 
 include_directories("${PROJECT_SOURCE_DIR}/include") 
@@ -19,7 +22,6 @@ configure_file (
   "${PROJECT_SOURCE_DIR}/include/openvml_config.h.in"
   "${PROJECT_BINARY_DIR}/include/openvml_config.h"
 )
-
 
 
 SET(CMAKE_POSITION_INDEPENDENT_CODE ON) 
@@ -32,9 +34,36 @@ set(OpenVML_LIBSRC_OTHER "")
 
 #define -DDOUBLE for double precision
 set(OpenVML_S_DEFINITIONS "")
-set(OpenVML_D_DEFINITIONS "DOUBLE")
-set(OpenVML_C_DEFINITIONS "COMPLEX")
-set(OpenVML_Z_DEFINITIONS "COMPLEX DOUBLE")
+set(OpenVML_D_DEFINITIONS DOUBLE)
+set(OpenVML_C_DEFINITIONS COMPLEX)
+set(OpenVML_Z_DEFINITIONS COMPLEX DOUBLE)
+
+
+
+##########################################################
+# For RPATH http://www.cmake.org/Wiki/CMake_RPATH_handling
+#
+set(CMAKE_MACOSX_RPATH 1)
+# use, i.e. don't skip the full RPATH for the build tree
+SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
+
+# when building, don't use the install RPATH already
+# (but later on when installing)
+SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+
+# add the automatically determined parts of the RPATH
+# which point to directories outside the build tree to the install RPATH
+SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
+
+# the RPATH to be used when installing, but only if it's not a system directory
+LIST(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
+IF("${isSystemDir}" STREQUAL "-1")
+   SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+ENDIF("${isSystemDir}" STREQUAL "-1")
+##########################################################
+
 
 add_subdirectory(interface)
 add_subdirectory(kernel)
@@ -72,3 +101,4 @@ install(FILES ${PROJECT_BINARY_DIR}/openvml_export.h DESTINATION include)
 install(FILES ${PROJECT_BINARY_DIR}/include/openvml_config.h DESTINATION include)
 install(FILES ${PROJECT_SOURCE_DIR}/include/openvml.h DESTINATION include)
 install(FILES ${PROJECT_SOURCE_DIR}/include/openvml_common.h DESTINATION include)
+

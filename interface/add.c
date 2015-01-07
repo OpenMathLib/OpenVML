@@ -1,12 +1,10 @@
 #include <openvml.h>
 #include <openvml_kernel.h>
-#include <stdio.h>
 
-#ifndef DOUBLE
-void vsAdd(VML_INT n, const float * a, const float * b, float * y) {
-#else
-void vdAdd(VML_INT n, const double * a, const double * b, double * y) {
-#endif
+void CNAME(VML_INT n, const VML_FLOAT * a, const VML_FLOAT * b, VML_FLOAT * y) {
 
-  printf("%s", __func__);
+  if (n<=0) return;
+  
+  ADD_K(n, (VML_FLOAT*)a, (VML_FLOAT*)b, y);
+
 }
