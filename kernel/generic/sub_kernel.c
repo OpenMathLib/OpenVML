@@ -27,7 +27,7 @@
 
 void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y) {
   VMLLONG i=0;
-  for(i=0; i<n; i++){
+  for(i=0; i<COMPSIZE*n; i++){
     y[i]=a[i]-b[i];
   }
 }

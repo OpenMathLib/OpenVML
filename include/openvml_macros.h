@@ -26,18 +26,21 @@
 #ifndef _OPENVML_MACROS_H_
 #define _OPENVML_MACROS_H_
 
+#ifndef COMPLEX
+#define COMPSIZE  1
+#else
+#define COMPSIZE  2
+#endif
+
 #define SADD_K OpenVML_FUNCNAME(sadd_k)
 #define DADD_K OpenVML_FUNCNAME(dadd_k)
-//reuse 
-#define CADD_K OpenVML_FUNCNAME(sadd_k)
-#define ZADD_K OpenVML_FUNCNAME(dadd_k)
-
+#define CADD_K OpenVML_FUNCNAME(cadd_k)
+#define ZADD_K OpenVML_FUNCNAME(zadd_k)
 
 #define SSUB_K OpenVML_FUNCNAME(ssub_k)
 #define DSUB_K OpenVML_FUNCNAME(dsub_k)
-//reuse 
-#define CSUB_K OpenVML_FUNCNAME(ssub_k)
-#define ZSUB_K OpenVML_FUNCNAME(dsub_k)
+#define CSUB_K OpenVML_FUNCNAME(csub_k)
+#define ZSUB_K OpenVML_FUNCNAME(zsub_k)
 
 
 #ifndef COMPLEX
@@ -54,7 +57,7 @@
 #define SUB_K CSUB_K
 #else
 #define ADD_K ZADD_K
-#define SUB_K CSUB_K
+#define SUB_K ZSUB_K
 #endif
 #endif
 
