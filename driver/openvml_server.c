@@ -23,16 +23,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define OPENVML_VERSION_MAJOR @OpenVML_VERSION_MAJOR@
-#define OPENVML_VERSION_MINOR @OpenVML_VERSION_MINOR@
-#define OPENVML_VERSION_PATCH @OpenVML_VERSION_PATCH@
+#include <openvml_driver.h>
 
-#define OPENVML_FUNC_PREFIX @OpenVML_FUNC_PREFIX@
-#define OPENVML_FUNC_SUFFIX @OpenVML_FUNC_SUFFIX@
+void OpenVML_FUNCNAME(openvml_exec)(int mode, void * func, VMLLONG n, void * a, void *b, void *y, void *z, void * other_params) {
+  printf("ok!\n");
+}
 
-#cmakedefine OPENVML_SINGLE_THREAD
-#cmakedefine USE64BITINT
-#cmakedefine __64BIT__
-#cmakedefine OS_WINDOWS
-#cmakedefine OS_DARWIN
-#cmakedefine OS_LINUX

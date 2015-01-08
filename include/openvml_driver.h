@@ -23,16 +23,24 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define OPENVML_VERSION_MAJOR @OpenVML_VERSION_MAJOR@
-#define OPENVML_VERSION_MINOR @OpenVML_VERSION_MINOR@
-#define OPENVML_VERSION_PATCH @OpenVML_VERSION_PATCH@
+#ifndef _OPENVML_DRIVER_H_
+#define _OPENVML_DRIVER_H_
 
-#define OPENVML_FUNC_PREFIX @OpenVML_FUNC_PREFIX@
-#define OPENVML_FUNC_SUFFIX @OpenVML_FUNC_SUFFIX@
+#include "openvml_common.h"
+#include "openvml_macros.h"
 
-#cmakedefine OPENVML_SINGLE_THREAD
-#cmakedefine USE64BITINT
-#cmakedefine __64BIT__
-#cmakedefine OS_WINDOWS
-#cmakedefine OS_DARWIN
-#cmakedefine OS_LINUX
+
+//size n
+//vector a, b, y, z
+//workspace other_params
+#ifdef OPENVML_SINGLE_THREAD
+#define EXEC_VML(mode, kernel, n, a, b, y, z, other_params) \
+  kernel(n, a, b, y, z, other_params)
+#else
+#define EXEC_VML(mode, kernel, n, a, b, y, z, other_params) \
+  OpenVML_FUNCNAME(openvml_exec)(mode, (void*)kernel, n, (void*)a, (void*)b, (void*)y, (void*)z, (void*)other_params)
+#endif
+
+void OpenVML_FUNCNAME(openvml_exec)(int mode, void * func, VMLLONG n, void * a, void *b, void *y, void *z, void * other_params);
+
+#endif

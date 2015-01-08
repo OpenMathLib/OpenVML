@@ -30,6 +30,7 @@
 #include "openvml_macros.h"
 #include <stdlib.h>
 
+
 void OpenVML_FUNCNAME(sadd_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
 void OpenVML_FUNCNAME(dadd_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 void OpenVML_FUNCNAME(cadd_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);

@@ -14,9 +14,17 @@ set (OpenVML_CPU_CORENAME "generic")
 set (OpenVML_FUNC_PREFIX "")
 set (OpenVML_FUNC_SUFFIX "")
 
+option(BUILD_SINGLE_THREAD "Only build the single thread" ON)
+
+#####################################################
+
 include_directories("${PROJECT_BINARY_DIR}") 
 include_directories("${PROJECT_BINARY_DIR}/include") 
 include_directories("${PROJECT_SOURCE_DIR}/include") 
+
+if(BUILD_SINGLE_THREAD)
+  set(OPENVML_SINGLE_THREAD 1)
+endif(BUILD_SINGLE_THREAD)
 
 configure_file (
   "${PROJECT_SOURCE_DIR}/include/openvml_config.h.in"
@@ -66,9 +74,10 @@ ENDIF("${isSystemDir}" STREQUAL "-1")
 
 
 add_subdirectory(interface)
+add_subdirectory(driver)
 add_subdirectory(kernel)
 
-set(CORE_LIB_LISTS $<TARGET_OBJECTS:openvml_interface_core> $<TARGET_OBJECTS:openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core>)
+set(CORE_LIB_LISTS $<TARGET_OBJECTS:openvml_interface_core> $<TARGET_OBJECTS:openvml_driver_core> $<TARGET_OBJECTS:openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core>)
 
 add_library(${OpenVML_LIBNAME} SHARED ${CORE_LIB_LISTS})
 add_library(${OpenVML_LIBNAME}_static STATIC ${CORE_LIB_LISTS})

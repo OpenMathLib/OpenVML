@@ -32,11 +32,6 @@
 #define COMPSIZE  2
 #endif
 
-//size n
-//vector a, b, y, z
-//workspace other_params
-#define EXEC_VML(mode, kernel, n, a, b, y, z, other_params) \
-  kernel(n, a, b, y, z, other_params)
 
 #define SADD_K OpenVML_FUNCNAME(sadd_k)
 #define DADD_K OpenVML_FUNCNAME(dadd_k)
@@ -47,7 +42,6 @@
 #define DSUB_K OpenVML_FUNCNAME(dsub_k)
 #define CSUB_K OpenVML_FUNCNAME(csub_k)
 #define ZSUB_K OpenVML_FUNCNAME(zsub_k)
-
 
 #ifndef COMPLEX
 #ifndef DOUBLE
