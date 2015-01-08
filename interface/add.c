@@ -31,6 +31,8 @@ void CNAME(VML_INT n, const VML_FLOAT * a, const VML_FLOAT * b, VML_FLOAT * y) {
   if (n<=0) return;
   if (a==NULL || b==NULL || y==NULL) return;
   
-  ADD_K(n, (VML_FLOAT*)a, (VML_FLOAT*)b, y);
+  //ADD_K(n, (VML_FLOAT*)a, (VML_FLOAT*)b, y);
+
+  EXEC_VML(0, ADD_K, n, (VML_FLOAT*)a, (VML_FLOAT*)b, y, NULL, NULL);
 
 }
