@@ -23,71 +23,18 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _OPENVML_MACROS_H_
-#define _OPENVML_MACROS_H_
+#include <math.h>
+#include "openvml_kernel.h"
 
-#ifndef COMPLEX
-#define COMPSIZE  1
-#else
-#define COMPSIZE  2
-#endif
-
-
-#define SADD_K OpenVML_FUNCNAME(sadd_k)
-#define DADD_K OpenVML_FUNCNAME(dadd_k)
-#define CADD_K OpenVML_FUNCNAME(cadd_k)
-#define ZADD_K OpenVML_FUNCNAME(zadd_k)
-
-#define SSUB_K OpenVML_FUNCNAME(ssub_k)
-#define DSUB_K OpenVML_FUNCNAME(dsub_k)
-#define CSUB_K OpenVML_FUNCNAME(csub_k)
-#define ZSUB_K OpenVML_FUNCNAME(zsub_k)
-
-#define SPOW_K OpenVML_FUNCNAME(spow_k)
-#define DPOW_K OpenVML_FUNCNAME(dpow_k)
-#define CPOW_K OpenVML_FUNCNAME(cpow_k)
-#define ZPOW_K OpenVML_FUNCNAME(zpow_k)
-
-#define SEXP_K OpenVML_FUNCNAME(sexp_k)
-#define DEXP_K OpenVML_FUNCNAME(dexp_k)
-#define CEXP_K OpenVML_FUNCNAME(cexp_k)
-#define ZEXP_K OpenVML_FUNCNAME(zexp_k)
-
-
-#define STANH_K OpenVML_FUNCNAME(stanh_k)
-#define DTANH_K OpenVML_FUNCNAME(dtanh_k)
-#define CTANH_K OpenVML_FUNCNAME(ctanh_k)
-#define ZTANH_K OpenVML_FUNCNAME(ztanh_k)
-
-
-#ifndef COMPLEX
 #ifndef DOUBLE
-#define ADD_K SADD_K
-#define SUB_K SSUB_K
-#define POW_K SPOW_K
-#define EXP_K SEXP_K
-#define TANH_K STANH_K
+#define TANH tanhf
 #else
-#define ADD_K DADD_K
-#define SUB_K DSUB_K
-#define POW_K DPOW_K
-#define EXP_K DEXP_K
-#define TANH_K DTANH_K
-#endif
-#else
-#ifndef DOUBLE
-#define ADD_K CADD_K
-#define SUB_K CSUB_K
-#define POW_K CPOW_K
-#define EXP_K CEXP_K
-#define TANH_K CTANH_K
-#else
-#define ADD_K ZADD_K
-#define SUB_K ZSUB_K
-#define POW_K ZPOW_K
-#define EXP_K ZEXP_K
-#define TANH_K ZTANH_K
-#endif
+#define TANH tanh
 #endif
 
-#endif
+void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
+  VMLLONG i=0;
+  for(i=0; i<n; i++){
+    y[i]=TANH(a[i]);
+  }
+}
