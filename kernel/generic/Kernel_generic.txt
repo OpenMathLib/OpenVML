@@ -7,3 +7,8 @@ set(sub_S_KERNEL_SOURCE ${OpenVML_ARCH}/sub_kernel.c)
 set(sub_D_KERNEL_SOURCE ${OpenVML_ARCH}/sub_kernel.c)
 set(sub_C_KERNEL_SOURCE ${OpenVML_ARCH}/sub_kernel.c)
 set(sub_Z_KERNEL_SOURCE ${OpenVML_ARCH}/sub_kernel.c)
+
+set(pow_S_KERNEL_SOURCE ${OpenVML_ARCH}/pow_kernel.c)
+set(pow_D_KERNEL_SOURCE ${OpenVML_ARCH}/pow_kernel.c)
+#set(sub_C_KERNEL_SOURCE ${OpenVML_ARCH}/pow_kernel.c)
+#set(sub_Z_KERNEL_SOURCE ${OpenVML_ARCH}/pow_kernel.c)

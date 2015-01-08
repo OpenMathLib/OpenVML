@@ -23,51 +23,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _OPENVML_MACROS_H_
-#define _OPENVML_MACROS_H_
-
-#ifndef COMPLEX
-#define COMPSIZE  1
-#else
-#define COMPSIZE  2
-#endif
+#include <openvml.h>
+#include <openvml_driver.h>
+#include <openvml_kernel.h>
 
 
-#define SADD_K OpenVML_FUNCNAME(sadd_k)
-#define DADD_K OpenVML_FUNCNAME(dadd_k)
-#define CADD_K OpenVML_FUNCNAME(cadd_k)
-#define ZADD_K OpenVML_FUNCNAME(zadd_k)
+void CNAME(VML_INT n, const VML_FLOAT * a, const VML_FLOAT * b, VML_FLOAT * y) {
 
-#define SSUB_K OpenVML_FUNCNAME(ssub_k)
-#define DSUB_K OpenVML_FUNCNAME(dsub_k)
-#define CSUB_K OpenVML_FUNCNAME(csub_k)
-#define ZSUB_K OpenVML_FUNCNAME(zsub_k)
+  if (n<=0) return;
+  if (a==NULL || b==NULL || y==NULL) return;
+  
 
-#define SPOW_K OpenVML_FUNCNAME(spow_k)
-#define DPOW_K OpenVML_FUNCNAME(dpow_k)
-#define CPOW_K OpenVML_FUNCNAME(cpow_k)
-#define ZPOW_K OpenVML_FUNCNAME(zpow_k)
+  EXEC_VML(0, POW_K, n, (VML_FLOAT*)a, (VML_FLOAT*)b, y, NULL, NULL);
 
-#ifndef COMPLEX
-#ifndef DOUBLE
-#define ADD_K SADD_K
-#define SUB_K SSUB_K
-#define POW_K SPOW_K
-#else
-#define ADD_K DADD_K
-#define SUB_K DSUB_K
-#define POW_K DPOW_K
-#endif
-#else
-#ifndef DOUBLE
-#define ADD_K CADD_K
-#define SUB_K CSUB_K
-#define POW_K CPOW_K
-#else
-#define ADD_K ZADD_K
-#define SUB_K ZSUB_K
-#define POW_K ZPOW_K
-#endif
-#endif
-
-#endif
+}
