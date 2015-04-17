@@ -88,7 +88,9 @@ CTEST_DATA(check_result_z) {
 
 void * vml_test_memory_alloc(size_t size);
 void vml_test_memory_free(void * ptr);
+
 //input_arg_t * get_input_arg();
+void read_input_flags(int argc, char *argv[], char ** suitname, char ** testname);
 
 void init_test_parameter(perf_arg_t ** p, int iscomplex, int isdouble);
 void free_test_parameter(perf_arg_t ** p);

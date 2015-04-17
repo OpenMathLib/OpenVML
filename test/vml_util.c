@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/time.h>
+#include <math.h>
 
 #define FP_TYPE_NUM 4
 //32MB
@@ -219,7 +220,7 @@ int check_result(double ref, double test, eps_t* thres)
 {
   double tmp;
 
-  tmp=abs(ref-test);
+  tmp=fabs(ref-test);
 
   if(tmp>=thres->warn && tmp<thres->fail) {
     return 1; //warning
