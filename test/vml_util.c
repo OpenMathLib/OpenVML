@@ -294,7 +294,7 @@ void init_rand(VML_INT n, void * a, int iscomplex, int isdouble)
 void flush_cache(void * flushcache)
 {
   if(flushcache!=NULL){
-    memset(flushcache, 1, FLUSHCACHE_SIZE);
+    //memset(flushcache, 1, FLUSHCACHE_SIZE);
   }
 }
 
@@ -332,7 +332,7 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
     mflops=flops_per_elem[para->fp_type] * i;
 
     //need to clean cache
-    //flush_cache(para->flushcache);
+    flush_cache(para->flushcache);
 
     start_time=getRealTime();
     test_func[para->fp_type](i, para->a, para->b, para->y);
@@ -342,6 +342,69 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
     mflops=mflops/(double)(1000000)/time;
 
     ref_func[para->fp_type](i, para->ref_a, para->ref_b, para->ref_y);
+
+    //check
+    result=check_vector(i, para->ref_y, para->y, para->eps, iscomplex, isdouble);
+
+    if(result==0){
+      result_str=STR_PASS;
+    }else if(result==1){
+      result_str=STR_WARN;
+    }else{
+      result_str=STR_ERR;
+      failed_count++;
+    }
+
+    VML_TEST_LOG("%s\t%d\t%lf\t%lf\t%s\n", funcname[para->fp_type], i, mflops, time, result_str);
+
+  }
+
+  if(failed_count>0) CTEST_ERR("Result failed!\n");
+}
+
+
+void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a_y_func_t ref_func[],
+		   double * flops_per_elem)
+{
+
+
+  VML_INT start=para->start;
+  VML_INT end=para->end;
+  VML_INT step=para->step;
+
+  double mflops=0.0;
+  double time=0.0, start_time, end_time;
+
+  int iscomplex = (para->fp_type & 0x2) >> 1;
+  int isdouble = (para->fp_type & 0x1);
+  int result=0;
+  char * result_str;
+  int failed_count=0;
+
+  VML_INT i;
+
+  VML_TEST_LOG("\n");
+  VML_TEST_LOG("Func\tN\tMFlops\t\tTime(s)\t\tResult\n");
+
+  init_rand(end, para->a, iscomplex, isdouble);
+
+  memcpy(para->ref_a, para->a, end * para->element_size * para->compose_size);
+
+  for(i=start; i<=end; i+=step) {
+
+    mflops=flops_per_elem[para->fp_type] * i;
+
+    //need to clean cache
+    flush_cache(para->flushcache);
+
+    start_time=getRealTime();
+    test_func[para->fp_type](i, para->a, para->y);
+    end_time=getRealTime();
+    time=end_time-start_time;
+
+    mflops=mflops/(double)(1000000)/time;
+
+    ref_func[para->fp_type](i, para->ref_a, para->ref_y);
 
     //check
     result=check_vector(i, para->ref_y, para->y, para->eps, iscomplex, isdouble);

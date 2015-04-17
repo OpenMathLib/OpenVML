@@ -5,6 +5,8 @@ set(OpenVML_TESTSRC
   test_add.c
   test_sub.c
   test_pow.c
+  test_exp.c
+  test_tanh.c
   )
 
 set(OpenVML_TEST_NAME run_vml_test)

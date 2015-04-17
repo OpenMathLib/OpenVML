@@ -100,4 +100,8 @@ void init_rand(VML_INT n, void * a, int iscomplex, int isdouble);
 typedef void (*ab_y_func_t)(VML_INT, const void *, const void *, void *);
 void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t*test_func, ab_y_func_t* ref_func,
 		   double * flop_per_elem);
+
+typedef void (*a_y_func_t)(VML_INT, const void *, void *);
+void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t*test_func, a_y_func_t* ref_func,
+		   double * flop_per_elem);
 #endif
