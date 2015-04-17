@@ -32,26 +32,69 @@ void vml_test_memory_free(void * ptr)
   free(ptr);
 }
 
-void print_help()
+void print_help(char * name)
 {
-  printf("-d <start> <end> <step>\n");
-  printf("   input data size.\n");
-  printf("-s test_suit\n");
-  printf("   testsuit name\n");
+  printf("OpenVML test usage:\n");
+  printf("%s [-options ..]\n\n", name);
+  printf("  -h\tPrint this message.\n");
+  printf("\n");
+  printf("  -d\t<start> <end> <step>\n");
+  printf("    \tInput data size.\n");
+  printf("\n");
+  printf("  -r\t<testsuit_name> [test_name]\n");
+  printf("    \tRun testsuit filtered by testsuit_name\n");
+  printf("    \tOr, run test filtered by testsuit_name and test_name\n");
+  printf("\n");
+  exit(-1);
 }
 
 static input_arg_t input_args;
 
+/*
 input_arg_t * get_input_arg()
 {
   return &input_args;
 }
+*/
 
-void init_input_arg(int argc, char *argv[])
+void read_input_flags(int argc, char *argv[], char ** suitname, char ** testname)
 {
+  int i;
+
   input_args.start=100;
   input_args.end=200;
   input_args.step=10;
+  *suitname=NULL;
+  *testname=NULL;
+
+  for(i=1; i<argc; ) {
+    if(argv[i][0] != '-') print_help(argv[0]);
+    
+    switch(argv[i++][1]) {
+    case 'h':
+      print_help(argv[0]);
+      break;
+    case 'r':
+      if (argv[i] == NULL) print_help(argv[0]);
+      snprintf(input_args.suitname,1024,"%s", argv[i++]);
+      *suitname=input_args.suitname;
+      if (argv[i] == NULL) continue;
+      if (argv[i][0] == '-') continue;
+      snprintf(input_args.testname,1024,"%s", argv[i++]);
+      *testname=input_args.testname;
+      break;
+    case 'd':
+      if (argv[i] == NULL) print_help(argv[0]);
+      input_args.start=atoi(argv[i++]);
+      if (argv[i] == NULL) print_help(argv[0]);
+      input_args.end=atoi(argv[i++]);
+      if (argv[i] == NULL) print_help(argv[0]);
+      input_args.step=atoi(argv[i++]);
+      break;
+    default:
+      print_help(argv[0]);
+    }
+  }
 }
 
 void init_test_parameter(perf_arg_t ** p, int iscomplex, int isdouble)

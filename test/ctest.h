@@ -356,7 +356,7 @@ static void sighandler(int signum)
 }
 #endif
 
-int ctest_main(int argc, char *argv[])
+int ctest_main(char * input_suitname, char * input_testname)
 {
   static int total = 0;
   static int num_ok = 0;
@@ -369,16 +369,16 @@ int ctest_main(int argc, char *argv[])
   signal(SIGSEGV, sighandler);
 #endif
 
-  if (argc == 2) {
-    suite_name = argv[1];
+
+  if (input_suitname != NULL && input_testname != NULL) {
+    suite_name = input_suitname;
+    test_name = input_testname;
+    filter = suite_test_filter;
+  }else if(input_suitname != NULL) {
+    suite_name = input_suitname;
     filter = suite_filter;
   }
 
-  if (argc == 3) {
-    suite_name = argv[1];
-    test_name = argv[2];
-    filter = suite_test_filter;
-  }
 
   color_output = isatty(1);
   uint64_t t1 = getCurrentTime();
