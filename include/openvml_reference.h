@@ -46,6 +46,15 @@ OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdSub)(VML_INT n, const double * a, con
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vcSub)(VML_INT n, const float * a, const float * b, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vzSub)(VML_INT n, const double * a, const double * b, double * y);
 
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsPow)(VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdPow)(VML_INT n, const double * a, const double * b, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsExp)(VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdExp)(VML_INT n, const double * a, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsTanh)(VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdTanh)(VML_INT n, const double * a, double * y);
+
 
 #ifdef __cplusplus
 }
