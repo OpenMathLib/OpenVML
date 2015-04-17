@@ -3,6 +3,7 @@ set(OpenVML_TESTSRC
   vml_util.c
   timer.c
   test_add.c
+  test_sub.c
   )
 
 set(OpenVML_TEST_NAME run_vml_test)
