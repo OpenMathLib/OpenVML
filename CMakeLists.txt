@@ -15,6 +15,7 @@ set (OpenVML_FUNC_PREFIX "")
 set (OpenVML_FUNC_SUFFIX "")
 
 option(BUILD_SINGLE_THREAD "Only build the single thread" ON)
+option(BUILD_OpenVML_TEST "Build Test" ON)
 
 #####################################################
 
@@ -86,6 +87,9 @@ set_target_properties(${OpenVML_LIBNAME}_static PROPERTIES OUTPUT_NAME ${OpenVML
 set_target_properties(${OpenVML_LIBNAME}_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 set_target_properties(${OpenVML_LIBNAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
+target_link_libraries(${OpenVML_LIBNAME} m)
+target_link_libraries(${OpenVML_LIBNAME}_static m)
+
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 
 set_target_properties(${OpenVML_LIBNAME} PROPERTIES 
@@ -111,3 +115,11 @@ install(FILES ${PROJECT_BINARY_DIR}/include/openvml_config.h DESTINATION include
 install(FILES ${PROJECT_SOURCE_DIR}/include/openvml.h DESTINATION include)
 install(FILES ${PROJECT_SOURCE_DIR}/include/openvml_common.h DESTINATION include)
 
+
+#test
+if(BUILD_OpenVML_TEST)
+add_subdirectory(reference)
+
+enable_testing()
+add_subdirectory(test)
+endif(BUILD_OpenVML_TEST)
