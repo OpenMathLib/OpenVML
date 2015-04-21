@@ -63,7 +63,7 @@ void print_help(char * name)
   printf("%s [-options ..]\n\n", name);
   printf("  -h\tPrint this message.\n");
   printf("\n");
-  printf("  -d\t<start> <end> <step>\n");
+  printf("  -n\t<start> <end> <step>\n");
   printf("    \tInput data size.\n");
   printf("\n");
   printf("  -r\t<testsuit_name> [test_name]\n");
@@ -108,7 +108,7 @@ void read_input_flags(int argc, char *argv[], char ** suitname, char ** testname
       snprintf(input_args.testname,1024,"%s", argv[i++]);
       *testname=input_args.testname;
       break;
-    case 'd':
+    case 'n':
       if (argv[i] == NULL) print_help(argv[0]);
       input_args.start=atoi(argv[i++]);
       if (argv[i] == NULL) print_help(argv[0]);
