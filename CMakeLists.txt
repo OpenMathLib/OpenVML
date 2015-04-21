@@ -8,8 +8,8 @@ set (OpenVML_VERSION_MAJOR 0)
 set (OpenVML_VERSION_MINOR 0)
 set (OpenVML_VERSION_PATCH 1)
 
-set (OpenVML_ARCH "generic")
-set (OpenVML_CPU_CORENAME "generic")
+#set (OpenVML_ARCH "x86_64")
+#set (OpenVML_CPU_CORENAME "haswell")
 
 set (OpenVML_FUNC_PREFIX "")
 set (OpenVML_FUNC_SUFFIX "")
@@ -18,6 +18,13 @@ option(BUILD_SINGLE_THREAD "Only build the single thread" ON)
 option(BUILD_OpenVML_TEST "Build Test" ON)
 
 #####################################################
+
+if (NOT OpenVML_ARCH)
+set (OpenVML_ARCH "generic")
+endif(NOT OpenVML_ARCH)
+if (NOT OpenVML_CPU_CORENAME)
+set (OpenVML_CPU_CORENAME "generic")
+endif(NOT OpenVML_CPU_CORENAME)
 
 include_directories("${PROJECT_BINARY_DIR}") 
 include_directories("${PROJECT_BINARY_DIR}/include") 
