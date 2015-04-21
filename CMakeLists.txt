@@ -15,9 +15,14 @@ set (OpenVML_FUNC_PREFIX "")
 set (OpenVML_FUNC_SUFFIX "")
 
 option(BUILD_SINGLE_THREAD "Only build the single thread" ON)
+option(AUTO_DETECT_CPU "Auto detect CPU architecture." ON)
 option(BUILD_OpenVML_TEST "Build Test" ON)
 
 #####################################################
+
+if(AUTO_DETECT_CPU)
+include(${PROJECT_SOURCE_DIR}/cmake/auto_detect_cpu.cmake)
+endif()
 
 if (NOT OpenVML_ARCH)
 set (OpenVML_ARCH "generic")
