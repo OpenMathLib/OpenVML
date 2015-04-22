@@ -4,3 +4,8 @@ set(add_S_KERNEL_SOURCE ${OpenVML_ARCH}/sadd_kernel_avx.c)
 set(add_D_KERNEL_SOURCE ${OpenVML_ARCH}/dadd_kernel_avx.c)
 set(add_C_KERNEL_SOURCE ${OpenVML_ARCH}/sadd_kernel_avx.c)
 set(add_Z_KERNEL_SOURCE ${OpenVML_ARCH}/dadd_kernel_avx.c)
+
+set(sub_S_KERNEL_SOURCE ${OpenVML_ARCH}/ssub_kernel_avx.c)
+set(sub_D_KERNEL_SOURCE ${OpenVML_ARCH}/dsub_kernel_avx.c)
+set(sub_C_KERNEL_SOURCE ${OpenVML_ARCH}/ssub_kernel_avx.c)
+set(sub_Z_KERNEL_SOURCE ${OpenVML_ARCH}/dsub_kernel_avx.c)
