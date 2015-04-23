@@ -26,6 +26,9 @@ try_run(cpu_detect_result cpu_detect_compile_result
   RUN_OUTPUT_VARIABLE cpu_detect_output
   COMPILE_OUTPUT_VARIABLE cpu_detect_compile_output
   )
+if(MSVC)
+  set(cpu_detect_output "generic")
+endif()
 endif()
 
 if(cpu_detect_compile_result)
