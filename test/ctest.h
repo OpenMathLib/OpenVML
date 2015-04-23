@@ -129,9 +129,13 @@ void assert_fail(const char* caller, int line);
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/time.h>
-#include <inttypes.h>
+//#include <sys/time.h>
+//#include <inttypes.h>
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
+#endif
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -304,6 +308,7 @@ static int suite_test_filter(struct ctest* t) {
   return (suit_match & test_match);
 }
 
+/*
 static uint64_t getCurrentTime() {
   struct timeval now;
   gettimeofday(&now, NULL);
@@ -312,6 +317,7 @@ static uint64_t getCurrentTime() {
   now64 += (now.tv_usec);
   return now64;
 }
+*/
 
 static void color_print(const char* color, const char* text) {
   if (color_output)
@@ -381,7 +387,7 @@ int ctest_main(char * input_suitname, char * input_testname)
 
 
   color_output = isatty(1);
-  uint64_t t1 = getCurrentTime();
+  //uint64_t t1 = getCurrentTime();
 
   struct ctest* ctest_begin = &__TNAME(suite, test);
   struct ctest* ctest_end = &__TNAME(suite, test);
@@ -449,11 +455,12 @@ int ctest_main(char * input_suitname, char * input_testname)
       index++;
     }
   }
-  uint64_t t2 = getCurrentTime();
+  //uint64_t t2 = getCurrentTime();
 
   const char* color = (num_fail) ? ANSI_BRED : ANSI_GREEN;
   char results[80];
-  sprintf(results, "RESULTS: %d tests (%d ok, %d failed, %d skipped) ran in %"PRIu64" ms", total, num_ok, num_fail, num_skip, (t2 - t1)/1000);
+  //sprintf(results, "RESULTS: %d tests (%d ok, %d failed, %d skipped) ran in %"PRIu64" ms", total, num_ok, num_fail, num_skip, (t2 - t1)/1000);
+  sprintf(results, "RESULTS: %d tests (%d ok, %d failed, %d skipped)", total, num_ok, num_fail, num_skip);
   color_print(color, results);
   return num_fail;
 }

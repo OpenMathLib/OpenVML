@@ -23,15 +23,4 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <stdio.h>
-
-int main()
-{
-#if defined(__x86_64__) || defined(__amd64__) || defined(_M_X64)
-  printf("x86_64");
-  return 0;
-#endif
-  //default
-  printf("generic");
-  return 0;
-}
+double getRealTime();

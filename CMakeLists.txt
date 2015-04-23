@@ -17,6 +17,7 @@ set (OpenVML_FUNC_SUFFIX "")
 option(BUILD_SINGLE_THREAD "Only build the single thread" ON)
 option(AUTO_DETECT_CPU "Auto detect CPU architecture." ON)
 option(BUILD_OpenVML_TEST "Build Test" ON)
+option(BUILD_64BIT_INT "Build 64bit int interface(ilp64)" OFF)
 
 #####################################################
 
@@ -35,9 +36,28 @@ include_directories("${PROJECT_BINARY_DIR}")
 include_directories("${PROJECT_BINARY_DIR}/include") 
 include_directories("${PROJECT_SOURCE_DIR}/include") 
 
+#single thread
 if(BUILD_SINGLE_THREAD)
   set(OPENVML_SINGLE_THREAD 1)
 endif(BUILD_SINGLE_THREAD)
+
+#32-bit or 64-bit target
+include(${PROJECT_SOURCE_DIR}/cmake/detect_32or64bit.cmake)
+detect_32_64_bit(OpenVML_BINARY)
+if("${OpenVML_BINARY}" STREQUAL "32")
+  set(__32BIT__ 1)
+elseif("${OpenVML_BINARY}" STREQUAL "64")
+  set(__64BIT__ 1)
+endif()
+
+#32-bit or 64-bit int
+if(BUILD_64BIT_INT)
+  set(USE64BITINT 1)
+endif()
+
+if(WIN32)
+  set(OS_WINDOWS 1)
+endif()
 
 configure_file (
   "${PROJECT_SOURCE_DIR}/include/openvml_config.h.in"
@@ -99,8 +119,10 @@ set_target_properties(${OpenVML_LIBNAME}_static PROPERTIES OUTPUT_NAME ${OpenVML
 set_target_properties(${OpenVML_LIBNAME}_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 set_target_properties(${OpenVML_LIBNAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
+if(NOT MSVC)
 target_link_libraries(${OpenVML_LIBNAME} m)
 target_link_libraries(${OpenVML_LIBNAME}_static m)
+endif()
 
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
 

@@ -26,6 +26,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#ifdef COMPILER_MSVC
+#include <intrin.h>
+#endif
 
 #define VENDOR_UNKNOWN       0
 #define VENDOR_INTEL         1
@@ -46,7 +49,15 @@ static char *cpuname[] = {
 
 #define BITMASK(a, b, c) ((((a) >> (b)) & (c)))
 
-static inline void cpuid(int op, int *eax, int *ebx, int *ecx, int *edx){
+static void cpuid(int op, int *eax, int *ebx, int *ecx, int *edx){
+#ifdef COMPILER_MSVC
+  int cpuinfo[4];
+  __cpuid(cpuinfo, op);
+  *eax=cpuinfo[0];
+  *ebx=cpuinfo[1];
+  *ecx=cpuinfo[2];
+  *edx=cpuinfo[3];
+#else
 #if defined(__i386__) && defined(__PIC__)
   __asm__ __volatile__
     ("mov %%ebx, %%edi;"
@@ -57,9 +68,10 @@ static inline void cpuid(int op, int *eax, int *ebx, int *ecx, int *edx){
   __asm__ __volatile__
     ("cpuid": "=a" (*eax), "=b" (*ebx), "=c" (*ecx), "=d" (*edx) : "a" (op) : "cc");
 #endif
+#endif
 }
 
-static inline int have_cpuid(void){
+static int have_cpuid(void){
   int eax, ebx, ecx, edx;
 
   cpuid(0, &eax, &ebx, &ecx, &edx);
@@ -87,10 +99,14 @@ int get_vendor(void){
 }
 
 
-static inline void xgetbv(int op, int * eax, int * edx){
+static void xgetbv(int op, int * eax, int * edx){
+#ifdef COMPILER_MSVC
+  *eax=6; //Assume support for MSVC.
+#else
   //Use binary code for xgetbv
   __asm__ __volatile__
     (".byte 0x0f, 0x01, 0xd0": "=a" (*eax), "=d" (*edx) : "c" (op) : "cc");
+#endif
 }
 
 int support_avx(){

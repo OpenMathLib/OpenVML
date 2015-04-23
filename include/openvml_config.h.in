@@ -30,9 +30,14 @@
 #define OPENVML_FUNC_PREFIX @OpenVML_FUNC_PREFIX@
 #define OPENVML_FUNC_SUFFIX @OpenVML_FUNC_SUFFIX@
 
+#define OPENVML_ARCH @OpenVML_ARCH@
+#define OPENVML_CPU_CORENAME @OpenVML_CPU_CORENAME@
+#define OPENVML_BINARY @OpenVML_BINARY@
+
 #cmakedefine OPENVML_SINGLE_THREAD
 #cmakedefine USE64BITINT
 #cmakedefine __64BIT__
+#cmakedefine __32BIT__
 #cmakedefine OS_WINDOWS
 #cmakedefine OS_DARWIN
 #cmakedefine OS_LINUX

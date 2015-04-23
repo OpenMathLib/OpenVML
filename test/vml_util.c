@@ -24,9 +24,10 @@
  */
 
 #include "vml_test.h"
+#include "openvml_timer.h"
 #include <stdio.h>
 #include <string.h>
-#include <sys/time.h>
+//#include <sys/time.h>
 #include <math.h>
 
 #define FP_TYPE_NUM 4
@@ -37,8 +38,6 @@ static eps_t threshold[FP_TYPE_NUM]={{ 1e-04, 1e-05 },
 		     { 1e-13, 1e-14 },   // for d
                      { 1e-04, 1e-05 },   // for c
                      { 1e-13, 1e-14 }};
-
-double getRealTime();
 
 #define VML_TEST_LOG printf
 
