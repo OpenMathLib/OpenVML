@@ -113,10 +113,14 @@ add_subdirectory(kernel)
 set(CORE_LIB_LISTS $<TARGET_OBJECTS:openvml_interface_core> $<TARGET_OBJECTS:openvml_driver_core> $<TARGET_OBJECTS:openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core>)
 
 add_library(${OpenVML_LIBNAME} SHARED ${CORE_LIB_LISTS})
+#only build shared library for MSVC
+if(NOT MSVC)
 add_library(${OpenVML_LIBNAME}_static STATIC ${CORE_LIB_LISTS})
 
 set_target_properties(${OpenVML_LIBNAME}_static PROPERTIES OUTPUT_NAME ${OpenVML_LIBNAME})
 set_target_properties(${OpenVML_LIBNAME}_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+endif()
+
 set_target_properties(${OpenVML_LIBNAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 if(NOT MSVC)
@@ -132,17 +136,24 @@ set_target_properties(${OpenVML_LIBNAME} PROPERTIES
 )
 
 include (GenerateExportHeader)
-generate_export_header(openvml)
+generate_export_header(${OpenVML_LIBNAME})
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set (CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/installed" CACHE PATH "default install path" FORCE )
 endif(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 
 #install
+if(NOT MSVC)
 install(TARGETS ${OpenVML_LIBNAME} ${OpenVML_LIBNAME}_static
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
 )
+else()
+install(TARGETS ${OpenVML_LIBNAME}
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
+endif()
 
 install(FILES ${PROJECT_BINARY_DIR}/openvml_export.h DESTINATION include)
 install(FILES ${PROJECT_BINARY_DIR}/include/openvml_config.h DESTINATION include)

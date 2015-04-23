@@ -102,3 +102,4 @@ Endforeach(INTERFACE)
 
 add_library(openvml_interface_core OBJECT ${OpenVML_LIBSRC_S} ${OpenVML_LIBSRC_D} ${OpenVML_LIBSRC_C} ${OpenVML_LIBSRC_Z} ${OpenVML_LIBSRC_OTHER})
 
+target_compile_definitions(openvml_interface_core PUBLIC openvml_EXPORTS)
