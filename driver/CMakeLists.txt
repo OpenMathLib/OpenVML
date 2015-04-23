@@ -1,5 +1,10 @@
 set(OpenVML_LIBSRC_OTHER "")
 
+set(OpenVML_LIBSRC_OTHER
+    ${OpenVML_LIBSRC_OTHER}
+    openvml_util.c
+    )
+
 if(NOT BUILD_SINGLE_THREAD)
 set(OpenVML_LIBSRC_OTHER
     ${OpenVML_LIBSRC_OTHER}

@@ -33,6 +33,9 @@
 extern "C" {
 #endif
 
+OPENVML_EXPORT char* OpenVML_FUNCNAME(openvml_get_config)();
+
+
 OPENVML_EXPORT void OpenVML_FUNCNAME(vsAdd)(VML_INT n, const float * a, const float * b, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME(vdAdd)(VML_INT n, const double * a, const double * b, double * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME(vcAdd)(VML_INT n, const float * a, const float * b, float * y);
