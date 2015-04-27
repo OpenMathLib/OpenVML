@@ -82,15 +82,17 @@ input_arg_t * get_input_arg()
 }
 */
 
-void read_input_flags(int argc, char *argv[], char ** suitname, char ** testname)
+void read_input_flags(int argc, char *argv[], int * ctest_argc, char ** ctest_argv)
 {
   int i;
 
   input_args.start=100;
   input_args.end=200;
   input_args.step=10;
-  *suitname=NULL;
-  *testname=NULL;
+  *ctest_argc=1;
+  ctest_argv[0]=argv[0];
+  ctest_argv[1]=NULL;
+  ctest_argv[2]=NULL;
 
   for(i=1; i<argc; ) {
     if(argv[i][0] != '-') print_help(argv[0]);
@@ -101,12 +103,14 @@ void read_input_flags(int argc, char *argv[], char ** suitname, char ** testname
       break;
     case 'r':
       if (argv[i] == NULL) print_help(argv[0]);
-      snprintf(input_args.suitname,1024,"%s", argv[i++]);
-      *suitname=input_args.suitname;
+      snprintf(input_args.suite_name,1024,"%s", argv[i++]);
+      *ctest_argc=2;
+      ctest_argv[1]=input_args.suite_name;
       if (argv[i] == NULL) continue;
       if (argv[i][0] == '-') continue;
-      snprintf(input_args.testname,1024,"%s", argv[i++]);
-      *testname=input_args.testname;
+      snprintf(input_args.test_name,1024,"%s", argv[i++]);
+      *ctest_argc=3;
+      ctest_argv[2]=input_args.test_name;
       break;
     case 'n':
       if (argv[i] == NULL) print_help(argv[0]);

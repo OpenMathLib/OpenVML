@@ -62,13 +62,11 @@ CTEST_TEARDOWN(check_result_z) {
 
 int main(int argc, char ** argv){
 
+  int ctest_argc=1;
+  char * ctest_argv[3]={NULL,NULL,NULL};
+  read_input_flags(argc, argv, &ctest_argc, &ctest_argv);
 
-  char * suitname=NULL;
-  char * testname=NULL;
-
-  read_input_flags(argc, argv, &suitname, &testname);
-
-  ctest_main(suitname, testname);
+  ctest_main(ctest_argc, ctest_argv);
 
   return 0;
 }

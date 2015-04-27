@@ -38,13 +38,7 @@ CTEST(misc, openvml_get_config){
 
 int main(int argc, char ** argv){
 
-
-  char * suitname=NULL;
-  char * testname=NULL;
-
-  //read_input_flags(argc, argv, &suitname, &testname);
-
-  ctest_main(suitname, testname);
+  ctest_main(argc, argv);
 
   return 0;
 }

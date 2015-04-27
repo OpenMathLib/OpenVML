@@ -129,6 +129,9 @@ target_link_libraries(${OpenVML_LIBNAME}_static m)
 endif()
 
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+if(MSVC)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
+endif()
 
 set_target_properties(${OpenVML_LIBNAME} PROPERTIES 
   VERSION ${OpenVML_VERSION_MAJOR}.${OpenVML_VERSION_MINOR}
@@ -168,3 +171,4 @@ add_subdirectory(reference)
 enable_testing()
 add_subdirectory(test)
 endif(BUILD_OpenVML_TEST)
+

@@ -66,8 +66,8 @@ typedef struct{
   VML_INT start;
   VML_INT end;
   VML_INT step;
-  char suitname[1024];
-  char testname[1024];
+  char suite_name[1024];
+  char test_name[1024];
 } input_arg_t;
 
 CTEST_DATA(check_result_s) {
@@ -90,7 +90,7 @@ void * vml_test_memory_alloc(size_t size);
 void vml_test_memory_free(void * ptr);
 
 //input_arg_t * get_input_arg();
-void read_input_flags(int argc, char *argv[], char ** suitname, char ** testname);
+void read_input_flags(int argc, char *argv[], int * ctest_argc, char ** ctest_argv);
 
 void init_test_parameter(perf_arg_t ** p, int iscomplex, int isdouble);
 void free_test_parameter(perf_arg_t ** p);
