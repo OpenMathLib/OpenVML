@@ -7,5 +7,8 @@ set(OpenVML_REF_SRC
   )
 
 add_library(${OpenVML_LIBNAME}_ref SHARED ${OpenVML_REF_SRC})
+if(NOT MSVC)
 target_link_libraries(${OpenVML_LIBNAME}_ref m)
+endif()
 
+target_compile_definitions(openvml_interface_core PUBLIC openvml_EXPORTS)

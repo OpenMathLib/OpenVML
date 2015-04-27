@@ -28,10 +28,11 @@
 
 void OpenVML_FUNCNAME_REF(vsAdd)(VML_INT n, const float * a, const float * b, float *y)
 {
+  VML_INT i;
+
   if (n<=0) return;
   if (a==NULL || b==NULL || y==NULL) return;
 
-  VML_INT i;
   for(i=0; i<n; i++) {
     y[i]=a[i]+b[i];
   }
@@ -39,10 +40,11 @@ void OpenVML_FUNCNAME_REF(vsAdd)(VML_INT n, const float * a, const float * b, fl
 
 void OpenVML_FUNCNAME_REF(vdAdd)(VML_INT n, const double * a, const double * b, double *y)
 {
+  VML_INT i;
+
   if (n<=0) return;
   if (a==NULL || b==NULL || y==NULL) return;
 
-  VML_INT i;
   for(i=0; i<n; i++) {
     y[i]=a[i]+b[i];
   }
@@ -50,10 +52,11 @@ void OpenVML_FUNCNAME_REF(vdAdd)(VML_INT n, const double * a, const double * b, 
 
 void OpenVML_FUNCNAME_REF(vcAdd)(VML_INT n, const float * a, const float * b, float *y)
 {
+  VML_INT i;
+
   if (n<=0) return;
   if (a==NULL || b==NULL || y==NULL) return;
 
-  VML_INT i;
   for(i=0; i<2*n; i++) {
     y[i]=a[i]+b[i];
   }
@@ -61,10 +64,11 @@ void OpenVML_FUNCNAME_REF(vcAdd)(VML_INT n, const float * a, const float * b, fl
 
 void OpenVML_FUNCNAME_REF(vzAdd)(VML_INT n, const double * a, const double * b, double *y)
 {
+  VML_INT i;
+
   if (n<=0) return;
   if (a==NULL || b==NULL || y==NULL) return;
 
-  VML_INT i;
   for(i=0; i<2*n; i++) {
     y[i]=a[i]+b[i];
   }
