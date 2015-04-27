@@ -37,15 +37,15 @@ double getRealTime( )
 #if defined(_WIN32)
   FILETIME tm;
   ULONGLONG t;
-#if defined(NTDDI_WIN8) && NTDDI_VERSION >= NTDDI_WIN8
+  //#if defined(NTDDI_WIN8) && NTDDI_VERSION >= NTDDI_WIN8
   /* Windows 8, Windows Server 2012 and later. ---------------- */
-  GetSystemTimePreciseAsFileTime( &tm );
-#else
+  //  GetSystemTimePreciseAsFileTime( &tm );
+  //#else
   /* Windows 2000 and later. ---------------------------------- */
   GetSystemTimeAsFileTime( &tm );
-#endif
+  //#endif
   t = ((ULONGLONG)tm.dwHighDateTime << 32) | (ULONGLONG)tm.dwLowDateTime;
-  return (double)t / 10000000.0;
+  return (double)t / (double)10000000.0;
 
 #elif (defined(__hpux) || defined(hpux)) || ((defined(__sun__) || defined(__sun) || defined(sun)) && (defined(__SVR4) || defined(__svr4__)))
   /* HP-UX, Solaris. ------------------------------------------ */
