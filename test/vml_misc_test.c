@@ -36,7 +36,7 @@ CTEST(misc, openvml_get_config){
   printf("OpenVML config: %s\n", tmp);
 }
 
-int main(int argc, char ** argv){
+int main(int argc, const char ** argv){
 
   ctest_main(argc, argv);
 
