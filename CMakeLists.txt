@@ -18,8 +18,15 @@ option(BUILD_SINGLE_THREAD "Only build the single thread" ON)
 option(AUTO_DETECT_CPU "Auto detect CPU architecture." ON)
 option(BUILD_OpenVML_TEST "Build Test" ON)
 option(BUILD_64BIT_INT "Build 64bit int interface(ilp64)" OFF)
+option(BUILD_DEBUG "Build Debug Version" OFF)
 
 #####################################################
+
+if(BUILD_DEBUG)
+set(CMAKE_BUILD_TYPE Debug)
+else()
+set(CMAKE_BUILD_TYPE Release)
+endif()
 
 if(AUTO_DETECT_CPU)
 include(${PROJECT_SOURCE_DIR}/cmake/auto_detect_cpu.cmake)
