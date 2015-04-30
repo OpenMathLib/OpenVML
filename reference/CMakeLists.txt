@@ -11,4 +11,4 @@ if(NOT MSVC)
 target_link_libraries(${OpenVML_LIBNAME}_ref m)
 endif()
 
-target_compile_definitions(openvml_interface_core PUBLIC openvml_EXPORTS)
+target_compile_definitions(${OpenVML_LIBNAME}_ref PUBLIC openvml_EXPORTS)
