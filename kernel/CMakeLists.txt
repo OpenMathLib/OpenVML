@@ -107,3 +107,5 @@ endforeach(KERNEL)
 add_library(openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core OBJECT ${OpenVML_LIBSRC_S} ${OpenVML_LIBSRC_D} ${OpenVML_LIBSRC_C} ${OpenVML_LIBSRC_Z})
 
 target_compile_options(openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core PRIVATE ${OpenVML_KERNEL_COMPILE_FLAGS})
+
+target_include_directories(openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/${OpenVML_ARCH})
