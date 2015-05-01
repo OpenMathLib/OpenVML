@@ -1,5 +1,9 @@
 include(${OpenVML_ARCH}/Kernel_generic.txt)
 
+if(NOT MSVC)
+set(OpenVML_KERNEL_COMPILE_FLAGS -mavx)
+endif()
+
 set(add_S_KERNEL_SOURCE ${OpenVML_ARCH}/sadd_kernel_avx.c)
 set(add_D_KERNEL_SOURCE ${OpenVML_ARCH}/dadd_kernel_avx.c)
 set(add_C_KERNEL_SOURCE ${OpenVML_ARCH}/sadd_kernel_avx.c)

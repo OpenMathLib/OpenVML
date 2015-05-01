@@ -25,6 +25,72 @@
 
 #include "openvml_kernel.h"
 
+#include <immintrin.h>
+
+void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
+  VMLLONG loop_count=(COMPSIZE*n) >> 5;
+  VMLLONG remain_count=(COMPSIZE*n) & 0x1f;
+
+  int i=0;
+
+  while(loop_count>0){
+
+    __m256d av0=_mm256_loadu_pd(a);
+    __m256d av1=_mm256_loadu_pd(a+4);
+    __m256d av2=_mm256_loadu_pd(a+8);
+    __m256d av3=_mm256_loadu_pd(a+12);
+
+    __m256d av4=_mm256_loadu_pd(a+16);
+    __m256d av5=_mm256_loadu_pd(a+20);
+    __m256d av6=_mm256_loadu_pd(a+24);
+    __m256d av7=_mm256_loadu_pd(a+28);
+
+
+    __m256d bv0=_mm256_loadu_pd(b);
+    __m256d bv1=_mm256_loadu_pd(b+4);
+    __m256d bv2=_mm256_loadu_pd(b+8);
+    __m256d bv3=_mm256_loadu_pd(b+12);
+
+    __m256d bv4=_mm256_loadu_pd(b+16);
+    __m256d bv5=_mm256_loadu_pd(b+20);
+    __m256d bv6=_mm256_loadu_pd(b+24);
+    __m256d bv7=_mm256_loadu_pd(b+28);
+
+
+
+
+    __m256d yv0=_mm256_add_pd(av0, bv0);
+    __m256d yv1=_mm256_add_pd(av1, bv1);
+    __m256d yv2=_mm256_add_pd(av2, bv2);
+    __m256d yv3=_mm256_add_pd(av3, bv3);
+
+    __m256d yv4=_mm256_add_pd(av4, bv4);
+    __m256d yv5=_mm256_add_pd(av5, bv5);
+    __m256d yv6=_mm256_add_pd(av6, bv6);
+    __m256d yv7=_mm256_add_pd(av7, bv7);
+
+    _mm256_storeu_pd(y, yv0);
+    _mm256_storeu_pd(y+4, yv1);
+    _mm256_storeu_pd(y+8, yv2);
+    _mm256_storeu_pd(y+12, yv3);
+
+    _mm256_storeu_pd(y+16, yv4);
+    _mm256_storeu_pd(y+20, yv5);
+    _mm256_storeu_pd(y+24, yv6);
+    _mm256_storeu_pd(y+28, yv7);
+
+    a+=32;
+    b+=32;
+    y+=32;
+    loop_count--;
+  }
+
+  for(i=0; i<remain_count; i++){
+    y[i]=a[i]+b[i];
+  }
+}
+
+#if 0
 void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
 
   //unroll 32
@@ -114,3 +180,4 @@ void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLO
    "memory"
   );
 }
+#endif

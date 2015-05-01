@@ -25,6 +25,51 @@
 
 #include "openvml_kernel.h"
 
+#include <immintrin.h>
+
+void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
+  VMLLONG loop_count=(COMPSIZE*n) >> 5;
+  VMLLONG remain_count=(COMPSIZE*n) & 0x1f;
+
+  int i=0;
+
+  while(loop_count>0){
+
+    __m256 av0=_mm256_loadu_ps(a);
+    __m256 av1=_mm256_loadu_ps(a+8);
+    __m256 av2=_mm256_loadu_ps(a+16);
+    __m256 av3=_mm256_loadu_ps(a+24);
+
+    __m256 bv0=_mm256_loadu_ps(b);
+    __m256 bv1=_mm256_loadu_ps(b+8);
+    __m256 bv2=_mm256_loadu_ps(b+16);
+    __m256 bv3=_mm256_loadu_ps(b+24);
+
+
+    __m256 yv0=_mm256_sub_ps(av0, bv0);
+    __m256 yv1=_mm256_sub_ps(av1, bv1);
+    __m256 yv2=_mm256_sub_ps(av2, bv2);
+    __m256 yv3=_mm256_sub_ps(av3, bv3);
+
+
+    _mm256_storeu_ps(y, yv0);
+    _mm256_storeu_ps(y+8, yv1);
+    _mm256_storeu_ps(y+16, yv2);
+    _mm256_storeu_ps(y+24, yv3);
+
+    a+=32;
+    b+=32;
+    y+=32;
+    loop_count--;
+  }
+
+  for(i=0; i<remain_count; i++){
+    y[i]=a[i]-b[i];
+  }
+}
+
+
+#if 0
 void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
 
   //unroll 32
@@ -93,3 +138,4 @@ void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLO
    "memory"
   );
 }
+#endif
