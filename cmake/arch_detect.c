@@ -31,6 +31,17 @@ int main()
   printf("x86_64");
   return 0;
 #endif
+
+#if defined(__arm__) || defined(_M_ARM) || (__TARGET_ARCH_ARM)
+  printf("arm");
+  return 0;
+#endif
+
+#if defined(__aarch64__)
+  printf("aarch64");
+  return 0;
+#endif
+
   //default
   printf("generic");
   return 0;

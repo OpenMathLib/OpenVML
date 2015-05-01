@@ -1,0 +1,19 @@
+set(add_S_KERNEL_SOURCE generic/add_kernel.c)
+set(add_D_KERNEL_SOURCE generic/add_kernel.c)
+set(add_C_KERNEL_SOURCE generic/add_kernel.c)
+set(add_Z_KERNEL_SOURCE generic/add_kernel.c)
+
+set(sub_S_KERNEL_SOURCE generic/sub_kernel.c)
+set(sub_D_KERNEL_SOURCE generic/sub_kernel.c)
+set(sub_C_KERNEL_SOURCE generic/sub_kernel.c)
+set(sub_Z_KERNEL_SOURCE generic/sub_kernel.c)
+
+set(pow_S_KERNEL_SOURCE generic/pow_kernel.c)
+set(pow_D_KERNEL_SOURCE generic/pow_kernel.c)
+
+set(exp_S_KERNEL_SOURCE generic/exp_kernel.c)
+set(exp_D_KERNEL_SOURCE generic/exp_kernel.c)
+
+set(tanh_S_KERNEL_SOURCE generic/tanh_kernel.c)
+set(tanh_D_KERNEL_SOURCE generic/tanh_kernel.c)
+
