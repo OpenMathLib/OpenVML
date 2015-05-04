@@ -1,1 +1,4 @@
 include(${OpenVML_ARCH}/Kernel_generic.txt)
+
+set(OpenVML_KERNEL_COMPILE_FLAGS -mtune=cortex-a9)
+

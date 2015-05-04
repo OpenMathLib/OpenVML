@@ -66,6 +66,9 @@ if(WIN32)
   set(OS_WINDOWS 1)
 endif()
 
+#load architecture config file (OPTIONAL)
+include("${PROJECT_SOURCE_DIR}/config/${OpenVML_ARCH}.cmake" OPTIONAL)
+
 configure_file (
   "${PROJECT_SOURCE_DIR}/include/openvml_config.h.in"
   "${PROJECT_BINARY_DIR}/include/openvml_config.h"
