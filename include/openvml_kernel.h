@@ -54,6 +54,12 @@ void OpenVML_FUNCNAME(cexp_k)(VMLLONG n, float * a, float * b, float * y, float 
 void OpenVML_FUNCNAME(zexp_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 
 
+void OpenVML_FUNCNAME(slog10_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dlog10_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(clog10_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zlog10_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+
 void OpenVML_FUNCNAME(stanh_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
 void OpenVML_FUNCNAME(dtanh_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 void OpenVML_FUNCNAME(ctanh_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
