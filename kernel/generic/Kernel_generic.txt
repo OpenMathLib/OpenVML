@@ -16,6 +16,9 @@ set(pow_D_KERNEL_SOURCE ${OpenVML_ARCH}/pow_kernel.c)
 set(exp_S_KERNEL_SOURCE ${OpenVML_ARCH}/exp_kernel.c)
 set(exp_D_KERNEL_SOURCE ${OpenVML_ARCH}/exp_kernel.c)
 
+set(log10_S_KERNEL_SOURCE ${OpenVML_ARCH}/log10_kernel.c)
+set(log10_D_KERNEL_SOURCE ${OpenVML_ARCH}/log10_kernel.c)
+
 set(tanh_S_KERNEL_SOURCE ${OpenVML_ARCH}/tanh_kernel.c)
 set(tanh_D_KERNEL_SOURCE ${OpenVML_ARCH}/tanh_kernel.c)
 
