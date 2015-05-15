@@ -16,3 +16,6 @@ set(sub_Z_KERNEL_SOURCE ${OpenVML_ARCH}/dsub_kernel_avx.c)
 
 set(log10_S_KERNEL_SOURCE ${OpenVML_ARCH}/slog10_kernel_avx.c)
 set(log10_D_KERNEL_SOURCE ${OpenVML_ARCH}/dlog10_kernel_avx.c)
+
+set(ln_S_KERNEL_SOURCE ${OpenVML_ARCH}/sln_kernel_avx.c)
+set(ln_D_KERNEL_SOURCE ${OpenVML_ARCH}/dln_kernel_avx.c)

@@ -5,7 +5,7 @@ set(OpenVML_LIBSRC_D "")
 set(OpenVML_LIBSRC_C "")
 set(OpenVML_LIBSRC_Z "")
 
-set(REAL_INTERFACE_LIST add sub pow exp tanh log10)
+set(REAL_INTERFACE_LIST add sub pow exp tanh log10 ln)
 set(COMPLEX_INTERFACE_LIST add sub)
 
 function(cap_string var_name var_name_cap)
