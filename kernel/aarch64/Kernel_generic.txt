@@ -17,6 +17,11 @@ set(exp_D_KERNEL_SOURCE generic/exp_kernel.c)
 set(log10_S_KERNEL_SOURCE generic/log10_kernel.c)
 set(log10_D_KERNEL_SOURCE generic/log10_kernel.c)
 
+set(ln_S_KERNEL_SOURCE generic/ln_kernel.c)
+set(ln_D_KERNEL_SOURCE generic/ln_kernel.c)
+
+set(log1p_S_KERNEL_SOURCE generic/log1p_kernel.c)
+set(log1p_D_KERNEL_SOURCE generic/log1p_kernel.c)
+
 set(tanh_S_KERNEL_SOURCE generic/tanh_kernel.c)
 set(tanh_D_KERNEL_SOURCE generic/tanh_kernel.c)
-

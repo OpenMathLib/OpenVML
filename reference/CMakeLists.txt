@@ -6,6 +6,7 @@ set(OpenVML_REF_SRC
   vtanh.c
   vlog10.c
   vln.c
+  vlog1p.c
   )
 
 add_library(${OpenVML_LIBNAME}_ref SHARED ${OpenVML_REF_SRC})

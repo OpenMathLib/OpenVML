@@ -63,6 +63,10 @@
 #define CLN_K OpenVML_FUNCNAME(cln_k)
 #define ZLN_K OpenVML_FUNCNAME(zln_k)
 
+#define SLOG1P_K OpenVML_FUNCNAME(slog1p_k)
+#define DLOG1P_K OpenVML_FUNCNAME(dlog1p_k)
+#define CLOG1P_K OpenVML_FUNCNAME(clog1p_k)
+#define ZLOG1P_K OpenVML_FUNCNAME(zlog1p_k)
 
 #define STANH_K OpenVML_FUNCNAME(stanh_k)
 #define DTANH_K OpenVML_FUNCNAME(dtanh_k)
@@ -78,6 +82,7 @@
 #define EXP_K SEXP_K
 #define LOG10_K SLOG10_K
 #define LN_K SLN_K
+#define LOG1P_K SLOG1P_K
 #define TANH_K STANH_K
 #else
 #define ADD_K DADD_K
@@ -86,6 +91,7 @@
 #define EXP_K DEXP_K
 #define LOG10_K DLOG10_K
 #define LN_K DLN_K
+#define LOG1P_K DLOG1P_K
 #define TANH_K DTANH_K
 #endif
 #else
@@ -96,6 +102,7 @@
 #define EXP_K CEXP_K
 #define LOG10_K CLOG10_K
 #define LN_K CLN_K
+#define LOG1P_K CLOG1P_K
 #define TANH_K CTANH_K
 #else
 #define ADD_K ZADD_K
@@ -104,6 +111,7 @@
 #define EXP_K ZEXP_K
 #define LOG10_K ZLOG10_K
 #define LN_K ZLN_K
+#define LOG1P_K ZLOG1P_K
 #define TANH_K ZTANH_K
 #endif
 #endif

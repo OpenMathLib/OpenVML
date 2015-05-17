@@ -9,6 +9,7 @@ set(OpenVML_TESTSRC
   test_tanh.c
   test_log10.c
   test_ln.c
+  test_log1p.c
   )
 
 set(OpenVML_TEST_NAME run_vml_test)
