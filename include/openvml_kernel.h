@@ -60,6 +60,18 @@ void OpenVML_FUNCNAME(clog10_k)(VMLLONG n, float * a, float * b, float * y, floa
 void OpenVML_FUNCNAME(zlog10_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 
 
+void OpenVML_FUNCNAME(sln_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dln_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(cln_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zln_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+
+void OpenVML_FUNCNAME(slog1p_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dlog1p_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(clog1p_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zlog1p_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+
 void OpenVML_FUNCNAME(stanh_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
 void OpenVML_FUNCNAME(dtanh_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 void OpenVML_FUNCNAME(ctanh_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
