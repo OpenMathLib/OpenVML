@@ -12,13 +12,13 @@ void vs_floor(const unsigned int n, const float *a, float *b)
     v4sf *src = (v4sf *) a;
     v4sf *dest = (v4sf *) b;
 
-	#pragma omp parallel for
+    #pragma omp parallel for
     for (unsigned int j = 0; j < m; j++) {
         v4sf tem = simd_floors(src[j]);
         dest[j] = tem;
     }
 
     for (unsigned int j = l; j < k; j++) {
-        b[j + l] = tanhf(a[j + l]);
+        b[j + l] = floorf(a[j + l]);
     }
 }
