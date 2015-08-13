@@ -23,33 +23,21 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "vml_test.h"
-#include <stdio.h>
-#include <string.h>
-#include <openvml_reference.h>
+#define OPENVML_VERSION_MAJOR 0
+#define OPENVML_VERSION_MINOR 0
+#define OPENVML_VERSION_PATCH 1
 
-static char* funcname[4]={"vsPow", "vdPow", NULL,NULL};
-static double flop_per_elem[4]={0.0, 0.0, 0.0, 0.0};
+#define OPENVML_FUNC_PREFIX 
+#define OPENVML_FUNC_SUFFIX 
 
-static ab_y_func_t ref_vPow[] = {
-  (ab_y_func_t)OpenVML_FUNCNAME_REF(vsPow),
-  (ab_y_func_t)OpenVML_FUNCNAME_REF(vdPow),
-  NULL,
-  NULL,
-};
+#define OPENVML_ARCH arm
+#define OPENVML_CPU_CORENAME cortexa15
+#define OPENVML_BINARY 32
 
-static ab_y_func_t test_vPow[] = {
-  (ab_y_func_t)OpenVML_FUNCNAME(vsPow),
-  (ab_y_func_t)OpenVML_FUNCNAME(vdPow),
-  NULL,
-  NULL,
-};
-
-
-CTEST2(check_result_s, Pow){
-  run_test_ab_y(data->parameter, funcname, test_vPow, ref_vPow, flop_per_elem);
-}
-
-CTEST2(check_result_d, Pow){
-  run_test_ab_y(data->parameter, funcname, test_vPow, ref_vPow, flop_per_elem);
-}
+#define OPENVML_SINGLE_THREAD
+/* #undef USE64BITINT */
+/* #undef __64BIT__ */
+#define __32BIT__
+/* #undef OS_WINDOWS */
+/* #undef OS_DARWIN */
+/* #undef OS_LINUX */

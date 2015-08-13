@@ -1,5 +1,11 @@
 include(${OpenVML_ARCH}/Kernel_generic.txt)
 
-set(OpenVML_KERNEL_COMPILE_FLAGS -mtune=cortex-a15)
+set(OpenVML_KERNEL_COMPILE_FLAGS -mfpu=neon -std=c99 -mtune=cortex-a15)
 
-#set(exp_S_KERNEL_SOURCE ${OpenVML_ARCH}/sexp_kernel_neon.c)
+set(exp_S_KERNEL_SOURCE ${OpenVML_ARCH}/sexp_kernel_neon.c)
+
+set(pow_S_KERNEL_SOURCE ${OpenVML_ARCH}/spow_kernel_neon.c)
+
+set(tanh_S_KERNEL_SOURCE ${OpenVML_ARCH}/stanh_kernel_neon.c)
+
+set(ln_S_KERNEL_SOURCE ${OpenVML_ARCH}/sln_kernel_neon.c)
