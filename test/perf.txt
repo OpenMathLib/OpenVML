@@ -1,0 +1,57 @@
+The size of input vector is: 1600000
+
+The testing for vsfloor is starting.....
+             cmath  time:	            1.028800E-02s
+              simd  time:	            2.130360E-03s
+the successful relative(  0.000000E+00) - vsfloor compare to the reference
+The vsfloor			  cmath 		 simd 
+The vsfloor[  0.000000E+00]      0.000000E+00      0.000000E+00
+The vsfloor[  5.000000E-01]      0.000000E+00      0.000000E+00
+The vsfloor[  6.666667E-01]      0.000000E+00      0.000000E+00
+The vsfloor[  7.500000E-01]      0.000000E+00      0.000000E+00
+The vsfloor[  8.000000E-01]      0.000000E+00      0.000000E+00
+
+The testing for vslog is starting.....
+             cmath  time:	            4.927340E-02s
+              simd  time:	            2.335464E-02s
+the successful relative(  1.035946E-07) - vslog compare to the reference
+The vslog			  cmath 		 simd 
+The vslog[  0.000000E+00]              -INF              -NAN
+The vslog[  5.000000E-01]     -6.931472E-01     -6.931472E-01
+The vslog[  6.666667E-01]     -4.054651E-01     -4.054651E-01
+The vslog[  7.500000E-01]     -2.876821E-01     -2.876821E-01
+The vslog[  8.000000E-01]     -2.231435E-01     -2.231435E-01
+
+The testing for vsexp is starting.....
+             cmath  time:	            2.357402E-01s
+              simd  time:	            2.016446E-02s
+the successful relative(  9.025141E-08) - vsexp compare to the reference
+The vsexp			  cmath 		 simd 
+The vsexp[  0.000000E+00]      1.000000E+00      1.000000E+00
+The vsexp[  5.000000E-01]      1.648721E+00      1.648721E+00
+The vsexp[  6.666667E-01]      1.947734E+00      1.947734E+00
+The vsexp[  7.500000E-01]      2.117000E+00      2.117000E+00
+The vsexp[  8.000000E-01]      2.225541E+00      2.225541E+00
+
+The testing for vstanh is starting.....
+             cmath  time:	            1.082139E-01s
+              simd  time:	            9.742040E-03s
+check failed and the max relative error --8.090201E-06 for vstanh:
+src[9.935065E-01]	 result[7.588475E-01]	 reference[7.588536E-01]
+The vstanh			  cmath 		 simd 
+The vstanh[  0.000000E+00]      0.000000E+00      0.000000E+00		0
+The vstanh[  5.000000E-01]      4.621172E-01      4.621171E-01		3eec9a9e
+The vstanh[  6.666667E-01]      5.827830E-01      5.827820E-01		3f153133
+The vstanh[  7.500000E-01]      6.351489E-01      6.351485E-01		3f229917
+The vstanh[  8.000000E-01]      6.640368E-01      6.640345E-01		3f29fe2b
+The testing for vspow is starting.....
+             cmath  time:	            4.154480E-01s
+              simd  time:	            5.487356E-02s
+the successful relative(  1.698800E-07) - vspow compare to the reference
+The vspow			 cmath 			 simd
+The vspow[  0.000000E+00,   0.000000E+00]       1.000000E+00      1.000000E+00
+The vspow[  5.000000E-01,   1.500000E+00]       3.535534E-01      3.535534E-01
+The vspow[  6.666667E-01,   2.666667E+00]       3.391746E-01      3.391746E-01
+The vspow[  7.500000E-01,   3.750000E+00]       3.400006E-01      3.400007E-01
+The vspow[  8.000000E-01,   4.800000E+00]       3.426352E-01      3.426352E-01
+
