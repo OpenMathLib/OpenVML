@@ -1,5 +1,5 @@
 #include <math.h>
-#include <omp.h>
+//#include <omp.h>
 #include "openvml_kernel.h"
 #include "simd_tanhs_neon.h"
 
@@ -12,7 +12,7 @@ void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLO
     v4sf *src = (v4sf *) a;
     v4sf *dst = (v4sf *) y;
 
-    #pragma omp parallel for
+    //    #pragma omp parallel for
     for (unsigned int j = 0; j < m; j++) {
         v4sf tem = simd_tanh4f(src[j]);
         dst[j] = tem;

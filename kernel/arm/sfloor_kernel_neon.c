@@ -1,7 +1,7 @@
 #include "openvml_function.h"
 #include "openvml_map.h"
 #include <math.h>
-#include <omp.h>
+//#include <omp.h>
 
 void vs_floor(const unsigned int n, const float *a, float *b)
 {
@@ -12,7 +12,7 @@ void vs_floor(const unsigned int n, const float *a, float *b)
     v4sf *src = (v4sf *) a;
     v4sf *dest = (v4sf *) b;
 
-    #pragma omp parallel for
+    //    #pragma omp parallel for
     for (unsigned int j = 0; j < m; j++) {
         v4sf tem = simd_floors(src[j]);
         dest[j] = tem;
