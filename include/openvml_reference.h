@@ -64,6 +64,8 @@ OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdLog1p)(VML_INT n, const double * a, d
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsTanh)(VML_INT n, const float * a, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdTanh)(VML_INT n, const double * a, double * y);
 
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsFloor)(VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdFloor)(VML_INT n, const double * a, double * y);
 
 #ifdef __cplusplus
 }

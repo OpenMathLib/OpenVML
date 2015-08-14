@@ -73,6 +73,8 @@
 #define CTANH_K OpenVML_FUNCNAME(ctanh_k)
 #define ZTANH_K OpenVML_FUNCNAME(ztanh_k)
 
+#define SFLOOR_K OpenVML_FUNCNAME(sfloor_k)
+#define DFLOOR_K OpenVML_FUNCNAME(dfloor_k)
 
 #ifndef COMPLEX
 #ifndef DOUBLE
@@ -84,6 +86,7 @@
 #define LN_K SLN_K
 #define LOG1P_K SLOG1P_K
 #define TANH_K STANH_K
+#define FLOOR_K SFLOOR_K
 #else
 #define ADD_K DADD_K
 #define SUB_K DSUB_K
@@ -93,6 +96,7 @@
 #define LN_K DLN_K
 #define LOG1P_K DLOG1P_K
 #define TANH_K DTANH_K
+#define FLOOR_K DFLOOR_K
 #endif
 #else
 #ifndef DOUBLE
