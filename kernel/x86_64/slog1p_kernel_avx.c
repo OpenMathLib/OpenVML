@@ -26,8 +26,10 @@
 #include <math.h>
 #include "openvml_kernel.h"
 
+#include <immintrin.h>
+
 void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
-  void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
+
     VMLLONG loop_count=(COMPSIZE*n) >> 5;
     VMLLONG remain_count=(COMPSIZE*n) & 0x1f;
 
@@ -60,4 +62,4 @@ void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLO
     for(i=0; i<remain_count; i++){
       y[i]=log1pf(a[i]);
     }
-  }
+}
