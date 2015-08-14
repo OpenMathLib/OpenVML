@@ -9,3 +9,5 @@ set(pow_S_KERNEL_SOURCE ${OpenVML_ARCH}/spow_kernel_neon.c)
 set(tanh_S_KERNEL_SOURCE ${OpenVML_ARCH}/stanh_kernel_neon.c)
 
 set(ln_S_KERNEL_SOURCE ${OpenVML_ARCH}/sln_kernel_neon.c)
+
+set(floor_S_KERNEL_SOURCE ${OpenVML_ARCH}/sfloor_kernel_neon.c)
