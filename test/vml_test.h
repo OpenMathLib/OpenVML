@@ -95,7 +95,7 @@ void read_input_flags(int argc, char *argv[], int * ctest_argc, char ** ctest_ar
 void init_test_parameter(perf_arg_t ** p, int iscomplex, int isdouble);
 void free_test_parameter(perf_arg_t ** p);
 
-int check_result(double ref, double test, eps_t* thres);
+int check_result(double src, double ref, double test, eps_t* thres);
 
 void init_rand(VML_INT n, void * a, int iscomplex, int isdouble);
 
