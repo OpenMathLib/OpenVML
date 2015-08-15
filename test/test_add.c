@@ -47,6 +47,7 @@ static ab_y_func_t test_vadd[] = {
 
 
 CTEST2(check_result_s, add){
+	printf("OK\n");
   run_test_ab_y(data->parameter, funcname, test_vadd, ref_vadd, flop_per_elem);
 }
 

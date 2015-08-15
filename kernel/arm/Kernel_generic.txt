@@ -26,3 +26,5 @@ set(log1p_D_KERNEL_SOURCE generic/log1p_kernel.c)
 set(tanh_S_KERNEL_SOURCE generic/tanh_kernel.c)
 set(tanh_D_KERNEL_SOURCE generic/tanh_kernel.c)
 
+set(floor_S_KERNEL_SOURCE generic/floor_kernel.c)
+set(floor_D_KERNEL_SOURCE generic/floor_kernel.c)

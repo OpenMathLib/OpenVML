@@ -23,34 +23,26 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "vml_test.h"
-#include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
+#include <math.h>
 #include <openvml_reference.h>
 
-static char* funcname[4]={"vsLn", "vdLn", NULL,NULL};
-static double flop_per_elem[4]={0.0, 0.0, 0.0, 0.0};
+void OpenVML_FUNCNAME_REF(vsFloor)(VML_INT n, const float * a, float * y){
+  VML_INT i;		      
+  if (n<=0) return;
+  if (a==NULL || y==NULL) return;
 
-static a_y_func_t ref_vLn[] = {
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vsLn),
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vdLn),
-  NULL,
-  NULL,
-};
-
-static a_y_func_t test_vLn[] = {
-  (a_y_func_t)OpenVML_FUNCNAME(vsLn),
-  (a_y_func_t)OpenVML_FUNCNAME(vdLn),
-  NULL,
-  NULL,
-};
-
-
-CTEST2(check_result_s, ln){
-	printf("OKOK\n");
-  run_test_a_y(data->parameter, funcname, test_vLn, ref_vLn, flop_per_elem);
+  for(i=0; i<n; i++){
+    y[i]=floorf(a[i]);
+  }
 }
 
-CTEST2(check_result_d, ln){
-  run_test_a_y(data->parameter, funcname, test_vLn, ref_vLn, flop_per_elem);
+void OpenVML_FUNCNAME_REF(vdFloor)(VML_INT n, const double * a, double * y){
+  VML_INT i;
+  if (n<=0) return;
+  if (a==NULL || y==NULL) return;
+
+  for(i=0; i<n; i++){
+    y[i]=floor(a[i]);
+  }
 }

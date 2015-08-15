@@ -1,8 +1,0 @@
-/home/liyan/vml/OpenVML/test/CMakeFiles/run_vml_test.dir
-/home/liyan/vml/OpenVML/reference/CMakeFiles/openvml_ref.dir
-/home/liyan/vml/OpenVML/CMakeFiles/openvml_static.dir
-/home/liyan/vml/OpenVML/test/CMakeFiles/misc_test.dir
-/home/liyan/vml/OpenVML/CMakeFiles/openvml.dir
-/home/liyan/vml/OpenVML/kernel/CMakeFiles/openvml_kernel_arm_cortexa15_core.dir
-/home/liyan/vml/OpenVML/driver/CMakeFiles/openvml_driver_core.dir
-/home/liyan/vml/OpenVML/interface/CMakeFiles/openvml_interface_core.dir

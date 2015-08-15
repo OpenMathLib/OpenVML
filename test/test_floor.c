@@ -28,29 +28,28 @@
 #include <string.h>
 #include <openvml_reference.h>
 
-static char* funcname[4]={"vsLn", "vdLn", NULL,NULL};
+static char* funcname[4]={"vsFloor", "vdFloor", NULL,NULL};
 static double flop_per_elem[4]={0.0, 0.0, 0.0, 0.0};
 
-static a_y_func_t ref_vLn[] = {
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vsLn),
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vdLn),
+static a_y_func_t ref_vfloor[] = {
+  (a_y_func_t)OpenVML_FUNCNAME_REF(vsFloor),
+  (a_y_func_t)OpenVML_FUNCNAME_REF(vdFloor),
   NULL,
   NULL,
 };
 
-static a_y_func_t test_vLn[] = {
-  (a_y_func_t)OpenVML_FUNCNAME(vsLn),
-  (a_y_func_t)OpenVML_FUNCNAME(vdLn),
+static a_y_func_t test_vfloor[] = {
+  (a_y_func_t)OpenVML_FUNCNAME(vsFloor),
+  (a_y_func_t)OpenVML_FUNCNAME(vdFloor),
   NULL,
   NULL,
 };
 
 
-CTEST2(check_result_s, ln){
-	printf("OKOK\n");
-  run_test_a_y(data->parameter, funcname, test_vLn, ref_vLn, flop_per_elem);
+CTEST2(check_result_s, floor){
+  run_test_a_y(data->parameter, funcname, test_vfloor, ref_vfloor, flop_per_elem);
 }
 
-CTEST2(check_result_d, ln){
-  run_test_a_y(data->parameter, funcname, test_vLn, ref_vLn, flop_per_elem);
+CTEST2(check_result_d, floor){
+  run_test_a_y(data->parameter, funcname, test_vfloor, ref_vfloor, flop_per_elem);
 }

@@ -1,1 +1,0 @@
-/usr/bin/cc   -mfloat-abi=hard -march=armv7-a -O3 -DNDEBUG   CMakeFiles/misc_test.dir/vml_misc_test.c.o  -o misc_test -rdynamic ../lib/libopenvml.so.0.0 -lm -Wl,-rpath,/home/liyan/vml/OpenVML/lib 

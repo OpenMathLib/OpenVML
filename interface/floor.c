@@ -23,21 +23,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define OPENVML_VERSION_MAJOR 0
-#define OPENVML_VERSION_MINOR 0
-#define OPENVML_VERSION_PATCH 1
+#include <openvml.h>
+#include <openvml_driver.h>
+#include <openvml_kernel.h>
 
-#define OPENVML_FUNC_PREFIX 
-#define OPENVML_FUNC_SUFFIX 
 
-#define OPENVML_ARCH arm
-#define OPENVML_CPU_CORENAME cortexa15
-#define OPENVML_BINARY 32
+void CNAME(VML_INT n, const VML_FLOAT * a, VML_FLOAT * y) {
 
-#define OPENVML_SINGLE_THREAD
-/* #undef USE64BITINT */
-/* #undef __64BIT__ */
-#define __32BIT__
-/* #undef OS_WINDOWS */
-/* #undef OS_DARWIN */
-/* #undef OS_LINUX */
+  if (n<=0) return;
+  if (a==NULL || y==NULL) return;
+  
+
+  EXEC_VML(0, FLOOR_K, n, (VML_FLOAT*)a, NULL, y, NULL, NULL);
+
+}

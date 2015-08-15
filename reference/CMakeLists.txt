@@ -7,6 +7,7 @@ set(OpenVML_REF_SRC
   vlog10.c
   vln.c
   vlog1p.c
+  vfloor.c
   )
 
 add_library(${OpenVML_LIBNAME}_ref SHARED ${OpenVML_REF_SRC})

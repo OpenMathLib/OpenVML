@@ -12,8 +12,17 @@
 #define simd_subs			vsubq_f32
 #define simd_subw			vsubq_s32
 #define simd_muls			vmulq_f32
-#define simd_divs(a,b)			vmulq_f32(a,vrecpeq_f32(b)) 	
 #define simd_rcps(b)			vrecpeq_f32(b)
+
+//#define simd_divs(a,b)			vmulq_f32(a,vrecpeq_f32(b)) 	
+
+static inline v4sf simd_divs(v4sf a, v4sf b)
+{
+  v4sf i_d = simd_rcps(b);
+  i_d = simd_subs(simd_adds(i_d, i_d),simd_muls(b, simd_muls(i_d, i_d)));
+  return simd_muls(a, i_d);
+}
+
 
 #define simd_sqrts			vsqrtq_f32
 #define simd_casts_w			vreinterpretq_s32_f32 // cast float to int

@@ -77,4 +77,8 @@ void OpenVML_FUNCNAME(dtanh_k)(VMLLONG n, double * a, double * b, double * y, do
 void OpenVML_FUNCNAME(ctanh_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
 void OpenVML_FUNCNAME(ztanh_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 
+
+void OpenVML_FUNCNAME(sfloor_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dfloor_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
 #endif

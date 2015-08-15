@@ -29,6 +29,12 @@
 #include <string.h>
 //#include <sys/time.h>
 #include <math.h>
+#include <float.h>
+
+#define _isnan(a) (fpclassify(a) == FP_NAN)
+#define _isinf(a) (fpclassify(a)==FP_INFINITE)
+#define d_isdef(a) (return (x <= DBL_MAX && x >= -DBL_MAX))
+#define s_isdef(a) (return (x <= FLT_MAX && x >= -FLT_MAX))
 
 #define FP_TYPE_NUM 4
 //32MB
@@ -219,22 +225,31 @@ void free_test_parameter(perf_arg_t ** p)
 }
 
 
-int check_result(double ref, double test, eps_t* thres)
+int check_result(double src, double ref, double test, eps_t* thres)
 {
-  double tmp;
+  double diff;
+  double error;
 
-  tmp=fabs(ref-test);
+  diff=fabs(ref-test);
+  if(ref==0)
+    error=diff;
+  else
+    error=diff/fabs(ref);
 
-  if(tmp>=thres->warn && tmp<thres->fail) {
+  if (_isnan(error) || _isinf(error))
     return 1; //warning
-  }else if (tmp >= thres->fail) {
-    return 2; //error
+
+  if(error>=thres->warn && error<thres->fail) {
+    return 1; //warning
+  }else if (error >= thres->fail) {
+    printf("error=%12.5E src=%12.5E ref=%12.5E\t test=%12.5E\n", error, src, ref, test);
+	return 2; //error
   }else{
     return 0; //pass
   }
 }
 
-int check_vector(VML_INT n, void * ref, void * test, eps_t * thres, int iscomplex, int isdouble)
+int check_vector(VML_INT n, void *src, void * ref, void * test, eps_t * thres, int iscomplex, int isdouble)
 {
   VML_INT i;
   VML_INT length;
@@ -245,18 +260,20 @@ int check_vector(VML_INT n, void * ref, void * test, eps_t * thres, int iscomple
     //float
     float * ref_f=(float*)ref;
     float * test_f=(float*)test;
+    float * src_f=(float*)src;
 
     for(i=0; i<length; i++){
-      result=check_result(ref_f[i], test_f[i], thres);
+      result=check_result(src_f[i], ref_f[i], test_f[i], thres);
       if(result>max_result) max_result=result;
     }
   }else{
     //double
     double* ref_d=(double*)ref;
     double * test_d=(double*)test;
+    double * src_d=(double*)src;
 
     for(i=0; i<length; i++){
-      result=check_result(ref_d[i], test_d[i], thres);
+      result=check_result(src_d[i], ref_d[i], test_d[i], thres);
       if(result>max_result) max_result=result;
     }
   }
@@ -268,7 +285,7 @@ void init_rand_float(VML_INT n, float * a)
   VML_INT i=0;
   float e=5.0;
   for(i=0; i<n; i++){
-    a[i]=((float)rand()/(float)(RAND_MAX)) * e;
+    a[i]= ((float)rand()/(float)(RAND_MAX)) * e;
   }
 }
 
@@ -348,7 +365,7 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
     ref_func[para->fp_type](i, para->ref_a, para->ref_b, para->ref_y);
 
     //check
-    result=check_vector(i, para->ref_y, para->y, para->eps, iscomplex, isdouble);
+    result=check_vector(i, para->a, para->ref_y, para->y, para->eps, iscomplex, isdouble);
 
     if(result==0){
       result_str=STR_PASS;
@@ -411,7 +428,7 @@ void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a
     ref_func[para->fp_type](i, para->ref_a, para->ref_y);
 
     //check
-    result=check_vector(i, para->ref_y, para->y, para->eps, iscomplex, isdouble);
+    result=check_vector(i, para->a, para->ref_y, para->y, para->eps, iscomplex, isdouble);
 
     if(result==0){
       result_str=STR_PASS;

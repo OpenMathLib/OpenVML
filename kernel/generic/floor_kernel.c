@@ -23,34 +23,18 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "vml_test.h"
-#include <stdio.h>
-#include <string.h>
-#include <openvml_reference.h>
+#include <math.h>
+#include "openvml_kernel.h"
 
-static char* funcname[4]={"vsLn", "vdLn", NULL,NULL};
-static double flop_per_elem[4]={0.0, 0.0, 0.0, 0.0};
+#ifndef DOUBLE
+#define FLOOR floorf
+#else
+#define FLOOR floor
+#endif
 
-static a_y_func_t ref_vLn[] = {
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vsLn),
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vdLn),
-  NULL,
-  NULL,
-};
-
-static a_y_func_t test_vLn[] = {
-  (a_y_func_t)OpenVML_FUNCNAME(vsLn),
-  (a_y_func_t)OpenVML_FUNCNAME(vdLn),
-  NULL,
-  NULL,
-};
-
-
-CTEST2(check_result_s, ln){
-	printf("OKOK\n");
-  run_test_a_y(data->parameter, funcname, test_vLn, ref_vLn, flop_per_elem);
-}
-
-CTEST2(check_result_d, ln){
-  run_test_a_y(data->parameter, funcname, test_vLn, ref_vLn, flop_per_elem);
+void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
+  VMLLONG i=0;
+  for(i=0; i<n; i++){
+    y[i]=FLOOR(a[i]);
+  }
 }
