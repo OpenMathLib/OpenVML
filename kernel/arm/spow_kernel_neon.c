@@ -8,18 +8,15 @@ void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLO
     unsigned int m = n >> 2;
     unsigned int i, j;
     
-    v4sf *pa = (v4sf *) a;
-    v4sf *pb = (v4sf *) b;
-    v4sf *pc = (v4sf *) y;
-
     unsigned int k = n & 3;
     unsigned int l = n & (~3);
 
     //	#pragma omp parallel for
     for (j = 0; j < m; j++) {
-        v4sf aa = pa[j];
-        v4sf bb = pb[j];
-        pc[j] = simd_pow4f(aa, bb);
+        v4sf aa = vld1q_f32(a + 4 * j);
+        v4sf bb = vld1q_f32(b + 4 * j);
+        v4sf tem = simd_pow4f(aa, bb);
+        vst1q_f32(y + 4 * j, tem);
     }
     for (j = 0; j < k; j++) {
         y[l + j] = powf(a[l + j], b[l + j]);
