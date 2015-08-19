@@ -4,6 +4,12 @@ compiler:
  - gcc
  - clang
 
+env:
+ - RUN_TEST=1 BUILD_CONFIG=""
+ - RUN_TEST=1 BUILD_CONFIG="-DOpenVML_ARCH=generic -DOpenVML_CPU_CORENAME=generic -DAUTO_DETECT_CPU=OFF"
+ - RUN_TEST=0 BUILD_CONFIG="-DOpenVML_ARCH=x86_64 -DOpenVML_CPU_CORENAME=sandybridge -DAUTO_DETECT_CPU=OFF"
+ - RUN_TEST=0 BUILD_CONFIG="-DOpenVML_ARCH=x86_64 -DOpenVML_CPU_CORENAME=haswell -DAUTO_DETECT_CPU=OFF"
+
 before_install:
  # Install cmake 2.8.12
  - wget http://www.cmake.org/files/v2.8/cmake-2.8.12.tar.gz
@@ -19,8 +25,8 @@ script:
  - mkdir ./build_test
  - cd ./build_test
  - $HOME/usr/bin/cmake --version
- - $HOME/usr/bin/cmake ..
+ - $HOME/usr/bin/cmake $BUILD_CONFIG ..
  - make
  - cd ./test/
- - ./run_vml_test
- - ./misc_test
+ - if [ $RUN_TEST -eq 1 ]; then ./run_vml_test; fi
+ - if [ $RUN_TEST -eq 1 ]; then ./misc_test; fi
