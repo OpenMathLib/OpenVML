@@ -1,0 +1,16 @@
+language: c
+compiler:
+ - gcc
+
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq cmake
+
+script:
+ - mkdir ./build_test
+ - cd ./build_test
+ - cmake ..
+ - make
+ - cd ./test/
+ - ./run_vml_test
+ - ./misc_test
