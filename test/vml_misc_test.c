@@ -38,7 +38,9 @@ CTEST(misc, openvml_get_config){
 
 int main(int argc, const char ** argv){
 
-  ctest_main(argc, argv);
+  int num_fail=0;
 
-  return 0;
+  num_fail=ctest_main(argc, argv);
+
+  return num_fail;
 }

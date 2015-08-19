@@ -64,10 +64,11 @@ int main(int argc, char ** argv){
 
   int ctest_argc=1;
   char * ctest_argv[3]={NULL,NULL,NULL};
+  int num_fail=0;
 
   read_input_flags(argc, argv, &ctest_argc, ctest_argv);
 
-  ctest_main(ctest_argc, (const char **)ctest_argv);
+  num_fail=ctest_main(ctest_argc, (const char **)ctest_argv);
 
-  return 0;
+  return num_fail;
 }
