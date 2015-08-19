@@ -11,6 +11,7 @@ before_install:
 script:
  - mkdir ./build_test
  - cd ./build_test
+ - cmake --version
  - cmake ..
  - make
  - cd ./test/
