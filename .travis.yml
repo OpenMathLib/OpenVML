@@ -5,8 +5,9 @@ compiler:
 
 before_install:
  - sudo add-apt-repository --yes ppa:sschuberth/cmake-here
- - sudo apt-get update -qq
+ - sudo apt-get remove cmake cmake-data
  - sudo apt-get install cmake
+ - sudo apt-get update -qq
 
 script:
  - mkdir ./build_test
