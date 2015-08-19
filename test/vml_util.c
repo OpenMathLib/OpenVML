@@ -340,7 +340,7 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
   VML_INT i;
 
   VML_TEST_LOG("\n");
-  VML_TEST_LOG("Func\tN\tMFlops\t\tTime(s)\t\tResult\n");
+  VML_TEST_LOG("Func\tN\t\tTime(s)\t\tResult\n");
 
   init_rand(end, para->a, iscomplex, isdouble);
   init_rand(end, para->b, iscomplex, isdouble);
@@ -376,7 +376,7 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
       failed_count++;
     }
 
-    VML_TEST_LOG("%s\t%d\t%lf\t%e\t%s\n", funcname[para->fp_type], i, mflops, time, result_str);
+    VML_TEST_LOG("%s\t%d\t%e\t%s\n", funcname[para->fp_type], i, time, result_str);
 
   }
 
@@ -405,7 +405,7 @@ void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a
   VML_INT i;
 
   VML_TEST_LOG("\n");
-  VML_TEST_LOG("Func\tN\tMFlops\t\tTime(s)\t\tResult\n");
+  VML_TEST_LOG("Func\tN\tTime(s)\t\tResult\n");
 
   init_rand(end, para->a, iscomplex, isdouble);
 
@@ -439,7 +439,7 @@ void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a
       failed_count++;
     }
 
-    VML_TEST_LOG("%s\t%d\t%lf\t%e\t%s\n", funcname[para->fp_type], i, mflops, time, result_str);
+    VML_TEST_LOG("%s\t%d\t%e\t%s\n", funcname[para->fp_type], i, time, result_str);
 
   }
 

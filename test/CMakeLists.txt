@@ -19,6 +19,9 @@ add_executable(${OpenVML_TEST_NAME} ${OpenVML_TESTSRC})
 
 target_link_libraries(${OpenVML_TEST_NAME} ${OpenVML_LIBNAME})
 target_link_libraries(${OpenVML_TEST_NAME} ${OpenVML_LIBNAME}_ref)
+if(NOT MSVC)
+target_link_libraries(${OpenVML_TEST_NAME} rt)
+endif()
 
 add_test(${OpenVML_TEST_NAME} ${CMAKE_CURRENT_BINARY_DIR}/${OpenVML_TEST_NAME})
 
