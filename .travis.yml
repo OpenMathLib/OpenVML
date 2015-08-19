@@ -4,10 +4,17 @@ compiler:
  - clang
 
 before_install:
- - sudo add-apt-repository --yes ppa:sschuberth/cmake-here
  - sudo apt-get remove cmake cmake-data
- - sudo apt-get install cmake
  - sudo apt-get update -qq
+ # Install cmake 2.8.12
+ - wget http://www.cmake.org/files/v2.8/cmake-2.8.12.tar.gz
+ - tar xf cmake-2.8.12.tar.gz
+ - cd cmake-2.8.12
+ - ./bootstrap --system-curl
+ - make
+ - sudo make install
+ - cd ..
+ # End install cmake
 
 script:
  - mkdir ./build_test
