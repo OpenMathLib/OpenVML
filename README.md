@@ -1,5 +1,7 @@
 # OpenVML
 
+[![Join the chat at https://gitter.im/xianyi/OpenVML](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/xianyi/OpenVML?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 OpenVML is an open soruce vector math library.
 
 ## Support Processors and OS
