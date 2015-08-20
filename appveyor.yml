@@ -1,0 +1,34 @@
+version: 0.0.1.{build}
+
+environment:
+
+platform: x64
+configuration: Release
+
+clone_folder: c:\projects\OpenVML
+
+init:
+  - git config --global core.autocrlf input
+
+build:
+  project: OpenVML.sln
+
+clone_depth: 5
+
+matrix:
+  fast_finish: true
+
+skip_commits:
+# Add [av skip] to commit messages
+  message: /\[av skip\]/
+
+before_build:
+  - echo Running cmake...
+  - cd c:\projects\OpenVML
+  - cmake -G "Visual Studio 13 Win64" .
+
+test_script:
+  - echo Running Test
+  - cd c:\projects\OpenVML\lib\Release
+  - run_vml_test
+  - misc_test

@@ -37,6 +37,7 @@ make install
 ```
 
 * Visual Studio
+ * Need MS Visual Studio 2013 and above.
  * Use cmake or cmake-gui to generate Visual Studio solution files.
  * Use Visual Studio to open the solution and build.
 
