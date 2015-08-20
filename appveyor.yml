@@ -1,6 +1,6 @@
 version: 0.0.1.{build}
 
-environment:
+#environment:
 
 platform: x64
 configuration: Release
