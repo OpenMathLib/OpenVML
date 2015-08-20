@@ -11,12 +11,6 @@ env:
  - RUN_TEST=0 BUILD_CONFIG="-DOpenVML_ARCH=x86_64 -DOpenVML_CPU_CORENAME=haswell -DAUTO_DETECT_CPU=OFF"
 
 
-matrix:
-  exclude:
-    # skip the old gcc for avx2 instructions.
-    - gcc
-      env: RUN_TEST=0 BUILD_CONFIG="-DOpenVML_ARCH=x86_64 -DOpenVML_CPU_CORENAME=haswell -DAUTO_DETECT_CPU=OFF"
-
 before_install:
  # Install cmake 2.8.12
  - wget http://www.cmake.org/files/v2.8/cmake-2.8.12.tar.gz
@@ -27,6 +21,18 @@ before_install:
  - make install
  - cd ..
  # End install cmake
+
+
+install:
+- if [ "$CC" = "gcc" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+    - clang
 
 script:
  - mkdir ./build_test
