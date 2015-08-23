@@ -1,5 +1,5 @@
-#ifndef _SIMD_POW_KERNEL_H_
-#define _SIMD_POW_KERNEL_H_
+#ifndef _SIMD_POWS_KERNEL_H_
+#define _SIMD_POWS_KERNEL_H_
 
 #include "simd_const.h"
 #include "simd_map.h"
@@ -56,8 +56,9 @@ static inline v4sf simd_pow4f(const v4sf aa, const v4sf bb)
         /* y = 0 then 1 */
         man = simd_cmpeqs(abs_b, zero);
         cc = simd_adds(simd_ands(man, sone), simd_andnots(man, out2));
+
         return cc;
     }
 }
 
-#endif /* _SIMD_POW_KERNEL_H_ */
+#endif /* _SIMD_POWS_KERNEL_H_ */

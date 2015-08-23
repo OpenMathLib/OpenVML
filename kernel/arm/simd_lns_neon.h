@@ -1,5 +1,5 @@
-#ifndef _SIMD_LN_KERNEL_H_
-#define _SIMD_LN_KERNEL_H_
+#ifndef _SIMD_LNS_KERNEL_H_
+#define _SIMD_LNS_KERNEL_H_
 
 #include "simd_map.h"
 #include "simd_const.h"
@@ -90,7 +90,8 @@ static inline v4sf simd_ln4f(const v4sf a)
 
     // negative arg will be NAN
     x = simd_adds(simd_ands(invalid_mask,*(v4sf *) _ps128_lns_nan), simd_andnots(invalid_mask, x));
+
     return x;
 }
 
-#endif /* _SIMD_LN_KERNEL_ */
+#endif /* _SIMD_LNS_KERNEL_ */
