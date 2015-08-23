@@ -41,3 +41,5 @@
 #cmakedefine OS_WINDOWS
 #cmakedefine OS_DARWIN
 #cmakedefine OS_LINUX
+
+#cmakedefine COMPILER_MSVC
