@@ -21,7 +21,7 @@ set(ln_S_KERNEL_SOURCE ${OpenVML_ARCH}/sln_kernel_avx.c)
 set(ln_D_KERNEL_SOURCE ${OpenVML_ARCH}/dln_kernel_avx.c)
 
 set(pow_S_KERNEL_SOURCE ${OpenVML_ARCH}/spow_kernel_avx.c)
-set(pow_KERNEL_SOURCE ${OpenVML_ARCH}/dpow_kernel_avx.c)
+set(pow_D_KERNEL_SOURCE ${OpenVML_ARCH}/dpow_kernel_avx.c)
 
 set(tanh_S_KERNEL_SOURCE ${OpenVML_ARCH}/stanh_kernel_avx.c)
-set(tanh_KERNEL_SOURCE ${OpenVML_ARCH}/dtanh_kernel_avx.c)
+set(tanh_D_KERNEL_SOURCE ${OpenVML_ARCH}/dtanh_kernel_avx.c)
