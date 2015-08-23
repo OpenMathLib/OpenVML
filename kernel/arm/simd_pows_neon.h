@@ -8,7 +8,7 @@
 
 _PI32_CONST128(pow_uint_1, 1);
 _PI32_CONST128(pow_uint_0, 0);
-_PS128_CONST_TYPE(pow_nan, int, 0x7fffffff);
+_PS128_CONST_TYPE(pow_nan, int, 0xffffffff);
 
 static inline v4sf simd_pow4f(const v4sf aa, const v4sf bb)
 {
@@ -49,7 +49,7 @@ static inline v4sf simd_pow4f(const v4sf aa, const v4sf bb)
 
         floor_b = simd_floors(bb);
 
-        /* x<0 and y != N, then NAN */
+        /* x<0 and y != N, then -NAN */
         man = simd_andnots(simd_cmpeqs(bb, floor_b), simd_cmplts(aa, zero));
         out2 = simd_adds(simd_ands(man, nan), simd_andnots(man, out1));
 

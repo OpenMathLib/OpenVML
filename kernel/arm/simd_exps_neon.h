@@ -67,7 +67,7 @@ static inline v4sf simd_exp4f(const v4sf a)
     pow2n = simd_castw_s(emm0);
     y = simd_muls(y, pow2n);
 
-    /* boundary deal */
+    /* boundary check */
     mask = simd_cmples(*(v4sf *) _ps128_exp_hi, a);
     tem1 = simd_selects(mask, y, inf);
     mask = simd_cmplts(a, *(v4sf *) _ps128_exp_lo);
