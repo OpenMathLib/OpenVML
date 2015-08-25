@@ -13,6 +13,9 @@ set(pow_D_KERNEL_SOURCE ${OpenVML_ARCH}/pow_kernel.c)
 #set(pow_C_KERNEL_SOURCE ${OpenVML_ARCH}/pow_kernel.c)
 #set(pow_Z_KERNEL_SOURCE ${OpenVML_ARCH}/pow_kernel.c)
 
+set(powx_S_KERNEL_SOURCE ${OpenVML_ARCH}/powx_kernel.c)
+set(powx_D_KERNEL_SOURCE ${OpenVML_ARCH}/powx_kernel.c)
+
 set(exp_S_KERNEL_SOURCE ${OpenVML_ARCH}/exp_kernel.c)
 set(exp_D_KERNEL_SOURCE ${OpenVML_ARCH}/exp_kernel.c)
 

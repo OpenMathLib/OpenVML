@@ -48,6 +48,11 @@
 #define CPOW_K OpenVML_FUNCNAME(cpow_k)
 #define ZPOW_K OpenVML_FUNCNAME(zpow_k)
 
+#define SPOWX_K OpenVML_FUNCNAME(spowx_k)
+#define DPOWX_K OpenVML_FUNCNAME(dpowx_k)
+#define CPOWX_K OpenVML_FUNCNAME(cpowx_k)
+#define ZPOWX_K OpenVML_FUNCNAME(zpowx_k)
+
 #define SEXP_K OpenVML_FUNCNAME(sexp_k)
 #define DEXP_K OpenVML_FUNCNAME(dexp_k)
 #define CEXP_K OpenVML_FUNCNAME(cexp_k)
@@ -81,6 +86,7 @@
 #define ADD_K SADD_K
 #define SUB_K SSUB_K
 #define POW_K SPOW_K
+#define POWX_K SPOWX_K
 #define EXP_K SEXP_K
 #define LOG10_K SLOG10_K
 #define LN_K SLN_K
@@ -91,6 +97,7 @@
 #define ADD_K DADD_K
 #define SUB_K DSUB_K
 #define POW_K DPOW_K
+#define POWX_K DPOWX_K
 #define EXP_K DEXP_K
 #define LOG10_K DLOG10_K
 #define LN_K DLN_K
@@ -103,6 +110,7 @@
 #define ADD_K CADD_K
 #define SUB_K CSUB_K
 #define POW_K CPOW_K
+#define POWX_K CPOWX_K
 #define EXP_K CEXP_K
 #define LOG10_K CLOG10_K
 #define LN_K CLN_K
@@ -112,6 +120,7 @@
 #define ADD_K ZADD_K
 #define SUB_K ZSUB_K
 #define POW_K ZPOW_K
+#define POWX_K ZPOWX_K
 #define EXP_K ZEXP_K
 #define LOG10_K ZLOG10_K
 #define LN_K ZLN_K

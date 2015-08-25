@@ -2,6 +2,7 @@ set(OpenVML_REF_SRC
   vadd.c 
   vsub.c
   vpow.c
+  vpowx.c
   vexp.c
   vtanh.c
   vlog10.c

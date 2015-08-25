@@ -5,6 +5,7 @@ set(OpenVML_TESTSRC
   test_add.c
   test_sub.c
   test_pow.c
+  test_powx.c
   test_exp.c
   test_tanh.c
   test_log10.c
