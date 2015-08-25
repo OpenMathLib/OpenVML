@@ -36,36 +36,36 @@
 extern "C" {
 #endif
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsAdd)(VML_INT n, const float * a, const float * b, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdAdd)(VML_INT n, const double * a, const double * b, double * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vcAdd)(VML_INT n, const float * a, const float * b, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vzAdd)(VML_INT n, const double * a, const double * b, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsAdd)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdAdd)(const VML_INT n, const double * a, const double * b, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vcAdd)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vzAdd)(const VML_INT n, const double * a, const double * b, double * y);
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsSub)(VML_INT n, const float * a, const float * b, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdSub)(VML_INT n, const double * a, const double * b, double * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vcSub)(VML_INT n, const float * a, const float * b, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vzSub)(VML_INT n, const double * a, const double * b, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsSub)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdSub)(const VML_INT n, const double * a, const double * b, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vcSub)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vzSub)(const VML_INT n, const double * a, const double * b, double * y);
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsPow)(VML_INT n, const float * a, const float * b, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdPow)(VML_INT n, const double * a, const double * b, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsPow)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdPow)(const VML_INT n, const double * a, const double * b, double * y);
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsExp)(VML_INT n, const float * a, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdExp)(VML_INT n, const double * a, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsExp)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdExp)(const VML_INT n, const double * a, double * y);
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsLog10)(VML_INT n, const float * a, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdLog10)(VML_INT n, const double * a, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsLog10)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdLog10)(const VML_INT n, const double * a, double * y);
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsLn)(VML_INT n, const float * a, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdLn)(VML_INT n, const double * a, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsLn)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdLn)(const VML_INT n, const double * a, double * y);
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsLog1p)(VML_INT n, const float * a, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdLog1p)(VML_INT n, const double * a, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsLog1p)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdLog1p)(const VML_INT n, const double * a, double * y);
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsTanh)(VML_INT n, const float * a, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdTanh)(VML_INT n, const double * a, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsTanh)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdTanh)(const VML_INT n, const double * a, double * y);
 
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsFloor)(VML_INT n, const float * a, float * y);
-OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdFloor)(VML_INT n, const double * a, double * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsFloor)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdFloor)(const VML_INT n, const double * a, double * y);
 
 #ifdef __cplusplus
 }

@@ -27,7 +27,7 @@
 #include <math.h>
 #include <openvml_reference.h>
 
-void OpenVML_FUNCNAME_REF(vsLog10)(VML_INT n, const float * a, float * y){
+void OpenVML_FUNCNAME_REF(vsLog10)(const VML_INT n, const float * a, float * y){
   VML_INT i;
   if (n<=0) return;
   if (a==NULL || y==NULL) return;
@@ -37,7 +37,7 @@ void OpenVML_FUNCNAME_REF(vsLog10)(VML_INT n, const float * a, float * y){
   }
 }
 
-void OpenVML_FUNCNAME_REF(vdLog10)(VML_INT n, const double * a, double * y){
+void OpenVML_FUNCNAME_REF(vdLog10)(const VML_INT n, const double * a, double * y){
   VML_INT i;
   if (n<=0) return;
   if (a==NULL || y==NULL) return;

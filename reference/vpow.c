@@ -27,7 +27,7 @@
 #include <math.h>
 #include <openvml_reference.h>
 
-void OpenVML_FUNCNAME_REF(vsPow)(VML_INT n, const float * a, const float * b, float * y){
+void OpenVML_FUNCNAME_REF(vsPow)(const VML_INT n, const float * a, const float * b, float * y){
   VML_INT i;		      
   if (n<=0) return;
   if (a==NULL || b==NULL || y==NULL) return;
@@ -37,7 +37,7 @@ void OpenVML_FUNCNAME_REF(vsPow)(VML_INT n, const float * a, const float * b, fl
   }
 }
 
-void OpenVML_FUNCNAME_REF(vdPow)(VML_INT n, const double * a, const double * b, double * y){
+void OpenVML_FUNCNAME_REF(vdPow)(const VML_INT n, const double * a, const double * b, double * y){
   VML_INT i;
   if (n<=0) return;
   if (a==NULL || b==NULL || y==NULL) return;

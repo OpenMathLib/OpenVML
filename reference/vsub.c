@@ -27,7 +27,7 @@
 #include <stdlib.h>
 #include <openvml_reference.h>
 
-void OpenVML_FUNCNAME_REF(vsSub)(VML_INT n, const float * a, const float * b, float *y)
+void OpenVML_FUNCNAME_REF(vsSub)(const VML_INT n, const float * a, const float * b, float *y)
 {
   VML_INT i;
 
@@ -39,7 +39,7 @@ void OpenVML_FUNCNAME_REF(vsSub)(VML_INT n, const float * a, const float * b, fl
   }
 }
 
-void OpenVML_FUNCNAME_REF(vdSub)(VML_INT n, const double * a, const double * b, double *y)
+void OpenVML_FUNCNAME_REF(vdSub)(const VML_INT n, const double * a, const double * b, double *y)
 {
   VML_INT i;
 
@@ -51,7 +51,7 @@ void OpenVML_FUNCNAME_REF(vdSub)(VML_INT n, const double * a, const double * b, 
   }
 }
 
-void OpenVML_FUNCNAME_REF(vcSub)(VML_INT n, const float * a, const float * b, float *y)
+void OpenVML_FUNCNAME_REF(vcSub)(const VML_INT n, const float * a, const float * b, float *y)
 {
   VML_INT i;
 
@@ -63,7 +63,7 @@ void OpenVML_FUNCNAME_REF(vcSub)(VML_INT n, const float * a, const float * b, fl
   }
 }
 
-void OpenVML_FUNCNAME_REF(vzSub)(VML_INT n, const double * a, const double * b, double *y)
+void OpenVML_FUNCNAME_REF(vzSub)(const VML_INT n, const double * a, const double * b, double *y)
 {
   VML_INT i;
 

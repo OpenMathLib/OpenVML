@@ -28,7 +28,7 @@
 #include <openvml_kernel.h>
 
 
-void CNAME(VML_INT n, const VML_FLOAT * a, VML_FLOAT * y) {
+void CNAME(const VML_INT n, const VML_FLOAT * a, VML_FLOAT * y) {
 
   if (n<=0) return;
   if (a==NULL || y==NULL) return;
