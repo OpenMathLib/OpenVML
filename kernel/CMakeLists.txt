@@ -6,7 +6,7 @@ set(OpenVML_LIBSRC_D "")
 set(OpenVML_LIBSRC_C "")
 set(OpenVML_LIBSRC_Z "")
 
-set(KERNEL_LIST add sub pow powx exp tanh log10 ln log1p floor)   #s,d
+set(KERNEL_LIST add sub pow powx exp expm1 tanh log10 ln log1p floor)   #s,d
 set(Z_KERNEL_LIST add sub) #c,z
 ######## s,d kernels
 

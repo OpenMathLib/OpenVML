@@ -9,6 +9,7 @@ set(OpenVML_TESTSRC
   test_pow2o3.c
   test_pow3o2.c
   test_exp.c
+  test_expm1.c
   test_tanh.c
   test_log10.c
   test_ln.c
