@@ -39,7 +39,7 @@
 void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
   VMLLONG i=0;
   for(i=0; i<n; i++){
-#ifdef OS_DARWIN
+#if defined(OS_DARWIN) || defined(OS_WINDOWS)
     y[i]=SIN(a[i]);
     z[i]=COS(a[i]);
 #else

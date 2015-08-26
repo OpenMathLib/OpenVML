@@ -33,12 +33,8 @@ void OpenVML_FUNCNAME_REF(vsSinCos)(const VML_INT n, const float * a, float * y,
   if (a==NULL || y==NULL) return;
 
   for(i=0; i<n; i++){
-#ifdef OS_DARWIN
     y[i]=sinf(a[i]);
     z[i]=cosf(a[i]);
-#else
-    sincosf(a[i], &y[i], &z[i]);
-#endif
   }
 }
 
@@ -48,11 +44,7 @@ void OpenVML_FUNCNAME_REF(vdSinCos)(const VML_INT n, const double * a, double * 
   if (a==NULL || y==NULL) return;
 
   for(i=0; i<n; i++){
-#ifdef OS_DARWIN
     y[i]=sin(a[i]);
     z[i]=cos(a[i]);
-#else
-    sincos(a[i], &y[i], &z[i]);
-#endif
   }
 }
