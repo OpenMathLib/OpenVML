@@ -95,6 +95,21 @@
 #define SSINCOS_K OpenVML_FUNCNAME(ssincos_k)
 #define DSINCOS_K OpenVML_FUNCNAME(dsincos_k)
 
+#define STAN_K OpenVML_FUNCNAME(stan_k)
+#define DTAN_K OpenVML_FUNCNAME(dtan_k)
+
+#define SASIN_K OpenVML_FUNCNAME(sasin_k)
+#define DASIN_K OpenVML_FUNCNAME(dasin_k)
+
+#define SACOS_K OpenVML_FUNCNAME(sacos_k)
+#define DACOS_K OpenVML_FUNCNAME(dacos_k)
+
+#define SATAN_K OpenVML_FUNCNAME(satan_k)
+#define DATAN_K OpenVML_FUNCNAME(datan_k)
+
+#define SATAN2_K OpenVML_FUNCNAME(satan2_k)
+#define DATAN2_K OpenVML_FUNCNAME(datan2_k)
+
 #ifndef COMPLEX
 #ifndef DOUBLE
 #define ADD_K SADD_K
@@ -111,6 +126,11 @@
 #define SIN_K SSIN_K
 #define COS_K SCOS_K
 #define SINCOS_K SSINCOS_K
+#define TAN_K STAN_K
+#define ASIN_K SASIN_K
+#define ACOS_K SACOS_K
+#define ATAN_K SATAN_K
+#define ATAN2_K SATAN2_K
 #else
 #define ADD_K DADD_K
 #define SUB_K DSUB_K
@@ -126,6 +146,11 @@
 #define SIN_K DSIN_K
 #define COS_K DCOS_K
 #define SINCOS_K DSINCOS_K
+#define TAN_K DTAN_K
+#define ASIN_K DASIN_K
+#define ACOS_K DACOS_K
+#define ATAN_K DATAN_K
+#define ATAN2_K DATAN2_K
 #endif
 #else
 #ifndef DOUBLE
@@ -142,6 +167,10 @@
 #define SIN_K CSIN_K
 #define COS_K CCOS_K
 #define SINCOS_K CSINCOS_K
+#define TAN_K CTAN_K
+#define ASIN_K CASIN_K
+#define ACOS_K CACOS_K
+#define ATAN_K CATAN_K
 #else
 #define ADD_K ZADD_K
 #define SUB_K ZSUB_K
@@ -156,6 +185,10 @@
 #define SIN_K ZSIN_K
 #define COS_K ZCOS_K
 #define SINCOS_K ZSINCOS_K
+#define TAN_K ZTAN_K
+#define ASIN_K ZASIN_K
+#define ACOS_K ZACOS_K
+#define ATAN_K ZATAN_K
 #endif
 #endif
 

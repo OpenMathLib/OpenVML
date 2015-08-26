@@ -106,4 +106,27 @@ void OpenVML_FUNCNAME(dsincos_k)(VMLLONG n, double * a, double * b, double * y, 
 void OpenVML_FUNCNAME(csincos_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
 void OpenVML_FUNCNAME(zsincos_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 
+void OpenVML_FUNCNAME(stan_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dtan_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(ctan_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(ztan_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+void OpenVML_FUNCNAME(sasin_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dasin_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(casin_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zasin_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+void OpenVML_FUNCNAME(sacos_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dacos_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(cacos_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zacos_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+void OpenVML_FUNCNAME(satan_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(datan_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(catan_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zatan_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+void OpenVML_FUNCNAME(satan2_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(datan2_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
 #endif

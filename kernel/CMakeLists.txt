@@ -8,7 +8,7 @@ set(OpenVML_LIBSRC_Z "")
 
 #s,d
 set(KERNEL_LIST add sub pow powx exp expm1 tanh log10 ln log1p floor
-  sin cos sincos)   
+  sin cos sincos tan asin acos atan atan2)
 
 #c,z
 set(Z_KERNEL_LIST add sub) 

@@ -15,6 +15,11 @@ set(OpenVML_REF_SRC
   vsin.c
   vcos.c
   vsincos.c
+  vtan.c
+  vasin.c
+  vacos.c
+  vatan.c
+  vatan2.c
   )
 
 add_library(${OpenVML_LIBNAME}_ref SHARED ${OpenVML_REF_SRC})

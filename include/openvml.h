@@ -88,6 +88,20 @@ OPENVML_EXPORT void OpenVML_FUNCNAME(vdCos)(const VML_INT n, const double * a, d
 OPENVML_EXPORT void OpenVML_FUNCNAME(vsSinCos)(const VML_INT n, const float * a, float * y, float * z);
 OPENVML_EXPORT void OpenVML_FUNCNAME(vdSinCos)(const VML_INT n, const double * a, double * y, double * z);
 
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsTan)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdTan)(const VML_INT n, const double * a, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsAsin)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdAsin)(const VML_INT n, const double * a, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsAcos)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdAcos)(const VML_INT n, const double * a, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsAtan)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdAtan)(const VML_INT n, const double * a, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsAtan2)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdAtan2)(const VML_INT n, const double * a, const double * b, double * y);
 
 #ifdef __cplusplus
 }

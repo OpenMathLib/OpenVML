@@ -45,3 +45,18 @@ set(cos_D_KERNEL_SOURCE ${OpenVML_ARCH}/cos_kernel.c)
 
 set(sincos_S_KERNEL_SOURCE ${OpenVML_ARCH}/sincos_kernel.c)
 set(sincos_D_KERNEL_SOURCE ${OpenVML_ARCH}/sincos_kernel.c)
+
+set(tan_S_KERNEL_SOURCE ${OpenVML_ARCH}/tan_kernel.c)
+set(tan_D_KERNEL_SOURCE ${OpenVML_ARCH}/tan_kernel.c)
+
+set(asin_S_KERNEL_SOURCE ${OpenVML_ARCH}/asin_kernel.c)
+set(asin_D_KERNEL_SOURCE ${OpenVML_ARCH}/asin_kernel.c)
+
+set(acos_S_KERNEL_SOURCE ${OpenVML_ARCH}/acos_kernel.c)
+set(acos_D_KERNEL_SOURCE ${OpenVML_ARCH}/acos_kernel.c)
+
+set(atan_S_KERNEL_SOURCE ${OpenVML_ARCH}/atan_kernel.c)
+set(atan_D_KERNEL_SOURCE ${OpenVML_ARCH}/atan_kernel.c)
+
+set(atan2_S_KERNEL_SOURCE ${OpenVML_ARCH}/atan2_kernel.c)
+set(atan2_D_KERNEL_SOURCE ${OpenVML_ARCH}/atan2_kernel.c)

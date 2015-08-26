@@ -18,6 +18,11 @@ set(OpenVML_TESTSRC
   test_sin.c
   test_cos.c
   test_sincos.c
+  test_tan.c
+  test_asin.c
+  test_acos.c
+  test_atan.c
+  test_atan2.c
   )
 
 set(OpenVML_TEST_NAME run_vml_test)

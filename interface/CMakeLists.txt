@@ -11,7 +11,7 @@ set(REAL_INTERFACE_LIST
   tanh 
   log10 ln log1p 
   floor
-  sin cos sinCos)
+  sin cos sinCos tan asin acos atan atan2)
 set(COMPLEX_INTERFACE_LIST add sub)
 
 function(cap_string var_name var_name_cap)
