@@ -445,3 +445,70 @@ void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a
 
   if(failed_count>0) CTEST_ERR("Result failed!\n");
 }
+
+
+void run_test_a_yz(perf_arg_t * para, char* funcname[], a_yz_func_t test_func[], a_yz_func_t ref_func[],
+		   double * flops_per_elem)
+{
+
+  //Use para->b as z
+
+
+  VML_INT start=para->start;
+  VML_INT end=para->end;
+  VML_INT step=para->step;
+
+  double mflops=0.0;
+  double time=0.0, start_time, end_time;
+
+  int iscomplex = (para->fp_type & 0x2) >> 1;
+  int isdouble = (para->fp_type & 0x1);
+  int result1=0;
+  int result2=0;
+  char * result_str;
+  int failed_count=0;
+
+  VML_INT i;
+
+  VML_TEST_LOG("\n");
+  VML_TEST_LOG("Func\tN\t\tTime(s)\t\tResult\n");
+
+  init_rand(end, para->a, iscomplex, isdouble);
+
+  memcpy(para->ref_a, para->a, end * para->element_size * para->compose_size);
+
+  for(i=start; i<=end; i+=step) {
+
+    mflops=flops_per_elem[para->fp_type] * i;
+
+    //need to clean cache
+    flush_cache(para->flushcache);
+
+    start_time=getRealTime();
+    test_func[para->fp_type](i, para->a, para->y, para->b);
+    end_time=getRealTime();
+    time=end_time-start_time;
+
+    mflops=mflops/(double)(1000000)/time;
+
+    ref_func[para->fp_type](i, para->ref_a, para->ref_y, para->ref_b);
+
+    //check y and z
+    result1=check_vector(i, para->a, para->ref_y, para->y, para->eps, iscomplex, isdouble);
+    result2=check_vector(i, para->a, para->ref_b, para->b, para->eps, iscomplex, isdouble);
+
+    if(result1==0 && result2==0){
+      result_str=STR_PASS;
+    }else if(result1==2 || result2==2){
+      result_str=STR_ERR;
+      failed_count++;
+    }else{
+      result_str=STR_WARN;
+    }
+
+    VML_TEST_LOG("%s\t%d\t%e\t%s\n", funcname[para->fp_type], i, time, result_str);
+
+  }
+
+  if(failed_count>0) CTEST_ERR("Result failed!\n");
+}

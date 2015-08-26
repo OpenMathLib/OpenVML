@@ -86,6 +86,15 @@
 #define SFLOOR_K OpenVML_FUNCNAME(sfloor_k)
 #define DFLOOR_K OpenVML_FUNCNAME(dfloor_k)
 
+#define SSIN_K OpenVML_FUNCNAME(ssin_k)
+#define DSIN_K OpenVML_FUNCNAME(dsin_k)
+
+#define SCOS_K OpenVML_FUNCNAME(scos_k)
+#define DCOS_K OpenVML_FUNCNAME(dcos_k)
+
+#define SSINCOS_K OpenVML_FUNCNAME(ssincos_k)
+#define DSINCOS_K OpenVML_FUNCNAME(dsincos_k)
+
 #ifndef COMPLEX
 #ifndef DOUBLE
 #define ADD_K SADD_K
@@ -99,6 +108,9 @@
 #define LOG1P_K SLOG1P_K
 #define TANH_K STANH_K
 #define FLOOR_K SFLOOR_K
+#define SIN_K SSIN_K
+#define COS_K SCOS_K
+#define SINCOS_K SSINCOS_K
 #else
 #define ADD_K DADD_K
 #define SUB_K DSUB_K
@@ -111,6 +123,9 @@
 #define LOG1P_K DLOG1P_K
 #define TANH_K DTANH_K
 #define FLOOR_K DFLOOR_K
+#define SIN_K DSIN_K
+#define COS_K DCOS_K
+#define SINCOS_K DSINCOS_K
 #endif
 #else
 #ifndef DOUBLE
@@ -124,6 +139,9 @@
 #define LN_K CLN_K
 #define LOG1P_K CLOG1P_K
 #define TANH_K CTANH_K
+#define SIN_K CSIN_K
+#define COS_K CCOS_K
+#define SINCOS_K CSINCOS_K
 #else
 #define ADD_K ZADD_K
 #define SUB_K ZSUB_K
@@ -135,6 +153,9 @@
 #define LN_K ZLN_K
 #define LOG1P_K ZLOG1P_K
 #define TANH_K ZTANH_K
+#define SIN_K ZSIN_K
+#define COS_K ZCOS_K
+#define SINCOS_K ZSINCOS_K
 #endif
 #endif
 

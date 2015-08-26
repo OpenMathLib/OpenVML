@@ -79,6 +79,15 @@ OPENVML_EXPORT void OpenVML_FUNCNAME(vdTanh)(const VML_INT n, const double * a, 
 OPENVML_EXPORT void OpenVML_FUNCNAME(vsFloor)(const VML_INT n, const float * a, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME(vdFloor)(const VML_INT n, const double * a, double * y);
 
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsSin)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdSin)(const VML_INT n, const double * a, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsCos)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdCos)(const VML_INT n, const double * a, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsSinCos)(const VML_INT n, const float * a, float * y, float * z);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdSinCos)(const VML_INT n, const double * a, double * y, double * z);
+
 
 #ifdef __cplusplus
 }

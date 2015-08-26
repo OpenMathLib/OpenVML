@@ -10,7 +10,8 @@ set(REAL_INTERFACE_LIST
   pow powx pow2o3 pow3o2 exp expm1 
   tanh 
   log10 ln log1p 
-  floor)
+  floor
+  sin cos sinCos)
 set(COMPLEX_INTERFACE_LIST add sub)
 
 function(cap_string var_name var_name_cap)

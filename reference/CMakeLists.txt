@@ -12,6 +12,9 @@ set(OpenVML_REF_SRC
   vln.c
   vlog1p.c
   vfloor.c
+  vsin.c
+  vcos.c
+  vsincos.c
   )
 
 add_library(${OpenVML_LIBNAME}_ref SHARED ${OpenVML_REF_SRC})

@@ -36,3 +36,12 @@ set(tanh_D_KERNEL_SOURCE ${OpenVML_ARCH}/tanh_kernel.c)
 
 set(floor_S_KERNEL_SOURCE ${OpenVML_ARCH}/floor_kernel.c)
 set(floor_D_KERNEL_SOURCE ${OpenVML_ARCH}/floor_kernel.c)
+
+set(sin_S_KERNEL_SOURCE ${OpenVML_ARCH}/sin_kernel.c)
+set(sin_D_KERNEL_SOURCE ${OpenVML_ARCH}/sin_kernel.c)
+
+set(cos_S_KERNEL_SOURCE ${OpenVML_ARCH}/cos_kernel.c)
+set(cos_D_KERNEL_SOURCE ${OpenVML_ARCH}/cos_kernel.c)
+
+set(sincos_S_KERNEL_SOURCE ${OpenVML_ARCH}/sincos_kernel.c)
+set(sincos_D_KERNEL_SOURCE ${OpenVML_ARCH}/sincos_kernel.c)

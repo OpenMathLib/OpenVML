@@ -91,4 +91,19 @@ void OpenVML_FUNCNAME(ztanh_k)(VMLLONG n, double * a, double * b, double * y, do
 void OpenVML_FUNCNAME(sfloor_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
 void OpenVML_FUNCNAME(dfloor_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 
+void OpenVML_FUNCNAME(ssin_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dsin_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(csin_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zsin_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+void OpenVML_FUNCNAME(scos_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dcos_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(ccos_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zcos_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+void OpenVML_FUNCNAME(ssincos_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dsincos_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+void OpenVML_FUNCNAME(csincos_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(zsincos_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
 #endif

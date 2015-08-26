@@ -70,6 +70,10 @@ if(MSVC)
   set(COMPILER_MSVC 1)
 endif()
 
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  set(OS_DARWIN 1)
+endif()
+
 #load architecture config file (OPTIONAL)
 include("${PROJECT_SOURCE_DIR}/config/${OpenVML_ARCH}.cmake" OPTIONAL)
 
