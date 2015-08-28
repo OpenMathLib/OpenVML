@@ -14,13 +14,14 @@ set(sub_D_KERNEL_SOURCE ${OpenVML_ARCH}/dsub_kernel_avx.c)
 set(sub_C_KERNEL_SOURCE ${OpenVML_ARCH}/ssub_kernel_avx.c)
 set(sub_Z_KERNEL_SOURCE ${OpenVML_ARCH}/dsub_kernel_avx.c)
 
-#set(exp_S_KERNEL_SOURCE ${OpenVML_ARCH}/sexp_kernel_avx2.c)
+set(exp_S_KERNEL_SOURCE ${OpenVML_ARCH}/sexp_kernel_avx.c)
+set(exp_D_KERNEL_SOURCE ${OpenVML_ARCH}/dexp_kernel_avx.c)
 
-#set(log10_S_KERNEL_SOURCE ${OpenVML_ARCH}/slog10_kernel_avx.c)
-#set(log10_D_KERNEL_SOURCE ${OpenVML_ARCH}/dlog10_kernel_avx.c)
+set(ln_S_KERNEL_SOURCE ${OpenVML_ARCH}/sln_kernel_avx.c)
+set(ln_D_KERNEL_SOURCE ${OpenVML_ARCH}/dln_kernel_avx.c)
 
-#set(ln_S_KERNEL_SOURCE ${OpenVML_ARCH}/sln_kernel_avx.c)
-#set(ln_D_KERNEL_SOURCE ${OpenVML_ARCH}/dln_kernel_avx.c)
+set(pow_S_KERNEL_SOURCE ${OpenVML_ARCH}/spow_kernel_avx.c)
+set(pow_D_KERNEL_SOURCE ${OpenVML_ARCH}/dpow_kernel_avx.c)
 
-#set(log1p_S_KERNEL_SOURCE ${OpenVML_ARCH}/slog1p_kernel_avx.c)
-#set(log1p_D_KERNEL_SOURCE ${OpenVML_ARCH}/dlog1p_kernel_avx.c)
+set(tanh_S_KERNEL_SOURCE ${OpenVML_ARCH}/stanh_kernel_avx.c)
+set(tanh_D_KERNEL_SOURCE ${OpenVML_ARCH}/dtanh_kernel_avx.c)
