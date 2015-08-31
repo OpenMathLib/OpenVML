@@ -3,7 +3,7 @@
 
 #include "simd_const.h"
 
-#define simd_zero			vmovq_n_f32(0.0f) 	
+#define simd_zeros			vmovq_n_f32(0.0f) 	
 
 #define simd_adds			vaddq_f32
 #define simd_addw			vaddq_s32	

@@ -18,7 +18,7 @@ static inline v4sf simd_tanh4f(const v4sf a)
     v4sf x, y, z, b;
     v4sf tem0, tem1, tem2, tem3;
     const v4sf one = *(v4sf *) _ps128_1;
-    const v4sf zero = simd_zero;
+    const v4sf zero = simd_zeros;
     const v4sf mask = *(v4sf *) _ps128_sign_mask;
     v4sf sign_bit;
 
