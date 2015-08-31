@@ -17,7 +17,7 @@ static inline v4sf simd_pow4f(const v4sf aa, const v4sf bb)
     v4sf out1, sign;
     v4sf out2, odd;
 
-    const v4sf zero = simd_zero;
+    const v4sf zero = simd_zeros;
     const v4sf mask = *(v4sf *) _ps128_sign_mask;
     const v4sf two = *(v4sf *) _ps128_2;
     const v4sf sone = *(v4sf *) _ps128_1;

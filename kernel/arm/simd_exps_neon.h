@@ -71,7 +71,7 @@ static inline v4sf simd_exp4f(const v4sf a)
     mask = simd_cmples(*(v4sf *) _ps128_exp_hi, a);
     tem1 = simd_selects(mask, y, inf);
     mask = simd_cmplts(a, *(v4sf *) _ps128_exp_lo);
-    y = simd_selects(mask, tem1, simd_zero);
+    y = simd_selects(mask, tem1, simd_zeros);
 
     b = y;
     return b;

@@ -34,7 +34,7 @@ static inline v4sf simd_ln4f(const v4sf a)
     v4sf mask;
     v4sf tmp;
 	v4sf x = a;
-    v4sf invalid_mask = simd_cmplts(x, simd_zero);
+    v4sf invalid_mask = simd_cmplts(x, simd_zeros);
 
     /* cut off denormalized stuff */
     x = simd_maxs(x, *(v4sf *) _ps128_min_norm_pos);
