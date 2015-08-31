@@ -1,7 +1,7 @@
 #include <math.h>
 #include "openvml_kernel.h"
 #include "simd_tanhd_avx.h"
-#include "simd_function.h"
+//#include "simd_function.h"
 
 void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
     unsigned int m = n >> 2;

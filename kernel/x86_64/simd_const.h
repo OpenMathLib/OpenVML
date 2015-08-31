@@ -6,12 +6,21 @@
 #include <pmmintrin.h>
 #include <immintrin.h>
 
+#include <openvml_config.h>
+
 #ifndef ALIGN32_BEG
 #define ALIGN32_BEG
 #endif
 
 #ifndef ALIGN32_END
 #define ALIGN32_END __attribute__((aligned(32)))
+#endif
+
+#ifdef COMPILER_MSVC
+#undef ALIGN32_BEG
+#define ALIGN32_BEG __declspec(align(32))
+#undef ALIGN32_END
+#define ALIGN32_END
 #endif
 
 #define _PS256_CONST(Name, val)					\

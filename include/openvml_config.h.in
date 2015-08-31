@@ -43,3 +43,7 @@
 #cmakedefine OS_LINUX
 
 #cmakedefine COMPILER_MSVC
+
+#ifdef COMPILER_MSVC
+#define inline __inline
+#endif
