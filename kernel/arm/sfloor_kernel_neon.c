@@ -8,14 +8,15 @@ void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLO
     unsigned int m = n >> 2;
     unsigned int k = n & 3;
     unsigned int l = n & (~3);
-
-    for (unsigned int j = 0; j < m; j++) {
+    unsigned int j;
+  
+    for (j = 0; j < m; j++) {
         v4sf src = vld1q_f32(&a[4*j]);
         v4sf tem = simd_floors(src);
         vst1q_f32(&y[4*j], tem);
     }
 
-    for (unsigned int j = 0; j < k; j++) {
+    for (j = 0; j < k; j++) {
         y[j + l] = floorf(a[j + l]);
     }
 }

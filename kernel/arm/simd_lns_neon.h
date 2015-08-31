@@ -1,5 +1,5 @@
-#ifndef _SIMD_LN_KERNEL_H_
-#define _SIMD_LN_KERNEL_H_
+#ifndef _SIMD_LNS_KERNEL_H_
+#define _SIMD_LNS_KERNEL_H_
 
 #include "simd_map.h"
 #include "simd_const.h"
@@ -22,6 +22,9 @@ _PI32_CONST128(log_0x7f, 0x7f);
 _PS128_CONST_TYPE(min_norm_pos, int, 0x00800000);
 _PS128_CONST_TYPE(mant_mask, int, 0x7f800000);
 _PS128_CONST_TYPE(inv_mant_mask, int, ~0x7f800000);
+_PS128_CONST_TYPE(lns_inv_inf, int, 0xff800000);
+_PS128_CONST_TYPE(lns_nan, int, 0x7fffffff);
+
 
 static inline v4sf simd_ln4f(const v4sf a)
 {
@@ -31,7 +34,7 @@ static inline v4sf simd_ln4f(const v4sf a)
     v4sf mask;
     v4sf tmp;
 	v4sf x = a;
-    v4sf invalid_mask = simd_cmples(x, simd_zero);
+    v4sf invalid_mask = simd_cmplts(x, simd_zero);
 
     /* cut off denormalized stuff */
     x = simd_maxs(x, *(v4sf *) _ps128_min_norm_pos);
@@ -81,9 +84,14 @@ static inline v4sf simd_ln4f(const v4sf a)
     x = simd_adds(x, y);
     x = simd_mas(e, *(v4sf *) _ps128_log_q2, x);
 
+    // zero arg will be -INF
+    mask = simd_cmpeqs(a, simd_zeros);
+    x = simd_adds(simd_ands(mask,*(v4sf *) _ps128_lns_inv_inf), simd_andnots(mask, x));
+
     // negative arg will be NAN
-    x = simd_ors(x, invalid_mask);
+    x = simd_adds(simd_ands(invalid_mask,*(v4sf *) _ps128_lns_nan), simd_andnots(invalid_mask, x));
+
     return x;
 }
 
-#endif /* _SIMD_LN_KERNEL_ */
+#endif /* _SIMD_LNS_KERNEL_ */

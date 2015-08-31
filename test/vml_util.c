@@ -237,7 +237,7 @@ int check_result(double src, double ref, double test, eps_t* thres)
     error=diff/fabs(ref);
 
   if (_isnan(error) || _isinf(error))
-    return 1; //warning
+    return -1; //warning
 
   if(error>=thres->warn && error<thres->fail) {
     return 1; //warning
@@ -371,6 +371,8 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
       result_str=STR_PASS;
     }else if(result==1){
       result_str=STR_WARN;
+    }else if(result==-1){
+      result_str=STR_NDEF; /* mean not defined number: INF or NAN */
     }else{
       result_str=STR_ERR;
       failed_count++;
@@ -434,6 +436,8 @@ void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a
       result_str=STR_PASS;
     }else if(result==1){
       result_str=STR_WARN;
+    }else if(result==-1){
+      result_str=STR_NDEF; /* mean not defined number: INF or NAN */
     }else{
       result_str=STR_ERR;
       failed_count++;
@@ -502,6 +506,8 @@ void run_test_a_yz(perf_arg_t * para, char* funcname[], a_yz_func_t test_func[],
     }else if(result1==2 || result2==2){
       result_str=STR_ERR;
       failed_count++;
+    }else if(result1==-1){
+      result_str=STR_NDEF; /* mean not defined number: INF or NAN */
     }else{
       result_str=STR_WARN;
     }
