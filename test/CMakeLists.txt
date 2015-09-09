@@ -1,6 +1,7 @@
 set(OpenVML_TESTSRC 
   vml_test.c 
   vml_util.c
+  cycle.c
   openvml_timer.c
   test_add.c
   test_sub.c
