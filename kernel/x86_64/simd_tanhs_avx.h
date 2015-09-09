@@ -27,7 +27,7 @@ static inline v8sf simd_tanh8f(const v8sf a)
     sign_bit = simd_ands(mask, a);
 
     /* take the absolute value */
-	x = simd_ands(a, *(v8sf *) _ps256_tanh_fabs_mask);
+    x = simd_ands(a, *(v8sf *) _ps256_tanh_fabs_mask);
 	//return x;	
     /*
      * if (x >= 0.625)

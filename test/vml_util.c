@@ -31,6 +31,11 @@
 #include <math.h>
 #include <float.h>
 
+/* Using cycles for timing */
+/* Uncomment it if you want to use time (seconds) for timing.*/
+
+#define TIME_CPE
+
 #define _isnan(a) (fpclassify(a) == FP_NAN)
 #define _isinf(a) (fpclassify(a)==FP_INFINITE)
 #define d_isdef(a) (return (x <= DBL_MAX && x >= -DBL_MAX))
@@ -322,8 +327,6 @@ void flush_cache(void * flushcache)
 void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[], ab_y_func_t ref_func[],
 		   double * flops_per_elem)
 {
-
-
   VML_INT start=para->start;
   VML_INT end=para->end;
   VML_INT step=para->step;
@@ -338,9 +341,13 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
   int failed_count=0;
 
   VML_INT i;
-
   VML_TEST_LOG("\n");
+
+#ifdef TIME_CPE
+  VML_TEST_LOG("Func\tN\tCPE(cycles)\t\tResult\n");
+#else
   VML_TEST_LOG("Func\tN\t\tTime(s)\t\tResult\n");
+#endif
 
   init_rand(end, para->a, iscomplex, isdouble);
   init_rand(end, para->b, iscomplex, isdouble);
@@ -355,12 +362,22 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
     //need to clean cache
     flush_cache(para->flushcache);
 
-    start_time=getRealTime();
+#ifdef TIME_CPE
+    start_time=(double)get_cycles();
+#else
+    start_time=(double)getRealTime();
+#endif
+
     test_func[para->fp_type](i, para->a, para->b, para->y);
+
+#ifdef TIME_CPE
+    end_time=get_cycles();
+    time=(end_time-start_time)/i;
+#else
     end_time=getRealTime();
     time=end_time-start_time;
-
     mflops=mflops/(double)(1000000)/time;
+#endif
 
     ref_func[para->fp_type](i, para->ref_a, para->ref_b, para->ref_y);
 
@@ -389,8 +406,6 @@ void run_test_ab_y(perf_arg_t * para, char* funcname[], ab_y_func_t test_func[],
 void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a_y_func_t ref_func[],
 		   double * flops_per_elem)
 {
-
-
   VML_INT start=para->start;
   VML_INT end=para->end;
   VML_INT step=para->step;
@@ -405,9 +420,13 @@ void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a
   int failed_count=0;
 
   VML_INT i;
-
   VML_TEST_LOG("\n");
-  VML_TEST_LOG("Func\tN\tTime(s)\t\tResult\n");
+
+#ifdef TIME_CPE
+  VML_TEST_LOG("Func\tN\tCPE(cycles)\t\tResult\n");
+#else
+  VML_TEST_LOG("Func\tN\t\tTime(s)\t\tResult\n");
+#endif
 
   init_rand(end, para->a, iscomplex, isdouble);
 
@@ -420,12 +439,22 @@ void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t test_func[], a
     //need to clean cache
     flush_cache(para->flushcache);
 
-    start_time=getRealTime();
+#ifdef TIME_CPE
+    start_time=(double)get_cycles();
+#else
+    start_time=(double)getRealTime();
+#endif
+
     test_func[para->fp_type](i, para->a, para->y);
+
+#ifdef TIME_CPE
+    end_time=get_cycles();
+    time= (end_time-start_time)/i;
+#else
     end_time=getRealTime();
     time=end_time-start_time;
-
     mflops=mflops/(double)(1000000)/time;
+#endif
 
     ref_func[para->fp_type](i, para->ref_a, para->ref_y);
 
@@ -457,7 +486,6 @@ void run_test_a_yz(perf_arg_t * para, char* funcname[], a_yz_func_t test_func[],
 
   //Use para->b as z
 
-
   VML_INT start=para->start;
   VML_INT end=para->end;
   VML_INT step=para->step;
@@ -473,9 +501,13 @@ void run_test_a_yz(perf_arg_t * para, char* funcname[], a_yz_func_t test_func[],
   int failed_count=0;
 
   VML_INT i;
-
   VML_TEST_LOG("\n");
+
+#ifdef TIME_CPE
+  VML_TEST_LOG("Func\tN\tCPE(cycles)\t\tResult\n");
+#else
   VML_TEST_LOG("Func\tN\t\tTime(s)\t\tResult\n");
+#endif
 
   init_rand(end, para->a, iscomplex, isdouble);
 
@@ -488,12 +520,22 @@ void run_test_a_yz(perf_arg_t * para, char* funcname[], a_yz_func_t test_func[],
     //need to clean cache
     flush_cache(para->flushcache);
 
-    start_time=getRealTime();
+#ifdef TIME_CPE
+    start_time=(double)get_cycles();
+#else
+    start_time=(double)getRealTime();
+#endif
+
     test_func[para->fp_type](i, para->a, para->y, para->b);
+
+#ifdef TIME_CPE
+    end_time=get_cycles();
+    time=(end_time-start_time)/i;
+#else
     end_time=getRealTime();
     time=end_time-start_time;
-
     mflops=mflops/(double)(1000000)/time;
+#endif
 
     ref_func[para->fp_type](i, para->ref_a, para->ref_y, para->ref_b);
 

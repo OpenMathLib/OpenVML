@@ -14,7 +14,7 @@
 #define simd_muls			vmulq_f32
 #define simd_rcps(b)			vrecpeq_f32(b)
 
-//#define simd_divs(a,b)			vmulq_f32(a,vrecpeq_f32(b)) 	
+//#define simd_divs(a,b)		vmulq_f32(a,vrecpeq_f32(b)) 	
 
 static inline v4sf simd_divs(v4sf a, v4sf b)
 {

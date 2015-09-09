@@ -22,9 +22,6 @@
 #endif
 
 
-
-
-
 /**
  * Returns the real time, in seconds, or -1.0 if an error occurred.
  *
@@ -102,3 +99,4 @@ double getRealTime( )
   return -1.0;/* Failed. */
 #endif
 }
+
