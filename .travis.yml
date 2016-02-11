@@ -23,7 +23,7 @@ env:
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq cmake
+  - sudo apt-get install -qq -y cmake
 
 install:
 - if [ "$CC" = "gcc" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
@@ -39,8 +39,8 @@ addons:
 script:
  - mkdir ./build_test
  - cd ./build_test
- - $HOME/usr/bin/cmake --version
- - $HOME/usr/bin/cmake $BUILD_CONFIG ..
+ - cmake --version
+ - cmake $BUILD_CONFIG ..
  - make
  - cd ./test/
  - if [ $RUN_TEST -eq 1 ]; then ./run_vml_test; fi
