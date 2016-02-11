@@ -1,5 +1,5 @@
-#ifndef _SIMD_POW_KERNEL_H_
-#define _SIMD_POW_KERNEL_H_
+#ifndef _SIMD_POWS_KERNEL_H_
+#define _SIMD_POWS_KERNEL_H_
 
 #include "simd_const.h"
 #include "simd_map.h"
@@ -8,7 +8,7 @@
 
 _PI32_CONST128(pow_uint_1, 1);
 _PI32_CONST128(pow_uint_0, 0);
-_PS128_CONST_TYPE(pow_nan, int, 0x7fffffff);
+_PS128_CONST_TYPE(pow_nan, int, 0xffffffff);
 
 static inline v4sf simd_pow4f(const v4sf aa, const v4sf bb)
 {
@@ -17,7 +17,7 @@ static inline v4sf simd_pow4f(const v4sf aa, const v4sf bb)
     v4sf out1, sign;
     v4sf out2, odd;
 
-    const v4sf zero = simd_zero;
+    const v4sf zero = simd_zeros;
     const v4sf mask = *(v4sf *) _ps128_sign_mask;
     const v4sf two = *(v4sf *) _ps128_2;
     const v4sf sone = *(v4sf *) _ps128_1;
@@ -49,7 +49,7 @@ static inline v4sf simd_pow4f(const v4sf aa, const v4sf bb)
 
         floor_b = simd_floors(bb);
 
-        /* x<0 and y != N, then NAN */
+        /* x<0 and y != N, then -NAN */
         man = simd_andnots(simd_cmpeqs(bb, floor_b), simd_cmplts(aa, zero));
         out2 = simd_adds(simd_ands(man, nan), simd_andnots(man, out1));
 
@@ -60,4 +60,4 @@ static inline v4sf simd_pow4f(const v4sf aa, const v4sf bb)
     }
 }
 
-#endif /* _SIMD_POW_KERNEL_H_ */
+#endif /* _SIMD_POWS_KERNEL_H_ */

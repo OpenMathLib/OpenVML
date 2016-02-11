@@ -33,6 +33,7 @@
 
 #define STR_PASS "PASS"
 #define STR_WARN "WARN"
+#define STR_NDEF "NDEF" /* not a defined number: NAN or INF */
 #define STR_ERR  "ERROR"
 
 typedef struct {
