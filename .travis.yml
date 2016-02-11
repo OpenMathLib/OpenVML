@@ -1,5 +1,6 @@
 language: c
-sudo: false
+sudo: required
+dist: trusty
 
 notifications:
   webhooks:
@@ -21,16 +22,8 @@ env:
 
 
 before_install:
- # Install cmake 2.8.12
- - wget http://www.cmake.org/files/v2.8/cmake-2.8.12.tar.gz
- - tar xf cmake-2.8.12.tar.gz
- - cd cmake-2.8.12
- - ./bootstrap --system-curl --prefix=$HOME/usr
- - make
- - make install
- - cd ..
- # End install cmake
-
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq cmake
 
 install:
 - if [ "$CC" = "gcc" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
