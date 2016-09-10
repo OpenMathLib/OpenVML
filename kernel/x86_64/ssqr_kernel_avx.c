@@ -23,34 +23,42 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "vml_test.h"
-#include <stdio.h>
-#include <string.h>
-#include <openvml_reference.h>
+#include "openvml_kernel.h"
 
-static char* funcname[4]={"vsSqr", "vdSqr", NULL, NULL};
-static double flop_per_elem[4]={1.0, 1.0, 0, 0};
+#include <immintrin.h>
 
-static a_y_func_t ref_vsqr[] = {
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vsSqr),
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vdSqr),
-  NULL,
-  NULL,
-};
+void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
+  VMLLONG loop_count=(COMPSIZE*n) >> 5;
+  VMLLONG remain_count=(COMPSIZE*n) & 0x1f;
 
-static a_y_func_t test_vsqr[] = {
-  (a_y_func_t)OpenVML_FUNCNAME(vsSqr),
-  (a_y_func_t)OpenVML_FUNCNAME(vdSqr),
-  NULL,
-  NULL,
-};
+  int i=0;
+
+  while(loop_count>0){
+
+    __m256 av0=_mm256_loadu_ps(a);
+    __m256 av1=_mm256_loadu_ps(a+8);
+    __m256 av2=_mm256_loadu_ps(a+16);
+    __m256 av3=_mm256_loadu_ps(a+24);
 
 
-CTEST2(check_result_s, sqr){
-  run_test_a_y(data->parameter, funcname, test_vsqr, ref_vsqr, flop_per_elem);
-}
+    __m256 yv0=_mm256_mul_ps(av0, av0);
+    __m256 yv1=_mm256_mul_ps(av1, av1);
+    __m256 yv2=_mm256_mul_ps(av2, av2);
+    __m256 yv3=_mm256_mul_ps(av3, av3);
 
-CTEST2(check_result_d, sqr){
-  run_test_a_y(data->parameter, funcname, test_vsqr, ref_vsqr, flop_per_elem);
+
+    _mm256_storeu_ps(y, yv0);
+    _mm256_storeu_ps(y+8, yv1);
+    _mm256_storeu_ps(y+16, yv2);
+    _mm256_storeu_ps(y+24, yv3);
+
+    a+=32;
+    y+=32;
+    loop_count--;
+  }
+
+  for(i=0; i<remain_count; i++){
+    y[i]=a[i]*a[i];
+  }
 }
 

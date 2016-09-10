@@ -43,7 +43,8 @@
 #define CSUB_K OpenVML_FUNCNAME(csub_k)
 #define ZSUB_K OpenVML_FUNCNAME(zsub_k)
 
-#define ZSQR_K OpenVML_FUNCNAME(ssqr_k)
+#define SSQR_K OpenVML_FUNCNAME(ssqr_k)
+#define DSQR_K OpenVML_FUNCNAME(dsqr_k)
 
 #define SPOW_K OpenVML_FUNCNAME(spow_k)
 #define DPOW_K OpenVML_FUNCNAME(dpow_k)
@@ -116,6 +117,7 @@
 #ifndef DOUBLE
 #define ADD_K SADD_K
 #define SUB_K SSUB_K
+#define SQR_K SSQR_K
 #define POW_K SPOW_K
 #define POWX_K SPOWX_K
 #define EXP_K SEXP_K
@@ -136,6 +138,7 @@
 #else
 #define ADD_K DADD_K
 #define SUB_K DSUB_K
+#define SQR_K DSQR_K
 #define POW_K DPOW_K
 #define POWX_K DPOWX_K
 #define EXP_K DEXP_K

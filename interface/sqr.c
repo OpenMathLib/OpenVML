@@ -23,34 +23,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "vml_test.h"
-#include <stdio.h>
-#include <string.h>
-#include <openvml_reference.h>
-
-static char* funcname[4]={"vsSqr", "vdSqr", NULL, NULL};
-static double flop_per_elem[4]={1.0, 1.0, 0, 0};
-
-static a_y_func_t ref_vsqr[] = {
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vsSqr),
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vdSqr),
-  NULL,
-  NULL,
-};
-
-static a_y_func_t test_vsqr[] = {
-  (a_y_func_t)OpenVML_FUNCNAME(vsSqr),
-  (a_y_func_t)OpenVML_FUNCNAME(vdSqr),
-  NULL,
-  NULL,
-};
+#include <openvml.h>
+#include <openvml_driver.h>
+#include <openvml_kernel.h>
 
 
-CTEST2(check_result_s, sqr){
-  run_test_a_y(data->parameter, funcname, test_vsqr, ref_vsqr, flop_per_elem);
+void CNAME(const VML_INT n, const VML_FLOAT * a, VML_FLOAT * y) {
+
+  if (n<=0) return;
+  if (a==NULL || y==NULL) return;
+
+
+  EXEC_VML(0, SQR_K, n, (VML_FLOAT*)a, NULL, y, NULL, NULL);
+
 }
-
-CTEST2(check_result_d, sqr){
-  run_test_a_y(data->parameter, funcname, test_vsqr, ref_vsqr, flop_per_elem);
-}
-

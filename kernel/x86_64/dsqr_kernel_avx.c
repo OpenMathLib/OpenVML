@@ -23,34 +23,56 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "vml_test.h"
-#include <stdio.h>
-#include <string.h>
-#include <openvml_reference.h>
+#include "openvml_kernel.h"
 
-static char* funcname[4]={"vsSqr", "vdSqr", NULL, NULL};
-static double flop_per_elem[4]={1.0, 1.0, 0, 0};
+#include <immintrin.h>
 
-static a_y_func_t ref_vsqr[] = {
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vsSqr),
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vdSqr),
-  NULL,
-  NULL,
-};
+void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
+  VMLLONG loop_count=(COMPSIZE*n) >> 5;
+  VMLLONG remain_count=(COMPSIZE*n) & 0x1f;
 
-static a_y_func_t test_vsqr[] = {
-  (a_y_func_t)OpenVML_FUNCNAME(vsSqr),
-  (a_y_func_t)OpenVML_FUNCNAME(vdSqr),
-  NULL,
-  NULL,
-};
+  int i=0;
+
+  while(loop_count>0){
+
+    __m256d av0=_mm256_loadu_pd(a);
+    __m256d av1=_mm256_loadu_pd(a+4);
+    __m256d av2=_mm256_loadu_pd(a+8);
+    __m256d av3=_mm256_loadu_pd(a+12);
+
+    __m256d av4=_mm256_loadu_pd(a+16);
+    __m256d av5=_mm256_loadu_pd(a+20);
+    __m256d av6=_mm256_loadu_pd(a+24);
+    __m256d av7=_mm256_loadu_pd(a+28);
 
 
-CTEST2(check_result_s, sqr){
-  run_test_a_y(data->parameter, funcname, test_vsqr, ref_vsqr, flop_per_elem);
-}
+    __m256d yv0=_mm256_mul_pd(av0, av0);
+    __m256d yv1=_mm256_mul_pd(av1, av1);
+    __m256d yv2=_mm256_mul_pd(av2, av2);
+    __m256d yv3=_mm256_mul_pd(av3, av3);
 
-CTEST2(check_result_d, sqr){
-  run_test_a_y(data->parameter, funcname, test_vsqr, ref_vsqr, flop_per_elem);
+    __m256d yv4=_mm256_mul_pd(av4, av4);
+    __m256d yv5=_mm256_mul_pd(av5, av5);
+    __m256d yv6=_mm256_mul_pd(av6, av6);
+    __m256d yv7=_mm256_mul_pd(av7, av7);
+
+    _mm256_storeu_pd(y, yv0);
+    _mm256_storeu_pd(y+4, yv1);
+    _mm256_storeu_pd(y+8, yv2);
+    _mm256_storeu_pd(y+12, yv3);
+
+    _mm256_storeu_pd(y+16, yv4);
+    _mm256_storeu_pd(y+20, yv5);
+    _mm256_storeu_pd(y+24, yv6);
+    _mm256_storeu_pd(y+28, yv7);
+
+    a+=32;
+    y+=32;
+    loop_count--;
+  }
+
+  for(i=0; i<remain_count; i++){
+    y[i]=a[i]*a[i];
+  }
 }
 

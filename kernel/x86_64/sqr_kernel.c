@@ -23,34 +23,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "vml_test.h"
-#include <stdio.h>
-#include <string.h>
-#include <openvml_reference.h>
+#include "openvml_kernel.h"
 
-static char* funcname[4]={"vsSqr", "vdSqr", NULL, NULL};
-static double flop_per_elem[4]={1.0, 1.0, 0, 0};
-
-static a_y_func_t ref_vsqr[] = {
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vsSqr),
-  (a_y_func_t)OpenVML_FUNCNAME_REF(vdSqr),
-  NULL,
-  NULL,
-};
-
-static a_y_func_t test_vsqr[] = {
-  (a_y_func_t)OpenVML_FUNCNAME(vsSqr),
-  (a_y_func_t)OpenVML_FUNCNAME(vdSqr),
-  NULL,
-  NULL,
-};
-
-
-CTEST2(check_result_s, sqr){
-  run_test_a_y(data->parameter, funcname, test_vsqr, ref_vsqr, flop_per_elem);
+void KERNEL_NAME(VMLLONG n, VML_FLOAT * a, VML_FLOAT * b, VML_FLOAT * y, VML_FLOAT * z, VML_FLOAT * other_params) {
+  VMLLONG i=0;
+  for(i=0; i<COMPSIZE*n; i++){
+    y[i]=a[i]*a[i];
+  }
 }
-
-CTEST2(check_result_d, sqr){
-  run_test_a_y(data->parameter, funcname, test_vsqr, ref_vsqr, flop_per_elem);
-}
-
