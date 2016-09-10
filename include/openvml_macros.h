@@ -43,6 +43,8 @@
 #define CSUB_K OpenVML_FUNCNAME(csub_k)
 #define ZSUB_K OpenVML_FUNCNAME(zsub_k)
 
+#define ZSQR_K OpenVML_FUNCNAME(ssqr_k)
+
 #define SPOW_K OpenVML_FUNCNAME(spow_k)
 #define DPOW_K OpenVML_FUNCNAME(dpow_k)
 #define CPOW_K OpenVML_FUNCNAME(cpow_k)
