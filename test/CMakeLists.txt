@@ -5,6 +5,7 @@ set(OpenVML_TESTSRC
   openvml_timer.c
   test_add.c
   test_sub.c
+  test_sqr.c
   test_pow.c
   test_powx.c
   test_pow2o3.c

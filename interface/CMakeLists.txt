@@ -6,7 +6,7 @@ set(OpenVML_LIBSRC_C "")
 set(OpenVML_LIBSRC_Z "")
 
 set(REAL_INTERFACE_LIST 
-  add sub 
+  add sub sqr
   pow powx pow2o3 pow3o2 exp expm1 
   tanh 
   log10 ln log1p 

@@ -46,6 +46,9 @@ OPENVML_EXPORT void OpenVML_FUNCNAME(vdSub)(const VML_INT n, const double * a, c
 OPENVML_EXPORT void OpenVML_FUNCNAME(vcSub)(const VML_INT n, const float * a, const float * b, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME(vzSub)(const VML_INT n, const double * a, const double * b, double * y);
 
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsSqr)(const VML_INT n, const float * a, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdSqr)(const VML_INT n, const double * a, double * y);
+
 OPENVML_EXPORT void OpenVML_FUNCNAME(vsPow)(const VML_INT n, const float * a, const float * b, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME(vdPow)(const VML_INT n, const double * a, const double * b, double * y);
 

@@ -1,6 +1,7 @@
 set(OpenVML_REF_SRC 
   vadd.c 
   vsub.c
+  vsqr.c
   vpow.c
   vpowx.c
   vpow2o3.c

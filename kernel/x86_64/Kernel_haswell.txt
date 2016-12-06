@@ -16,6 +16,9 @@ set(sub_D_KERNEL_SOURCE ${OpenVML_ARCH}/dsub_kernel_avx.c)
 set(sub_C_KERNEL_SOURCE ${OpenVML_ARCH}/ssub_kernel_avx.c)
 set(sub_Z_KERNEL_SOURCE ${OpenVML_ARCH}/dsub_kernel_avx.c)
 
+set(sqr_S_KERNEL_SOURCE ${OpenVML_ARCH}/ssqr_kernel_avx.c)
+set(sqr_D_KERNEL_SOURCE ${OpenVML_ARCH}/dsqr_kernel_avx.c)
+
 set(pow_S_KERNEL_SOURCE ${OpenVML_ARCH}/spow_kernel_avx.c)
 set(pow_D_KERNEL_SOURCE ${OpenVML_ARCH}/dpow_kernel_avx.c)
 

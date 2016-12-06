@@ -8,6 +8,9 @@ set(sub_D_KERNEL_SOURCE generic/sub_kernel.c)
 set(sub_C_KERNEL_SOURCE generic/sub_kernel.c)
 set(sub_Z_KERNEL_SOURCE generic/sub_kernel.c)
 
+set(sqr_S_KERNEL_SOURCE generic/sqr_kernel.c)
+set(sqr_D_KERNEL_SOURCE generic/sqr_kernel.c)
+    
 set(pow_S_KERNEL_SOURCE generic/pow_kernel.c)
 set(pow_D_KERNEL_SOURCE generic/pow_kernel.c)
 
