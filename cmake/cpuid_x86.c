@@ -141,6 +141,7 @@ int cpu_detect()
   model=BITMASK(eax,  4, 0x0f);
 
   if (vendor == VENDOR_INTEL){
+  /*fprintf(stderr, "family %x exmodel %d  model %d\n",family,extend_model,model);*/
     switch (family) {
     case 0x6:
       switch (extend_model) {
@@ -200,6 +201,13 @@ int cpu_detect()
 	  }else{
 	    return CPUNAME_GENERIC; //OS doesn't support AVX
 	  }
+	case 14:
+	  //skylake
+	  if(support_avx()) {
+	    return CPUNAME_HASWELL;
+	  }else{
+	    return CPUNAME_GENERIC; //OS doesn't support AVX
+	  }
 	}
         break;
       case 5:
@@ -211,8 +219,25 @@ int cpu_detect()
 	  }else{
 	    return CPUNAME_GENERIC; //OS doesn't support AVX
 	  }
+	case 5:
+	case 14:
+	  //skylake
+	  if(support_avx()) {
+	    return CPUNAME_HASWELL;
+	  }else{
+	    return CPUNAME_GENERIC; //OS doesn't support AVX
+	  }
 	}
 	break;
+      case 8: 
+        switch (model) {
+        case 14: // Kaby Lake
+          if(support_avx())
+            return CPUNAME_HASWELL;
+          else
+            return CPUNAME_GENERIC;
+        }
+        break;    
       }
       break;
     }
