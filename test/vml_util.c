@@ -560,3 +560,218 @@ void run_test_a_yz(perf_arg_t * para, char* funcname[], a_yz_func_t test_func[],
 
   if(failed_count>0) CTEST_ERR("Result failed!\n");
 }
+
+void run_test_a_ret(perf_arg_t *para, char *funcname[], a_ret_func_t test_func[], a_ret_func_t ref_func[],
+                    double *flops_per_elem)
+{
+  VML_INT start = para->start;
+  VML_INT end = para->end;
+  VML_INT step = para->step;
+
+  double mflops = 0.0;
+  double time = 0.0, start_time, end_time;
+
+  int iscomplex = (para->fp_type & 0x2) >> 1;
+  int isdouble = (para->fp_type & 0x1);
+  int result = 0;
+  char *result_str;
+  int failed_count = 0;
+
+  VML_INT i;
+  VML_TEST_LOG("\n");
+
+#ifdef TIME_CPE
+  VML_TEST_LOG("Func\tN\tCPE(cycles)\t\tResult\n");
+#else
+  VML_TEST_LOG("Func\tN\t\tTime(s)\t\tResult\n");
+#endif
+
+  init_rand(end, para->a, iscomplex, isdouble);
+
+  memcpy(para->ref_a, para->a, end * para->element_size * para->compose_size);
+
+  for (i = start; i <= end; i += step)
+  {
+
+    mflops = flops_per_elem[para->fp_type] * i;
+
+    // need to clean cache
+    flush_cache(para->flushcache);
+
+#ifdef TIME_CPE
+    start_time = (double)get_cycles();
+#else
+    start_time = (double)getRealTime();
+#endif
+
+    double ret = test_func[para->fp_type](i, para->a);
+
+#ifdef TIME_CPE
+    end_time = get_cycles();
+    time = (end_time - start_time) / i;
+#else
+    end_time = getRealTime();
+    time = end_time - start_time;
+    mflops = mflops / (double)(1000000) / time;
+#endif
+
+    double ref_ret = ref_func[para->fp_type](i, para->ref_a);
+
+    // check
+    double eps = 1e-6;
+    result = fabs(ret - ref_ret) < eps ? 0 : 2;
+    if (result == 0)
+    {
+      result_str = STR_PASS;
+    }
+    else if (result == 1)
+    {
+      result_str = STR_WARN;
+    }
+    else if (result == -1)
+    {
+      result_str = STR_NDEF; /* mean not defined number: INF or NAN */
+    }
+    else
+    {
+      result_str = STR_ERR;
+      failed_count++;
+    }
+
+    VML_TEST_LOG("%s\t%d\t%e\t%s\n", funcname[para->fp_type], i, time, result_str);
+  }
+
+  if (failed_count > 0)
+    CTEST_ERR("Result failed!\n");
+}
+#define PERFIPP_MALLOC_ALIGN      64
+void* align_ptr(void* ptr, int n)
+{
+    return (void*)(((size_t)ptr + n - 1) & (-n));
+}
+void* fast_malloc(size_t size)
+{
+    char* udata = (char*)malloc(size + sizeof(void*) + PERFIPP_MALLOC_ALIGN);
+    if(udata == NULL)
+        return NULL;
+
+    char** adata = (char **)align_ptr((char*)udata + sizeof(void*), PERFIPP_MALLOC_ALIGN);
+    adata[-1] = udata;
+
+    return (void *)adata;
+}
+
+char* Malloc_8u_i(int len)
+{
+    if(len == 0)
+        return NULL;
+
+    return (char*)fast_malloc(len * sizeof(char));
+}
+
+float* Malloc_32f_i(int len)
+{
+    if(len == 0)
+        return NULL;
+
+    return (float*)fast_malloc(len * sizeof(float));
+}
+
+inline int is_vector_equal(float *vec1, float *vec2, int len, double eps)
+{
+    int i;
+    int flag = 0;
+
+    for(i = 0; i < len; i++)
+    {
+        float vec1_value = vec1[i];
+        float vec2_value = vec2[i];
+
+        if((isnan((float)vec1_value) ^ isnan((float)vec2_value)) == 1)
+        {
+            printf("ERROR: index is %d  vec1_value is %f  vec2_value is %f  cha is %f\n",
+                   i, vec1_value, vec2_value, vec2_value - vec1_value);
+            flag = 1;
+        }
+
+        if((isinf((float)vec1_value) ^ isinf((float)vec2_value)) == 1)
+        {
+            printf("ERROR: index is %d  vec1_value is %f  vec2_value is %f  cha is %f\n",
+                   i, vec1_value, vec2_value, vec2_value - vec1_value);
+            flag = 1;
+        }
+
+        if((isnan((float)vec1_value) | isnan((float)vec2_value) | isinf((float)vec1_value) | isinf((float)vec2_value)) == 0){
+            if(fabs(vec1_value - vec2_value) > eps)
+            {
+                printf("ERROR: index is %d  vec1_value is %f  vec2_value is %f  cha is %f\n",
+                       i, vec1_value, vec2_value, vec2_value - vec1_value);
+                flag = 1;
+            }
+        }
+    }
+    return flag;
+}
+const int PARAM[] = {1024, 2048, 4096, 8192, 4096*3, 2048*3, 4096*3, 8192*3};
+
+void run_test_FIRSR(FIRSRGetSize_func_t getSizeFunc,
+  FIRSRInit_32f_func_t initFunc,
+  FIRSR_32f_func_t testFunc,
+  FIRSR_32f_func_t refFunc)
+{
+  static float *pSrc = NULL;
+  static float *pDst = NULL;
+  static float *pDlySrc = NULL;
+  static float *pDlyDst = NULL;
+  static float *taps = NULL;
+  static char *pBuffer = NULL;
+  char *result_str;
+  int specSize, bufSize;
+  FIRSpec_32f *pSpec;
+
+  int TAPS_LEN = PARAM[3];
+  int i = PARAM[3];
+  double eps = 1e-6;
+  VML_TEST_LOG("Func\tResult\n");
+
+  pSrc = Malloc_32f_i(i);
+  pDst = Malloc_32f_i(i);
+  taps = Malloc_32f_i(TAPS_LEN);
+
+  float signal[TAPS_LEN];
+  float input[i];
+  float output[i];
+  for (int j = 0; j < TAPS_LEN; j++)
+  {
+    float data = (float)(drand48() * 32.7680f - 16.3840f);
+    signal[j] = data;
+    taps[j] = data;
+  }
+  for (int j = 0; j < TAPS_LEN; j++)
+  {
+    float data = (float)(drand48() * 32.7680f - 16.3840f);
+    input[j] = data;
+    pSrc[j] = data;
+  }
+
+  getSizeFunc(TAPS_LEN, ipp32f, &specSize, &bufSize);
+  pBuffer = Malloc_8u_i(bufSize);
+  pSpec = (FIRSpec_32f *)Malloc_8u_i(specSize);
+  initFunc(taps, TAPS_LEN, ippAlgFFT, pSpec);
+  int ret = testFunc(pSrc, pDst, i, pSpec, NULL, NULL, pBuffer);
+
+  refFunc(pSrc, output, i, pSpec, NULL, NULL, pBuffer);
+
+  int result = is_vector_equal(output, pDst, i, eps);
+  if(result==0){
+    result_str=STR_PASS;
+  }else if(result==1){
+    result_str=STR_WARN;
+  }else if(result==-1){
+    result_str=STR_NDEF; /* mean not defined number: INF or NAN */
+  }else{
+    result_str=STR_ERR;
+  }
+
+  VML_TEST_LOG("FIRSR\t%s\n", result_str);
+}

@@ -23,72 +23,62 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _OPENVML_COMMON_H_
-#define _OPENVML_COMMON_H_
+#include "openvml_kernel.h"
 
-#include "openvml_config.h"
-
-#ifdef DOUBLE
-typedef double VML_FLOAT;
-#else
-typedef float VML_FLOAT;
-#endif
-
-#if defined(OS_WINDOWS) && defined(__64BIT__)
-typedef long long VMLLONG;
-typedef unsigned long long VMLULONG;
-#else
-typedef long VMLLONG;
-typedef unsigned long VMLULONG;
-#endif
-
-#ifdef USE64BITINT
-typedef VMLLONG VML_INT;
-#else
-typedef int VML_INT;
-#endif
-
-typedef struct
+int KERNEL_NAME(const float* pSrc, float* pDst, int numIters, FIRSpec_32f* pSpec, const float* pDlySrc, float* pDlyDst, unsigned char* pBuf)
 {
-    const float* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_32f;
+    if (pSrc == NULL || pDst == NULL || pBuf == NULL)
+    {
+        return tsNULLPtrErr;
+    }
+    
+    int index;
+    double y;
+    int j, k;
+    float* pWorkBuf = (float*)pBuf;
 
-typedef struct
-{
-    const double* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_64f;
+    if (pDlySrc == NULL)
+    {
+        for (k = 0; k < pSpec->tapsLen - 1; k++)
+        {
+            pWorkBuf[k] = 0;
+        }
+    }
+    else
+    {
+        for (k = 0; k < pSpec->tapsLen - 1; k++)
+        {
+            pWorkBuf[k] = pDlySrc[pSpec->tapsLen - 2 - k];
+        }
+    }
 
-typedef enum {
-    ipp32f,
-    ipp32fc,
-    ipp64f,
-    ipp64fc
-} DataType;
+    index = pSpec->tapsLen - 2;
+    for (int i = 0; i < numIters; i++)
+    {
+        y = pSpec->pTaps[0] * pSrc[i];
+        for (j = index + 1; j < pSpec->tapsLen - 1; j++)
+        {
+            y += pSpec->pTaps[j - index] * pWorkBuf[j];
+        }
 
-typedef enum {
-    ippAlgAuto,
-    ippAlgDirect,
-    ippAlgFFT
-} AlgType;
+        for (k = 0; k <= index; k++)
+        {
+            y += pSpec->pTaps[pSpec->tapsLen - 1 + k - index] * pWorkBuf[k];
+        }
 
-#define tsNoErr                 0
-#define tsNULLPtrErr           -8
-#define tsSizeErr              -6
-#define tsDataTypeErr          -5
-#define tsAlgTypeErr           -4
-#define OpenVML_FUNCNAME_3(pre,x,suf) pre##x##suf
-#define OpenVML_FUNCNAME_2(pre,x,suf) OpenVML_FUNCNAME_3(pre, x, suf)
-#define OpenVML_FUNCNAME_1(x) OpenVML_FUNCNAME_2(OPENVML_FUNC_PREFIX, x, OPENVML_FUNC_SUFFIX)
-#define OpenVML_FUNCNAME(x) OpenVML_FUNCNAME_1(x)
+        pDst[i] = y;
+        pWorkBuf[index] = pSrc[i];
 
-#endif
+        index = index == 0 ? pSpec->tapsLen - 2 : index - 1;
+    }
+
+    if (pDlyDst != NULL)
+    {
+        for (j = 0; j < pSpec->tapsLen - 1; j++)
+        {
+            pDlyDst[j] = pSrc[numIters - pSpec->tapsLen + 1 + j];
+        }
+    }
+
+    return tsNoErr;
+}

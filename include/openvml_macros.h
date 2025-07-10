@@ -89,6 +89,24 @@
 #define SFLOOR_K OpenVML_FUNCNAME(sfloor_k)
 #define DFLOOR_K OpenVML_FUNCNAME(dfloor_k)
 
+#define SFMAX_K OpenVML_FUNCNAME(sfmax_k)
+#define DFMAX_K OpenVML_FUNCNAME(dfmax_k)
+
+#define SFMIN_K OpenVML_FUNCNAME(sfmin_k)
+#define DFMIN_K OpenVML_FUNCNAME(dfmin_k)
+
+#define SMEAN_K OpenVML_FUNCNAME(smean_k)
+#define DMEAN_K OpenVML_FUNCNAME(dmean_k)
+
+#define SVARIANCE_K OpenVML_FUNCNAME(svariance_k)
+#define DVARIANCE_K OpenVML_FUNCNAME(dvariance_k)
+
+#define FIRSRGETSIZE_k OpenVML_FUNCNAME(FIRSRGetSize_k)
+
+#define FIRSRINIT_32F_k OpenVML_FUNCNAME(FIRSRInit_32f_k)
+
+#define FIRSR_32F_k OpenVML_FUNCNAME(FIRSR_32f_k)
+
 #define SSIN_K OpenVML_FUNCNAME(ssin_k)
 #define DSIN_K OpenVML_FUNCNAME(dsin_k)
 
@@ -127,6 +145,13 @@
 #define LOG1P_K SLOG1P_K
 #define TANH_K STANH_K
 #define FLOOR_K SFLOOR_K
+#define FMAX_K SFMAX_K
+#define FMIN_K SFMIN_K
+#define MEAN_K SMEAN_K
+#define VARIANCE_K SVARIANCE_K
+#define FIRSRGETSIZE_K FIRSRGETSIZE_k
+#define FIRSRINIT_32F_K FIRSRINIT_32F_k
+#define FIRSR_32F_K FIRSR_32F_k
 #define SIN_K SSIN_K
 #define COS_K SCOS_K
 #define SINCOS_K SSINCOS_K
@@ -148,6 +173,13 @@
 #define LOG1P_K DLOG1P_K
 #define TANH_K DTANH_K
 #define FLOOR_K DFLOOR_K
+#define FMAX_K DFMAX_K
+#define FMIN_K DFMIN_K
+#define MEAN_K DMEAN_K
+#define VARIANCE_K DVARIANCE_K
+#define FIRSRGETSIZE_K FIRSRGETSIZE_k
+#define FIRSRINIT_32F_K FIRSRINIT_32F_k
+#define FIRSR_32F_K FIRSR_32F_k
 #define SIN_K DSIN_K
 #define COS_K DCOS_K
 #define SINCOS_K DSINCOS_K

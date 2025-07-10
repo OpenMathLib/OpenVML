@@ -13,6 +13,13 @@ set(OpenVML_REF_SRC
   vln.c
   vlog1p.c
   vfloor.c
+  vfmax.c
+  vfmin.c
+  vmean.c
+  vvariance.c
+  FIRSRGetSize.c
+  FIRSRInit_32f.c
+  FIRSR_32f.c
   vsin.c
   vcos.c
   vsincos.c

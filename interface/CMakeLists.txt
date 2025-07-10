@@ -4,13 +4,15 @@ set(OpenVML_LIBSRC_S "")
 set(OpenVML_LIBSRC_D "")
 set(OpenVML_LIBSRC_C "")
 set(OpenVML_LIBSRC_Z "")
+set(OpenVML_LIBSRC "")
+set(INTERFACE_LIST FIRSRGetSize FIRSRInit_32f FIRSR_32f)
 
 set(REAL_INTERFACE_LIST 
   add sub sqr
   pow powx pow2o3 pow3o2 exp expm1 
   tanh 
   log10 ln log1p 
-  floor
+  floor fmax fmin mean variance 
   sin cos sinCos tan asin acos atan atan2)
 set(COMPLEX_INTERFACE_LIST add sub)
 
@@ -20,6 +22,30 @@ function(cap_string var_name var_name_cap)
   string(REGEX REPLACE "^.(.*)" "${FIRST_LETTER}\\1" PROTO_NAME_CAP "${var_name}")
   set(${var_name_cap} ${PROTO_NAME_CAP} PARENT_SCOPE)
 endfunction()
+
+foreach(INTERFACE ${INTERFACE_LIST})
+
+  set(OpenVML_LIBSRC
+    ${OpenVML_LIBSRC}
+    ${CMAKE_CURRENT_SOURCE_DIR}/${INTERFACE}.c
+    )
+  message("OpenVML_LIBSRC = ${OpenVML_LIBSRC}")
+  set(OpenVML_INTERFACE_NAME "")
+
+  cap_string(${INTERFACE} OpenVML_INTERFACE_NAME)
+
+  set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/${INTERFACE}.c
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS 
+      ${OpenVML_DEFINITIONS}
+      CNAME=${OpenVML_FUNC_PREFIX}${OpenVML_INTERFACE_NAME}${OpenVML_FUNC_SUFFIX}
+  )
+  add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${INTERFACE}.c
+      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${INTERFACE}.c
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/${INTERFACE}.c ${CMAKE_CURRENT_BINARY_DIR}/${INTERFACE}.c
+      COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_CURRENT_BINARY_DIR}/${INTERFACE}.c
+    )
+endforeach(INTERFACE)
 
 foreach(INTERFACE ${REAL_INTERFACE_LIST})
 
@@ -106,6 +132,6 @@ foreach(INTERFACE ${COMPLEX_INTERFACE_LIST})
 
 Endforeach(INTERFACE)
 
-add_library(openvml_interface_core OBJECT ${OpenVML_LIBSRC_S} ${OpenVML_LIBSRC_D} ${OpenVML_LIBSRC_C} ${OpenVML_LIBSRC_Z} ${OpenVML_LIBSRC_OTHER})
+add_library(openvml_interface_core OBJECT ${OpenVML_LIBSRC} ${OpenVML_LIBSRC_S} ${OpenVML_LIBSRC_D} ${OpenVML_LIBSRC_C} ${OpenVML_LIBSRC_Z} ${OpenVML_LIBSRC_OTHER})
 
 target_compile_definitions(openvml_interface_core PUBLIC openvml_EXPORTS)

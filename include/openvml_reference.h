@@ -82,7 +82,6 @@ OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdTanh)(const VML_INT n, const double *
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsFloor)(const VML_INT n, const float * a, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdFloor)(const VML_INT n, const double * a, double * y);
 
-
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsSin)(const VML_INT n, const float * a, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdSin)(const VML_INT n, const double * a, double * y);
 
@@ -106,6 +105,24 @@ OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdAtan)(const VML_INT n, const double *
 
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsAtan2)(const VML_INT n, const float * a, const float * b, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdAtan2)(const VML_INT n, const double * a, const double * b, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsFmax)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdFmax)(const VML_INT n, const double * a, const double * b, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vsFmin)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME_REF(vdFmin)(const VML_INT n, const double * a, const double * b, double * y);
+
+OPENVML_EXPORT double OpenVML_FUNCNAME_REF(vsMean)(const VML_INT n, const float * a);
+OPENVML_EXPORT double OpenVML_FUNCNAME_REF(vdMean)(const VML_INT n, const double * a);
+
+OPENVML_EXPORT double OpenVML_FUNCNAME_REF(vsVariance)(const VML_INT n, const float * a);
+OPENVML_EXPORT double OpenVML_FUNCNAME_REF(vdVariance)(const VML_INT n, const double * a);
+
+OPENVML_EXPORT int OpenVML_FUNCNAME_REF(FIRSRGetSize)(const VML_INT n, const DataType tapsType, VML_INT * pSpecSize, VML_INT * pBufSize);
+
+OPENVML_EXPORT int OpenVML_FUNCNAME_REF(FIRSRInit_32f)(const float* pTaps, VML_INT tapsLen, AlgType algType, FIRSpec_32f* pSpec);
+
+OPENVML_EXPORT int OpenVML_FUNCNAME_REF(FIRSR_32f)(const float* pSrc, float* pDst, int numIters, FIRSpec_32f* pSpec, const float* pDlySrc, float* pDlyDst, unsigned char* pBuf);
 
 #ifdef __cplusplus
 }

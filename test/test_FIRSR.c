@@ -23,72 +23,20 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _OPENVML_COMMON_H_
-#define _OPENVML_COMMON_H_
+#include "vml_test.h"
+#include <stdio.h>
+#include <string.h>
+#include <openvml_reference.h>
 
-#include "openvml_config.h"
+static FIRSRGetSize_func_t getSizeFunc = (FIRSRGetSize_func_t)OpenVML_FUNCNAME(FIRSRGetSize);
+static FIRSRInit_32f_func_t initFunc = (FIRSRInit_32f_func_t)OpenVML_FUNCNAME(FIRSRInit_32f);
+static FIRSR_32f_func_t testFunc = (FIRSRInit_32f_func_t)OpenVML_FUNCNAME(FIRSR_32f);
 
-#ifdef DOUBLE
-typedef double VML_FLOAT;
-#else
-typedef float VML_FLOAT;
-#endif
+static FIRSR_32f_func_t ref_FIRSR_32f = OpenVML_FUNCNAME_REF(FIRSR_32f);
 
-#if defined(OS_WINDOWS) && defined(__64BIT__)
-typedef long long VMLLONG;
-typedef unsigned long long VMLULONG;
-#else
-typedef long VMLLONG;
-typedef unsigned long VMLULONG;
-#endif
-
-#ifdef USE64BITINT
-typedef VMLLONG VML_INT;
-#else
-typedef int VML_INT;
-#endif
-
-typedef struct
-{
-    const float* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_32f;
-
-typedef struct
-{
-    const double* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_64f;
-
-typedef enum {
-    ipp32f,
-    ipp32fc,
-    ipp64f,
-    ipp64fc
-} DataType;
-
-typedef enum {
-    ippAlgAuto,
-    ippAlgDirect,
-    ippAlgFFT
-} AlgType;
-
-#define tsNoErr                 0
-#define tsNULLPtrErr           -8
-#define tsSizeErr              -6
-#define tsDataTypeErr          -5
-#define tsAlgTypeErr           -4
-#define OpenVML_FUNCNAME_3(pre,x,suf) pre##x##suf
-#define OpenVML_FUNCNAME_2(pre,x,suf) OpenVML_FUNCNAME_3(pre, x, suf)
-#define OpenVML_FUNCNAME_1(x) OpenVML_FUNCNAME_2(OPENVML_FUNC_PREFIX, x, OPENVML_FUNC_SUFFIX)
-#define OpenVML_FUNCNAME(x) OpenVML_FUNCNAME_1(x)
-
-#endif
+CTEST2(check_result_s, FIRSR){
+  run_test_FIRSR(getSizeFunc,
+                     initFunc,
+                     testFunc,
+                     ref_FIRSR_32f);
+}

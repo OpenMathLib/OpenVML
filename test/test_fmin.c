@@ -23,72 +23,33 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _OPENVML_COMMON_H_
-#define _OPENVML_COMMON_H_
+#include "vml_test.h"
+#include <stdio.h>
+#include <string.h>
+#include <openvml_reference.h>
 
-#include "openvml_config.h"
+static char* funcname[4]={"vsFmin", "vdFmin", NULL,NULL};
+static double flop_per_elem[4]={0.0, 0.0, 0.0, 0.0};
 
-#ifdef DOUBLE
-typedef double VML_FLOAT;
-#else
-typedef float VML_FLOAT;
-#endif
+static ab_y_func_t ref_vfmin[] = {
+  (ab_y_func_t)OpenVML_FUNCNAME_REF(vsFmin),
+  (ab_y_func_t)OpenVML_FUNCNAME_REF(vdFmin),
+  NULL,
+  NULL,
+};
 
-#if defined(OS_WINDOWS) && defined(__64BIT__)
-typedef long long VMLLONG;
-typedef unsigned long long VMLULONG;
-#else
-typedef long VMLLONG;
-typedef unsigned long VMLULONG;
-#endif
+static ab_y_func_t test_vfmin[] = {
+  (ab_y_func_t)OpenVML_FUNCNAME(vsFmin),
+  (ab_y_func_t)OpenVML_FUNCNAME(vdFmin),
+  NULL,
+  NULL,
+};
 
-#ifdef USE64BITINT
-typedef VMLLONG VML_INT;
-#else
-typedef int VML_INT;
-#endif
 
-typedef struct
-{
-    const float* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_32f;
+CTEST2(check_result_s, fmin){
+  run_test_ab_y(data->parameter, funcname, test_vfmin, ref_vfmin, flop_per_elem);
+}
 
-typedef struct
-{
-    const double* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_64f;
-
-typedef enum {
-    ipp32f,
-    ipp32fc,
-    ipp64f,
-    ipp64fc
-} DataType;
-
-typedef enum {
-    ippAlgAuto,
-    ippAlgDirect,
-    ippAlgFFT
-} AlgType;
-
-#define tsNoErr                 0
-#define tsNULLPtrErr           -8
-#define tsSizeErr              -6
-#define tsDataTypeErr          -5
-#define tsAlgTypeErr           -4
-#define OpenVML_FUNCNAME_3(pre,x,suf) pre##x##suf
-#define OpenVML_FUNCNAME_2(pre,x,suf) OpenVML_FUNCNAME_3(pre, x, suf)
-#define OpenVML_FUNCNAME_1(x) OpenVML_FUNCNAME_2(OPENVML_FUNC_PREFIX, x, OPENVML_FUNC_SUFFIX)
-#define OpenVML_FUNCNAME(x) OpenVML_FUNCNAME_1(x)
-
-#endif
+CTEST2(check_result_d, fmin){
+  run_test_ab_y(data->parameter, funcname, test_vfmin, ref_vfmin, flop_per_elem);
+}

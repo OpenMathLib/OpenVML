@@ -23,72 +23,32 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _OPENVML_COMMON_H_
-#define _OPENVML_COMMON_H_
+#include "openvml_kernel.h"
 
-#include "openvml_config.h"
-
-#ifdef DOUBLE
-typedef double VML_FLOAT;
-#else
-typedef float VML_FLOAT;
-#endif
-
-#if defined(OS_WINDOWS) && defined(__64BIT__)
-typedef long long VMLLONG;
-typedef unsigned long long VMLULONG;
-#else
-typedef long VMLLONG;
-typedef unsigned long VMLULONG;
-#endif
-
-#ifdef USE64BITINT
-typedef VMLLONG VML_INT;
-#else
-typedef int VML_INT;
-#endif
-
-typedef struct
+int KERNEL_NAME(const VML_INT n, const DataType tapsType, VML_INT *pSpecSize, VML_INT *pBufSize)
 {
-    const float* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_32f;
+    if (pSpecSize == NULL || pBufSize == NULL)
+    {
+        return tsNULLPtrErr;
+    }
+    if (n <= 0)
+    {
+        return tsSizeErr;
+    }
 
-typedef struct
-{
-    const double* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_64f;
+    switch (tapsType)
+    {
+    case ipp32f:
+        *pSpecSize = sizeof(FIRSpec_32f);
+        *pBufSize = sizeof(ipp32f) * (n - 1);
+        break;
+    case ipp64f:
+        *pSpecSize = sizeof(FIRSpec_64f);
+        *pBufSize = sizeof(ipp64f) * (n - 1);
+        break;
+    default:
+        return tsDataTypeErr;
+    }
 
-typedef enum {
-    ipp32f,
-    ipp32fc,
-    ipp64f,
-    ipp64fc
-} DataType;
-
-typedef enum {
-    ippAlgAuto,
-    ippAlgDirect,
-    ippAlgFFT
-} AlgType;
-
-#define tsNoErr                 0
-#define tsNULLPtrErr           -8
-#define tsSizeErr              -6
-#define tsDataTypeErr          -5
-#define tsAlgTypeErr           -4
-#define OpenVML_FUNCNAME_3(pre,x,suf) pre##x##suf
-#define OpenVML_FUNCNAME_2(pre,x,suf) OpenVML_FUNCNAME_3(pre, x, suf)
-#define OpenVML_FUNCNAME_1(x) OpenVML_FUNCNAME_2(OPENVML_FUNC_PREFIX, x, OPENVML_FUNC_SUFFIX)
-#define OpenVML_FUNCNAME(x) OpenVML_FUNCNAME_1(x)
-
-#endif
+    return tsNoErr;
+}

@@ -17,6 +17,11 @@ set(OpenVML_TESTSRC
   test_ln.c
   test_log1p.c
   test_floor.c
+  test_fmax.c
+  test_fmin.c
+  test_mean.c
+  test_variance.c
+  test_FIRSR.c
   test_sin.c
   test_cos.c
   test_sincos.c

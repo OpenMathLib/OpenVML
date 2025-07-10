@@ -40,6 +40,22 @@ set(tanh_D_KERNEL_SOURCE ${OpenVML_ARCH}/tanh_kernel.c)
 set(floor_S_KERNEL_SOURCE ${OpenVML_ARCH}/floor_kernel.c)
 set(floor_D_KERNEL_SOURCE ${OpenVML_ARCH}/floor_kernel.c)
 
+set(fmax_S_KERNEL_SOURCE ${OpenVML_ARCH}/fmax_kernel.c)
+set(fmax_D_KERNEL_SOURCE ${OpenVML_ARCH}/fmax_kernel.c)
+
+set(fmin_S_KERNEL_SOURCE ${OpenVML_ARCH}/fmin_kernel.c)
+set(fmin_D_KERNEL_SOURCE ${OpenVML_ARCH}/fmin_kernel.c)
+
+set(mean_S_KERNEL_SOURCE ${OpenVML_ARCH}/mean_kernel.c)
+set(mean_D_KERNEL_SOURCE ${OpenVML_ARCH}/mean_kernel.c)
+
+set(variance_S_KERNEL_SOURCE ${OpenVML_ARCH}/variance_kernel.c)
+set(variance_D_KERNEL_SOURCE ${OpenVML_ARCH}/variance_kernel.c)
+
+set(FIRSRGetSize_KERNEL_SOURCE ${OpenVML_ARCH}/FIRSRGetSize_kernel.c)
+set(FIRSRInit_32f_KERNEL_SOURCE ${OpenVML_ARCH}/FIRSRInit_32f_kernel.c)
+set(FIRSR_32f_KERNEL_SOURCE ${OpenVML_ARCH}/FIRSR_32f_kernel.c)
+
 set(sin_S_KERNEL_SOURCE ${OpenVML_ARCH}/sin_kernel.c)
 set(sin_D_KERNEL_SOURCE ${OpenVML_ARCH}/sin_kernel.c)
 

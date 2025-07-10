@@ -23,72 +23,40 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _OPENVML_COMMON_H_
-#define _OPENVML_COMMON_H_
+#include <stdlib.h>
+#include <math.h>
+#include <openvml_reference.h>
 
-#include "openvml_config.h"
+double OpenVML_FUNCNAME_REF(vsVariance)(const VML_INT n, const float * a){
+  if (n <= 1 || a == NULL) return NAN;
 
-#ifdef DOUBLE
-typedef double VML_FLOAT;
-#else
-typedef float VML_FLOAT;
-#endif
+  double sum = 0.0f;
+  for (int i = 0; i < n; i++) {
+      sum += a[i];
+  }
+  double mean = sum / n;
 
-#if defined(OS_WINDOWS) && defined(__64BIT__)
-typedef long long VMLLONG;
-typedef unsigned long long VMLULONG;
-#else
-typedef long VMLLONG;
-typedef unsigned long VMLULONG;
-#endif
+  double variance = 0.0f;
+  for (int i = 0; i < n; i++) {
+    double diff = a[i] - mean;
+      variance += diff * diff;
+  }
+  return variance / (n - 1);
+}
 
-#ifdef USE64BITINT
-typedef VMLLONG VML_INT;
-#else
-typedef int VML_INT;
-#endif
+double OpenVML_FUNCNAME_REF(vdVariance)(const VML_INT n, const double * a){
+  if (n <= 1 || a == NULL) return NAN;
 
-typedef struct
-{
-    const float* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_32f;
+  double sum = 0.0f;
+  for (int i = 0; i < n; i++) {
+      sum += a[i];
+  }
+  double mean = sum / n;
 
-typedef struct
-{
-    const double* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_64f;
-
-typedef enum {
-    ipp32f,
-    ipp32fc,
-    ipp64f,
-    ipp64fc
-} DataType;
-
-typedef enum {
-    ippAlgAuto,
-    ippAlgDirect,
-    ippAlgFFT
-} AlgType;
-
-#define tsNoErr                 0
-#define tsNULLPtrErr           -8
-#define tsSizeErr              -6
-#define tsDataTypeErr          -5
-#define tsAlgTypeErr           -4
-#define OpenVML_FUNCNAME_3(pre,x,suf) pre##x##suf
-#define OpenVML_FUNCNAME_2(pre,x,suf) OpenVML_FUNCNAME_3(pre, x, suf)
-#define OpenVML_FUNCNAME_1(x) OpenVML_FUNCNAME_2(OPENVML_FUNC_PREFIX, x, OPENVML_FUNC_SUFFIX)
-#define OpenVML_FUNCNAME(x) OpenVML_FUNCNAME_1(x)
-
-#endif
+  double variance = 0.0f;
+  for (int i = 0; i < n; i++) {
+      double diff = a[i] - mean;
+      variance += diff * diff;
+  }
+  return variance / (n - 1);
+}

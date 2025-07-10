@@ -111,4 +111,16 @@ void run_test_a_y(perf_arg_t * para, char* funcname[], a_y_func_t*test_func, a_y
 typedef void (*a_yz_func_t)(VML_INT, const void *, void *, void *);
 void run_test_a_yz(perf_arg_t * para, char* funcname[], a_yz_func_t*test_func, a_yz_func_t* ref_func,
 		   double * flop_per_elem);
+
+typedef double (*a_ret_func_t)(VML_INT, const void *);
+void run_test_a_ret(perf_arg_t * para, char* funcname[], a_ret_func_t*test_func, a_ret_func_t* ref_func,
+        double * flop_per_elem);
+
+typedef int (*FIRSRGetSize_func_t)(const VML_INT n, const DataType tapsType, VML_INT * pSpecSize, VML_INT * pBufSize);
+typedef int (*FIRSRInit_32f_func_t)(const float* pTaps, VML_INT tapsLen, AlgType algType, FIRSpec_32f* pSpec);
+typedef int (*FIRSR_32f_func_t)(const float* pSrc, float* pDst, int numIters, FIRSpec_32f* pSpec, const float* pDlySrc, float* pDlyDst, unsigned char* pBuf);
+void run_test_FIRSR(FIRSRGetSize_func_t getSizeFunc,
+                        FIRSRInit_32f_func_t initFunc,
+                        FIRSR_32f_func_t testFunc,
+                        FIRSR_32f_func_t refFunc);
 #endif

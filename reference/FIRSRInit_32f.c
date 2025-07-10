@@ -23,72 +23,37 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef _OPENVML_COMMON_H_
-#define _OPENVML_COMMON_H_
+ #include <stdlib.h>
+ #include <openvml_reference.h>
+ 
+ int OpenVML_FUNCNAME_REF(FIRSRInit_32f)(const float* pTaps, VML_INT tapsLen, AlgType algType, FIRSpec_32f* pSpec)
+ {
+    if (pTaps == NULL || pSpec == NULL)
+    {
+        return tsNULLPtrErr;
+    }
+    if (tapsLen <= 0)
+    {
+        return tsSizeErr;
+    }
 
-#include "openvml_config.h"
-
-#ifdef DOUBLE
-typedef double VML_FLOAT;
-#else
-typedef float VML_FLOAT;
-#endif
-
-#if defined(OS_WINDOWS) && defined(__64BIT__)
-typedef long long VMLLONG;
-typedef unsigned long long VMLULONG;
-#else
-typedef long VMLLONG;
-typedef unsigned long VMLULONG;
-#endif
-
-#ifdef USE64BITINT
-typedef VMLLONG VML_INT;
-#else
-typedef int VML_INT;
-#endif
-
-typedef struct
-{
-    const float* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_32f;
-
-typedef struct
-{
-    const double* pTaps;
-    int tapsLen;
-    int upFactor;
-    int upPhase;
-    int downFactor;
-    int downPhase;
-} FIRSpec_64f;
-
-typedef enum {
-    ipp32f,
-    ipp32fc,
-    ipp64f,
-    ipp64fc
-} DataType;
-
-typedef enum {
-    ippAlgAuto,
-    ippAlgDirect,
-    ippAlgFFT
-} AlgType;
-
-#define tsNoErr                 0
-#define tsNULLPtrErr           -8
-#define tsSizeErr              -6
-#define tsDataTypeErr          -5
-#define tsAlgTypeErr           -4
-#define OpenVML_FUNCNAME_3(pre,x,suf) pre##x##suf
-#define OpenVML_FUNCNAME_2(pre,x,suf) OpenVML_FUNCNAME_3(pre, x, suf)
-#define OpenVML_FUNCNAME_1(x) OpenVML_FUNCNAME_2(OPENVML_FUNC_PREFIX, x, OPENVML_FUNC_SUFFIX)
-#define OpenVML_FUNCNAME(x) OpenVML_FUNCNAME_1(x)
-
-#endif
+    switch (algType)
+    {
+    case ippAlgAuto:
+        pSpec->tapsLen = tapsLen;
+        pSpec->pTaps = pTaps;
+        break;
+    case ippAlgDirect:
+        pSpec->tapsLen = tapsLen;
+        pSpec->pTaps = pTaps;
+        break;
+    case ippAlgFFT:
+        pSpec->tapsLen = tapsLen;
+        pSpec->pTaps = pTaps;
+        break;
+    default:
+        return tsAlgTypeErr;
+    }
+    
+    return tsNoErr;
+ }

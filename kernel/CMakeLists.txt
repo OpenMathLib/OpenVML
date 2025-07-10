@@ -5,16 +5,19 @@ set(OpenVML_LIBSRC_S "")
 set(OpenVML_LIBSRC_D "")
 set(OpenVML_LIBSRC_C "")
 set(OpenVML_LIBSRC_Z "")
+set(OpenVML_LIBSRC "")
 
 #s,d
-set(KERNEL_LIST add sub sqr pow powx exp expm1 tanh log10 ln log1p floor
+set(S_KERNEL_LIST add sub sqr pow powx exp expm1 tanh log10 ln log1p floor fmax fmin mean variance
   sin cos sincos tan asin acos atan atan2)
 
 #c,z
 set(Z_KERNEL_LIST add sub) 
 ######## s,d kernels
 
-foreach(KERNEL ${KERNEL_LIST})
+set(KERNEL_LIST FIRSRGetSize FIRSRInit_32f FIRSR_32f )
+
+foreach(KERNEL ${S_KERNEL_LIST})
 
   set(OpenVML_LIBSRC_S
     ${OpenVML_LIBSRC_S}
@@ -106,9 +109,31 @@ foreach(KERNEL ${Z_KERNEL_LIST})
 
 endforeach(KERNEL)
 
+foreach(KERNEL ${KERNEL_LIST})
 
+  set(OpenVML_LIBSRC
+    ${OpenVML_LIBSRC}
+    ${CMAKE_CURRENT_BINARY_DIR}/${KERNEL}_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}.c
+    )
 
-add_library(openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core OBJECT ${OpenVML_LIBSRC_S} ${OpenVML_LIBSRC_D} ${OpenVML_LIBSRC_C} ${OpenVML_LIBSRC_Z})
+  set(KERNEL_SOURCE ${${KERNEL}_KERNEL_SOURCE})
+
+  add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${KERNEL}_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}.c
+    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/${KERNEL_SOURCE}
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/${KERNEL_SOURCE} ${CMAKE_CURRENT_BINARY_DIR}/${KERNEL}_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}.c
+    COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_CURRENT_BINARY_DIR}/${KERNEL}_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}.c)
+
+  set_property(SOURCE ${CMAKE_CURRENT_BINARY_DIR}/${KERNEL}_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}.c
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS ${OpenVML_S_DEFINITIONS})
+
+  set_property(SOURCE ${CMAKE_CURRENT_BINARY_DIR}/${KERNEL}_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}.c
+    APPEND
+    PROPERTY COMPILE_DEFINITIONS KERNEL_NAME=${OpenVML_FUNC_PREFIX}${KERNEL}_k${OpenVML_FUNC_SUFFIX})
+
+endforeach(KERNEL)
+
+add_library(openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core OBJECT ${OpenVML_LIBSRC_S} ${OpenVML_LIBSRC_D} ${OpenVML_LIBSRC_C} ${OpenVML_LIBSRC_Z} ${OpenVML_LIBSRC})
 
 target_compile_options(openvml_kernel_${OpenVML_ARCH}_${OpenVML_CPU_CORENAME}_core PRIVATE ${OpenVML_KERNEL_COMPILE_FLAGS})
 

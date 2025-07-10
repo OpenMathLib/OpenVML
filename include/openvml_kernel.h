@@ -131,4 +131,21 @@ void OpenVML_FUNCNAME(zatan_k)(VMLLONG n, double * a, double * b, double * y, do
 void OpenVML_FUNCNAME(satan2_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
 void OpenVML_FUNCNAME(datan2_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
 
+void OpenVML_FUNCNAME(sfmax_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dfmax_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+void OpenVML_FUNCNAME(sfmin_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+void OpenVML_FUNCNAME(dfmin_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+double OpenVML_FUNCNAME(smean_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+double OpenVML_FUNCNAME(dmean_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+double OpenVML_FUNCNAME(svariance_k)(VMLLONG n, float * a, float * b, float * y, float * z, float * other_params);
+double OpenVML_FUNCNAME(dvariance_k)(VMLLONG n, double * a, double * b, double * y, double * z, double * other_params);
+
+int FIRSRGetSize_k(const VML_INT n, const DataType tapsType, VML_INT * pSpecSize, VML_INT * pBufSize);
+
+int FIRSRInit_32f_k(const float* pTaps, VML_INT tapsLen, AlgType algType, FIRSpec_32f* pSpec);
+
+int FIRSR_32f_k(const float* pSrc, float* pDst, int numIters, FIRSpec_32f* pSpec, const float* pDlySrc, float* pDlyDst, unsigned char* pBuf);
 #endif

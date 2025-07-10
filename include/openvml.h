@@ -106,6 +106,24 @@ OPENVML_EXPORT void OpenVML_FUNCNAME(vdAtan)(const VML_INT n, const double * a, 
 OPENVML_EXPORT void OpenVML_FUNCNAME(vsAtan2)(const VML_INT n, const float * a, const float * b, float * y);
 OPENVML_EXPORT void OpenVML_FUNCNAME(vdAtan2)(const VML_INT n, const double * a, const double * b, double * y);
 
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsFmax)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdFmax)(const VML_INT n, const double * a, const double * b, double * y);
+
+OPENVML_EXPORT void OpenVML_FUNCNAME(vsFmin)(const VML_INT n, const float * a, const float * b, float * y);
+OPENVML_EXPORT void OpenVML_FUNCNAME(vdFmin)(const VML_INT n, const double * a, const double * b, double * y);
+
+OPENVML_EXPORT double OpenVML_FUNCNAME(vsMean)(const VML_INT n, const float * a);
+OPENVML_EXPORT double OpenVML_FUNCNAME(vdMean)(const VML_INT n, const double * a);
+
+OPENVML_EXPORT double OpenVML_FUNCNAME(vsVariance)(const VML_INT n, const float * a);
+OPENVML_EXPORT double OpenVML_FUNCNAME(vdVariance)(const VML_INT n, const double * a);
+
+OPENVML_EXPORT int OpenVML_FUNCNAME(FIRSRGetSize)(const VML_INT n, const DataType tapsType, VML_INT * pSpecSize, VML_INT * pBufSize);
+
+OPENVML_EXPORT int OpenVML_FUNCNAME(FIRSRInit_32f)(const float* pTaps, VML_INT tapsLen, AlgType algType, FIRSpec_32f* pSpec);
+
+OPENVML_EXPORT int OpenVML_FUNCNAME(FIRSR_32f)(const float* pSrc, float* pDst, int numIters, FIRSpec_32f* pSpec, const float* pDlySrc, float* pDlyDst, unsigned char* pBuf);
+
 #ifdef __cplusplus
 }
 #endif
