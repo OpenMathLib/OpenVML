@@ -38,6 +38,15 @@ set(tanh_D_KERNEL_SOURCE generic/tanh_kernel.c)
 set(floor_S_KERNEL_SOURCE generic/floor_kernel.c)
 set(floor_D_KERNEL_SOURCE generic/floor_kernel.c)
 
+set(fmax_S_KERNEL_SOURCE generic/fmax_kernel.c)
+set(fmax_D_KERNEL_SOURCE generic/fmax_kernel.c)
+set(fmin_S_KERNEL_SOURCE generic/fmin_kernel.c)
+set(fmin_D_KERNEL_SOURCE generic/fmin_kernel.c)
+set(mean_S_KERNEL_SOURCE generic/mean_kernel.c)
+set(mean_D_KERNEL_SOURCE generic/mean_kernel.c)
+set(variance_S_KERNEL_SOURCE generic/variance_kernel.c)
+set(variance_D_KERNEL_SOURCE generic/variance_kernel.c)
+
 set(sin_S_KERNEL_SOURCE generic/sin_kernel.c)
 set(sin_D_KERNEL_SOURCE generic/sin_kernel.c)
 
@@ -61,3 +70,7 @@ set(atan_D_KERNEL_SOURCE generic/atan_kernel.c)
 
 set(atan2_S_KERNEL_SOURCE generic/atan2_kernel.c)
 set(atan2_D_KERNEL_SOURCE generic/atan2_kernel.c)
+
+set(FIRSRGetSize_KERNEL_SOURCE generic/FIRSRGetSize_kernel.c)
+set(FIRSRInit_32f_KERNEL_SOURCE generic/FIRSRInit_32f_kernel.c)
+set(FIRSR_32f_KERNEL_SOURCE generic/FIRSR_32f_kernel.c)
