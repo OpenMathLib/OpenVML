@@ -9,9 +9,9 @@ set(INTERFACE_LIST FIRSRGetSize FIRSRInit_32f FIRSR_32f)
 
 set(REAL_INTERFACE_LIST 
   add sub sqr
-  pow powx pow2o3 pow3o2 exp expm1 
+  pow powx pow2o3 pow3o2 exp exp2 exp10 expm1 
   tanh 
-  log10 ln log1p 
+  log2 log10 ln log1p 
   floor fmax fmin mean variance 
   sin cos sinCos tan asin acos atan atan2)
 set(COMPLEX_INTERFACE_LIST add sub)

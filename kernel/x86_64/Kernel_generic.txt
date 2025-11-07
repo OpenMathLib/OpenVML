@@ -20,8 +20,17 @@ set(powx_D_KERNEL_SOURCE generic/powx_kernel.c)
 set(exp_S_KERNEL_SOURCE generic/exp_kernel.c)
 set(exp_D_KERNEL_SOURCE generic/exp_kernel.c)
 
+set(exp2_S_KERNEL_SOURCE generic/exp2_kernel.c)
+set(exp2_D_KERNEL_SOURCE generic/exp2_kernel.c)
+
+set(exp10_S_KERNEL_SOURCE generic/exp10_kernel.c)
+set(exp10_D_KERNEL_SOURCE generic/exp10_kernel.c)
+
 set(expm1_S_KERNEL_SOURCE generic/expm1_kernel.c)
 set(expm1_D_KERNEL_SOURCE generic/expm1_kernel.c)
+
+set(log2_S_KERNEL_SOURCE generic/log2_kernel.c)
+set(log2_D_KERNEL_SOURCE generic/log2_kernel.c)
 
 set(log10_S_KERNEL_SOURCE generic/log10_kernel.c)
 set(log10_D_KERNEL_SOURCE generic/log10_kernel.c)

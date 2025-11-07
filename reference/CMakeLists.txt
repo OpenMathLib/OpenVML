@@ -7,8 +7,11 @@ set(OpenVML_REF_SRC
   vpow2o3.c
   vpow3o2.c
   vexp.c
+  vexp2.c
+  vexp10.c
   vexpm1.c
   vtanh.c
+  vlog2.c
   vlog10.c
   vln.c
   vlog1p.c

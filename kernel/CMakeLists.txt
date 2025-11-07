@@ -1,3 +1,7 @@
+message(STATUS "Will include: ${CMAKE_CURRENT_SOURCE_DIR}/${OpenVML_ARCH}/Kernel_${OpenVML_CPU_CORENAME}.txt")
+message(STATUS "OpenVML_ARCH=${OpenVML_ARCH}, OpenVML_CPU_CORENAME=${OpenVML_CPU_CORENAME}")
+message(STATUS "Including: ${CMAKE_CURRENT_SOURCE_DIR}/${OpenVML_ARCH}/Kernel_${OpenVML_CPU_CORENAME}.txt")
+
 
 include(${OpenVML_ARCH}/Kernel_${OpenVML_CPU_CORENAME}.txt)
 
@@ -8,7 +12,7 @@ set(OpenVML_LIBSRC_Z "")
 set(OpenVML_LIBSRC "")
 
 #s,d
-set(S_KERNEL_LIST add sub sqr pow powx exp expm1 tanh log10 ln log1p floor fmax fmin mean variance
+set(S_KERNEL_LIST add sub sqr pow powx exp exp2 exp10 expm1 tanh log2 log10 ln log1p floor fmax fmin mean variance
   sin cos sincos tan asin acos atan atan2)
 
 #c,z
