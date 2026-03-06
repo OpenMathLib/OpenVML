@@ -24,8 +24,8 @@
  */
 
 #include <stdlib.h>
-#include <math.h>
 #include <openvml_reference.h>
+#include <math.h>
 
 double OpenVML_FUNCNAME_REF(vsVariance)(const VML_INT n, const float * a){
   if (n <= 1 || a == NULL) return NAN;

@@ -24,8 +24,8 @@
  */
 
 #include <stdlib.h>
-#include <math.h>
 #include <openvml_reference.h>
+#include <math.h>
 
 void OpenVML_FUNCNAME_REF(vsSinCos)(const VML_INT n, const float * a, float * y, float * z){
   VML_INT i;		      

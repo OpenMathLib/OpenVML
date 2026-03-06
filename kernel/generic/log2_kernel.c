@@ -23,8 +23,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <math.h>
 #include "openvml_kernel.h"
+#include <math.h>
 
 #ifndef DOUBLE
 #define LOG2 log2f
