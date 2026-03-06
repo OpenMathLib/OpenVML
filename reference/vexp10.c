@@ -23,9 +23,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <openvml_reference.h>
 #include <stdlib.h>
 #include <math.h>
-#include <openvml_reference.h>
 
 void OpenVML_FUNCNAME_REF(vsExp10)(const VML_INT n, const float * a, float * y){
   VML_INT i;		      
