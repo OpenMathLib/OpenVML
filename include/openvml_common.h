@@ -28,6 +28,9 @@
 
 #include "openvml_config.h"
 
+#define _GNU_SOURCE
+// this remove the 'implicit declaration of built-in function' warning for functions from math.h in GCC
+
 #ifdef DOUBLE
 typedef double VML_FLOAT;
 #else

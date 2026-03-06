@@ -23,8 +23,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "openvml_kernel.h"
  #include <math.h>
- #include "openvml_kernel.h"
  
  #ifndef DOUBLE
  #define MEAN meanf

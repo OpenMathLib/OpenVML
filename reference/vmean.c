@@ -22,9 +22,9 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <openvml_reference.h>
 #include <math.h>
 #include <stdlib.h>
-#include <openvml_reference.h>
 
 double OpenVML_FUNCNAME_REF(vsMean)(const VML_INT n, const float * a)
 {

@@ -23,6 +23,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+// THIS HEADER FILE MUST BE INCLUDED BEFORE <math.h> TO AVOID THE 'implicit declaration of built-in function' WARNING FOR FUNCTIONS FROM math.h IN GCC
+
 #ifndef _OPENVML_REFERENCE_H_
 #define _OPENVML_REFERENCE_H_
 
@@ -30,7 +32,6 @@
 #include "openvml_common.h"
 
 #define OpenVML_FUNCNAME_REF(x) x##_ref
-
 
 #ifdef __cplusplus
 extern "C" {
