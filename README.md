@@ -25,7 +25,7 @@ OpenVML is an open soruce vector math library.
 
 ## Compile
 
-You need (CMake)[www.cmake.org] on your platform.
+You need [CMake](www.cmake.org) on your platform.
 
 * Linux or Mac OSX:
 
